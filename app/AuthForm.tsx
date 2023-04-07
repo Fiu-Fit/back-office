@@ -36,13 +36,13 @@ export default function AuthForm() {
     >
       <FormInput
         name="email"
-        label="Email"
+        label="Correo electrónico"
         type="text"
         className="col-span-2"
       />
       <FormInput
         name="password"
-        label="Password"
+        label="Contraseña"
         type="password"
         className="col-span-2"
       />
@@ -50,13 +50,13 @@ export default function AuthForm() {
         type="submit"
         className="text-white bg-blue-600 hover:bg-blue-700 col-span-2 button"
       >
-        Login
+        Iniciar sesión
       </button>
       <Link href="/register" className={`button ${styles.extra_button}`}>
-        Register
+        Registrarse
       </Link>
       <Link href="/forgot-password" className={`button ${styles.extra_button}`}>
-        Forgot your password?
+        Recuperar contraseña
       </Link>
     </form>
   );
