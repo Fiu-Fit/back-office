@@ -74,7 +74,7 @@ export default function RegisterForm() {
 
       <button
         type="submit"
-        className="bg-blue-600 hover:bg-blue-700 col-span-2 button"
+        className="text-white bg-blue-600 hover:bg-blue-700 col-span-2 button"
       >
         Registrarse
       </button>

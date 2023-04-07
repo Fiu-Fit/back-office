@@ -11,7 +11,7 @@ export default function FormInput({
 }) {
   return (
     <div className={`min-w-full ${className}`}>
-      <label className="block text-white text-sm font-bold mb-2" htmlFor={name}>
+      <label className="block text-sm font-bold mb-2" htmlFor={name}>
         {label}
       </label>
       <input

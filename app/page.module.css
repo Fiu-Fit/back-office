@@ -1,17 +1,4 @@
-.button_grid {
-  @apply grid grid-cols-2 grid-rows-2 gap-2 text-center min-w-full;
-}
-
-.button_grid > * {
-  @apply text-white hover:-translate-y-0.5 active:translate-y-1 transition-transform font-bold rounded-md py-3;
-}
-
-@media screen and (max-width: 640px) {
-  .button_grid {
-    @apply grid-rows-3;
-  }
-
-  .button_grid > a {
-    @apply col-span-2;
-  }
+.extra_button:hover {
+  background-color: rgb(var(--foreground-rgb));
+  color: rgb(var(--background-start-rgb));
 }

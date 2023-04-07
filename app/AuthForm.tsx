@@ -48,20 +48,14 @@ export default function AuthForm() {
       />
       <button
         type="submit"
-        className="bg-blue-600 hover:bg-blue-700 col-span-2 button"
+        className="text-white bg-blue-600 hover:bg-blue-700 col-span-2 button"
       >
         Login
       </button>
-      <Link
-        href="/register"
-        className="bg-emerald-600 hover:bg-emerald-700 button"
-      >
+      <Link href="/register" className={`button ${styles.extra_button}`}>
         Register
       </Link>
-      <Link
-        href="/forgot-password"
-        className="bg-gray-700 hover:bg-gray-800 button"
-      >
+      <Link href="/forgot-password" className={`button ${styles.extra_button}`}>
         Forgot your password?
       </Link>
     </form>
