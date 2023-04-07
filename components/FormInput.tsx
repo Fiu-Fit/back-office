@@ -17,7 +17,7 @@ export default function FormInput({
       <input
         type={type}
         name={name}
-        className="mb-5 p-4 rounded-md min-w-full max-w-full"
+        className="p-4 rounded-md min-w-full max-w-full"
       />
     </div>
   );

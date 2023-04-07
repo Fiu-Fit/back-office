@@ -5,10 +5,12 @@ import Link from "next/link";
 
 export default function Register() {
   return (
-    <main className="flex min-h-screen min-w-full items-center justify-evenly relative">
-      <Link href="/" className='absolute top-6 left-6'>
-        <ArrowLeftIcon className="h-14 w-14 p-2 text-white absolute bg-transparent duration-200 hover:bg-white hover:text-black transition-colors rounded-full" />
+    <main className="flex flex-col min-h-screen min-w-full items-center relative">
+      <div className='block self-start mt-2'>
+      <Link href="/">
+        <ArrowLeftIcon className="h-14 w-14 p-2 text-white bg-transparent duration-200 hover:bg-white hover:text-black transition-colors rounded-full" />
       </Link>
+      </div>
       <RegisterForm />
     </main>
   );

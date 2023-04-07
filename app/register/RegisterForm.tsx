@@ -39,7 +39,7 @@ export default function RegisterForm() {
     <form
       onSubmit={handleSubmit}
       method="post"
-      className="grid grid-cols-2 gap-4 w-4/5 max-w-lg"
+      className="grid grid-cols-2 gap-x-4 gap-y-2 w-4/5 max-w-lg my-auto py-3"
     >
       <FormInput
         name="firstName"
