@@ -77,6 +77,8 @@
   }
 }
 
+
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -108,4 +110,8 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.button {
+  @apply hover:-translate-y-0.5 active:translate-y-1 transition-transform font-bold rounded-md py-3;
 }
