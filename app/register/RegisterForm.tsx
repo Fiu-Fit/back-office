@@ -1,7 +1,6 @@
 "use client";
-
 import FormInput from "@/components/FormInput";
-import styles from "../page.module.css";
+import axios from "axios";
 import { SyntheticEvent } from "react";
 
 const handleSubmit = async (e: SyntheticEvent) => {
@@ -19,20 +18,53 @@ const handleSubmit = async (e: SyntheticEvent) => {
     lastName: target.lastName.value,
     email: target.email.value,
     password: target.password.value,
-    role: 'Admin',
+    role: "Admin",
   });
 
-  const res = await fetch("http://localhost:8080/auth/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: body,
-  });
-  const data = await res.json();
+  try {
+    const res = await axios.post("/api/auth/register", body, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = res.data;
 
-  console.log(data);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 };
+
+const halfWidthInputs = [
+  {
+    name: "firstName",
+    label: "Nombre",
+    type: "text",
+  },
+  {
+    name: "lastName",
+    label: "Apellido",
+    type: "text",
+  },
+];
+
+const fullWidthInputs = [
+  {
+    name: "email",
+    label: "Email",
+    type: "text",
+  },
+  {
+    name: "password",
+    label: "Contraseña",
+    type: "password",
+  },
+  {
+    name: "passwordConfirmation",
+    label: "Confirmar contraseña",
+    type: "password",
+  },
+];
 
 export default function RegisterForm() {
   return (
@@ -41,37 +73,24 @@ export default function RegisterForm() {
       method="post"
       className="grid grid-cols-2 gap-x-4 gap-y-2 w-4/5 max-w-lg my-auto py-3"
     >
-      <FormInput
-        name="firstName"
-        label="Nombre"
-        type="text"
-        className="col-span-2 sm:col-span-1"
-      />
-      <FormInput
-        name="lastName"
-        label="Apellido"
-        type="text"
-        className="col-span-2  sm:col-span-1"
-      />
-      <FormInput
-        name="email"
-        label="Email"
-        type="text"
-        className="col-span-2"
-      />
-      <FormInput
-        name="password"
-        label="Contraseña"
-        type="password"
-        className="col-span-2"
-      />
-      <FormInput
-        name="passwordConfirmation"
-        label="Confirmar contraseña"
-        type="password"
-        className="col-span-2"
-      />
-
+      {halfWidthInputs.map((input) => (
+        <FormInput
+          key={input.name}
+          name={input.name}
+          label={input.label}
+          type={input.type}
+          className="col-span-2 sm:col-span-1"
+        />
+      ))}
+      {fullWidthInputs.map((input) => (
+        <FormInput
+          key={input.name}
+          name={input.name}
+          label={input.label}
+          type={input.type}
+          className="col-span-2"
+        />
+      ))}
       <button
         type="submit"
         className="text-white bg-blue-600 hover:bg-blue-700 col-span-2 button"

@@ -3,6 +3,7 @@ import FormInput from "@/components/FormInput";
 import styles from "./page.module.css";
 import { SyntheticEvent } from "react";
 import Link from "next/link";
+import axios from "axios";
 
 const handleSubmit = async (e: SyntheticEvent) => {
   e.preventDefault();
@@ -16,16 +17,18 @@ const handleSubmit = async (e: SyntheticEvent) => {
     password: target.password.value,
   });
 
-  const res = await fetch("http://localhost:8080/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: body,
-  });
-  const data = await res.json();
+  try {
+    const res = await axios.post("api/auth/login", body, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = res.data;
 
-  console.log(data);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export default function AuthForm() {

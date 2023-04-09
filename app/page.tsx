@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AuthForm from './AuthForm';
+import AuthForm from "./AuthForm";
 
 export default function Login() {
   return (
@@ -7,7 +7,7 @@ export default function Login() {
       <Image
         src="/fiufit.svg"
         className="hidden lg:block invert dark:invert-0"
-        alt={"FiuFit"}
+        alt="FiuFit"
         width={400}
         height={400}
       />
