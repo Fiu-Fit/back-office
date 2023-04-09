@@ -1,7 +1,7 @@
 "use client";
 import FormInput from "@/components/FormInput";
 import axios from "axios";
-import { SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { RegisterRequest } from "./interfaces";
 
 const ADMIN_ROLE = "Admin";
@@ -53,7 +53,7 @@ export default function RegisterForm() {
       role: ADMIN_ROLE,
     };
     const body = JSON.stringify(registerData);
-    
+
     try {
       const res = await axios.post("/api/auth/register", body, {
         headers: {
@@ -61,18 +61,23 @@ export default function RegisterForm() {
         },
       });
       const token = res.data;
-  
+
       console.log(token);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const handleOnChange = (event: ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    setFormData({ ...formData, [target.name]: target.value });
+  };
+
   return (
     <form
       onSubmit={(event) => handleSubmit(event, formData)}
       method="post"
-      className="grid grid-cols-2 gap-x-4 gap-y-2 w-4/5 max-w-lg my-auto py-3"
+      className="grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow"
     >
       {halfWidthInputs.map((input) => (
         <FormInput
@@ -80,10 +85,8 @@ export default function RegisterForm() {
           name={input.name}
           label={input.label}
           type={input.type}
-          className="col-span-2 sm:col-span-1"
-          onChange={(e) => {
-            setFormData({ ...formData, [e.target.name]: e.target.value });
-          }}
+          containerClassName="col-span-2 sm:col-span-1"
+          onChange={handleOnChange}
         />
       ))}
       {fullWidthInputs.map((input) => (
@@ -92,10 +95,8 @@ export default function RegisterForm() {
           name={input.name}
           label={input.label}
           type={input.type}
-          className="col-span-2"
-          onChange={(e) => {
-            setFormData({ ...formData, [e.target.name]: e.target.value });
-          }}
+          containerClassName="col-span-2"
+          onChange={handleOnChange}
         />
       ))}
       <button
