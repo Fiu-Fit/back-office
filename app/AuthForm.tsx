@@ -1,7 +1,7 @@
 "use client";
 import FormInput from "@/components/FormInput";
 import styles from "./page.module.css";
-import { SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { LoginRequest } from "./interfaces";
@@ -31,28 +31,29 @@ export default function AuthForm() {
     }
   };
 
+  const handleOnChange = (event: ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    setFormData({ ...formData, [target.name]: target.value });
+  };
+
   return (
     <form
       onSubmit={(event) => handleSubmit(event, formData)}
-      className="grid grid-cols-2 gap-x-2 gap-y-2 w-72 sm:w-96"
+      className="grid grid-cols-2 gap-4 w-11/12 max-w-md p-5 rounded bg-white dark:bg-zinc-900 shadow"
     >
       <FormInput
         name="email"
         label="Correo electrónico"
         type="text"
-        className="col-span-2"
-        onChange={(e) => {
-          setFormData({ ...formData, email: e.target.value });
-        }}
+        containerClassName="col-span-2"
+        onChange={handleOnChange}
       />
       <FormInput
         name="password"
         label="Contraseña"
         type="password"
-        className="col-span-2"
-        onChange={(e) => {
-          setFormData({ ...formData, password: e.target.value });
-        }}
+        containerClassName="col-span-2"
+        onChange={handleOnChange}
       />
       <button
         type="submit"
