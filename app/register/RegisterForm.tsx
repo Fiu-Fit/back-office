@@ -1,39 +1,10 @@
 "use client";
 import FormInput from "@/components/FormInput";
 import axios from "axios";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useState } from "react";
+import { RegisterRequest } from "./interfaces";
 
-const handleSubmit = async (e: SyntheticEvent) => {
-  e.preventDefault();
-  const target = e.target as typeof e.target & {
-    firstName: { value: string };
-    lastName: { value: string };
-    email: { value: string };
-    password: { value: string };
-    role: { value: string };
-  };
-
-  const body = JSON.stringify({
-    firstName: target.firstName.value,
-    lastName: target.lastName.value,
-    email: target.email.value,
-    password: target.password.value,
-    role: "Admin",
-  });
-
-  try {
-    const res = await axios.post("/api/auth/register", body, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = res.data;
-
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-};
+const ADMIN_ROLE = "Admin";
 
 const halfWidthInputs = [
   {
@@ -67,9 +38,39 @@ const fullWidthInputs = [
 ];
 
 export default function RegisterForm() {
+  const [formData, setFormData] = useState<RegisterRequest>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  });
+
+  const handleSubmit = async (e: SyntheticEvent, formData: RegisterRequest) => {
+    e.preventDefault();
+    const registerData = {
+      ...formData,
+      role: ADMIN_ROLE,
+    };
+    const body = JSON.stringify(registerData);
+    
+    try {
+      const res = await axios.post("/api/auth/register", body, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const token = res.data;
+  
+      console.log(token);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(event) => handleSubmit(event, formData)}
       method="post"
       className="grid grid-cols-2 gap-x-4 gap-y-2 w-4/5 max-w-lg my-auto py-3"
     >
@@ -80,6 +81,9 @@ export default function RegisterForm() {
           label={input.label}
           type={input.type}
           className="col-span-2 sm:col-span-1"
+          onChange={(e) => {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+          }}
         />
       ))}
       {fullWidthInputs.map((input) => (
@@ -89,6 +93,9 @@ export default function RegisterForm() {
           label={input.label}
           type={input.type}
           className="col-span-2"
+          onChange={(e) => {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+          }}
         />
       ))}
       <button

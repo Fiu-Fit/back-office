@@ -1,40 +1,39 @@
 "use client";
 import FormInput from "@/components/FormInput";
 import styles from "./page.module.css";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-
-const handleSubmit = async (e: SyntheticEvent) => {
-  e.preventDefault();
-  const target = e.target as typeof e.target & {
-    email: { value: string };
-    password: { value: string };
-  };
-
-  const body = JSON.stringify({
-    email: target.email.value,
-    password: target.password.value,
-  });
-
-  try {
-    const res = await axios.post("api/auth/login", body, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = res.data;
-
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-};
+import { LoginRequest } from "./interfaces";
 
 export default function AuthForm() {
+  const [formData, setFormData] = useState<LoginRequest>({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e: SyntheticEvent, formData: LoginRequest) => {
+    e.preventDefault();
+
+    const body = JSON.stringify(formData);
+
+    try {
+      const res = await axios.post("api/auth/login", body, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const token = res.data;
+
+      console.log(token);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(event) => handleSubmit(event, formData)}
       className="grid grid-cols-2 gap-x-2 gap-y-2 w-72 sm:w-96"
     >
       <FormInput
@@ -42,12 +41,18 @@ export default function AuthForm() {
         label="Correo electrónico"
         type="text"
         className="col-span-2"
+        onChange={(e) => {
+          setFormData({ ...formData, email: e.target.value });
+        }}
       />
       <FormInput
         name="password"
         label="Contraseña"
         type="password"
         className="col-span-2"
+        onChange={(e) => {
+          setFormData({ ...formData, password: e.target.value });
+        }}
       />
       <button
         type="submit"
