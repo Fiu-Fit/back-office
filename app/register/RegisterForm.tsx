@@ -57,10 +57,9 @@ export default function RegisterForm() {
       ...formData,
       role: ADMIN_ROLE,
     };
-    const body = JSON.stringify(registerData);
-
+    
     try {
-      const { data: token } = await axios.post("/api/auth/register", body);
+      const { data: token } = await axios.post("/api/auth/register", registerData);
       console.log(token);
     } catch (err) {
       console.error(err);

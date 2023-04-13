@@ -14,10 +14,8 @@ export default function AuthForm() {
   } = useForm({ mode: "onTouched" });
 
   const onSubmit = async (formData: FieldValues) => {
-    const body = JSON.stringify(formData);
-
     try {
-      const {data: token} = await axios.post("api/auth/login", body);
+      const {data: token} = await axios.post("api/auth/login", formData);
       console.log(token);
     } catch (err) {
       console.error(err);
