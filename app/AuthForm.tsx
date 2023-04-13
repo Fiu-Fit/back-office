@@ -1,44 +1,32 @@
 "use client";
-import FormInput from "@/components/FormInput";
+import FormInput from "@/components/FormInput/FormInput";
 import styles from "./page.module.css";
-import { ChangeEvent, SyntheticEvent, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { LoginRequest } from "./interfaces";
+import { FieldValues, useForm } from "react-hook-form";
+import { validateEmail, validatePassword } from "@/utils";
 
 export default function AuthForm() {
-  const [formData, setFormData] = useState<LoginRequest>({
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onTouched" });
 
-  const handleSubmit = async (e: SyntheticEvent, formData: LoginRequest) => {
-    e.preventDefault();
-
+  const onSubmit = async (formData: FieldValues) => {
     const body = JSON.stringify(formData);
 
     try {
-      const res = await axios.post("api/auth/login", body, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const token = res.data;
-
+      const {data: token} = await axios.post("api/auth/login", body);
       console.log(token);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleOnChange = (event: ChangeEvent) => {
-    const target = event.target as HTMLInputElement;
-    setFormData({ ...formData, [target.name]: target.value });
-  };
-
   return (
     <form
-      onSubmit={(event) => handleSubmit(event, formData)}
+      onSubmit={handleSubmit((data) => onSubmit(data))}
       className="grid grid-cols-2 gap-4 w-11/12 max-w-md p-5 rounded bg-white dark:bg-zinc-900 shadow"
     >
       <FormInput
@@ -46,14 +34,18 @@ export default function AuthForm() {
         label="Correo electrónico"
         type="text"
         containerClassName="col-span-2"
-        onChange={handleOnChange}
+        register={register}
+        options={validateEmail(true)}
+        errorMessage={errors.email?.message as string}
       />
       <FormInput
         name="password"
         label="Contraseña"
         type="password"
         containerClassName="col-span-2"
-        onChange={handleOnChange}
+        register={register}
+        options={validatePassword(true)}
+        errorMessage={errors.password?.message as string}
       />
       <button
         type="submit"
