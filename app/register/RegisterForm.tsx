@@ -1,10 +1,10 @@
-"use client";
-import FormInput from "@/components/FormInput/FormInput";
-import axios from "axios";
-import { validateName, validateEmail, validatePassword } from "@/utils";
-import { FieldValues, useForm } from "react-hook-form";
-
-const ADMIN_ROLE = "Admin";
+'use client';
+import FormInput from '@/components/FormInput/FormInput';
+import axiosInstance from '@/api/axiosConfig';
+import { validateName, validateEmail, validatePassword } from '@/utils';
+import { FieldValues, useForm } from 'react-hook-form';
+  
+const ADMIN_ROLE = 'Admin';
 
 export default function RegisterForm() {
   const {
@@ -12,43 +12,43 @@ export default function RegisterForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({ mode: "onTouched" });
+  } = useForm({ mode: 'onTouched' });
 
   const inputs = [
     {
-      name: "firstName",
-      label: "Nombre",
-      type: "text",
+      name: 'firstName',
+      label: 'Nombre',
+      type: 'text',
       halfWidth: true,
       options: validateName(true),
     },
     {
-      name: "lastName",
-      label: "Apellido",
-      type: "text",
+      name: 'lastName',
+      label: 'Apellido',
+      type: 'text',
       halfWidth: true,
       options: validateName(true),
     },
     {
-      name: "email",
-      label: "Email",
-      type: "email",
+      name: 'email',
+      label: 'Email',
+      type: 'email',
       halfWidth: false,
       options: validateEmail(true),
     },
     {
-      name: "password",
-      label: "Contraseña",
-      type: "password",
+      name: 'password',
+      label: 'Contraseña',
+      type: 'password',
       halfWidth: false,
       options: validatePassword(true),
     },
     {
-      name: "passwordConfirmation",
-      label: "Confirmar contraseña",
-      type: "password",
+      name: 'passwordConfirmation',
+      label: 'Confirmar contraseña',
+      type: 'password',
       halfWidth: false,
-      options: validatePassword(true, watch("password")),
+      options: validatePassword(true, watch('password')),
     },
   ];
 
@@ -57,9 +57,12 @@ export default function RegisterForm() {
       ...formData,
       role: ADMIN_ROLE,
     };
-    
+
     try {
-      const { data: token } = await axios.post("/api/auth/register", registerData);
+      const { data: token } = await axiosInstance.post(
+        '/api/auth/register',
+        registerData
+      );
       console.log(token);
     } catch (err) {
       console.error(err);
@@ -68,18 +71,18 @@ export default function RegisterForm() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => onSubmit(data))}
+      onSubmit={handleSubmit(data => onSubmit(data))}
       method="post"
       className="grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow"
     >
-      {inputs.map((input) => (
+      {inputs.map(input => (
         <FormInput
           key={input.name}
           label={input.label}
           type={input.type}
           name={input.name}
           containerClassName={`col-span-2 ${
-            input.halfWidth && "sm:col-span-1"
+            input.halfWidth && 'sm:col-span-1'
           }`}
           register={register}
           errorMessage={errors[input.name]?.message as string}

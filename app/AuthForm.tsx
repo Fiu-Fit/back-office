@@ -2,10 +2,10 @@
 
 import FormInput from '@/components/FormInput/FormInput';
 import Link from 'next/link';
-import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
 import { validateEmail, validatePassword } from '@/utils';
 import styles from './page.module.css';
+import axiosInstance from '@/api/axiosConfig';
 
 export default function AuthForm() {
   const {
@@ -16,7 +16,7 @@ export default function AuthForm() {
 
   const onSubmit = async (formData: FieldValues) => {
     try {
-      const { data: token } = await axios.post('api/auth/login', formData);
+      const { data: {token: token} } = await axiosInstance.post('api/auth/login', formData);
       console.log(token);
     } catch (err) {
       console.error(err);
