@@ -8,9 +8,6 @@ export const validatePassword = (
   required: boolean,
   passwordConfirmation?: string
 ) => {
-  if (!passwordConfirmation) {
-  }
-
   return {
     minLength: {
       value: MIN_PASSWORD_LENGTH,
