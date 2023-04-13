@@ -51,10 +51,8 @@ export default function AuthForm() {
       >
         Iniciar sesión
       </button>
-      <Link href="/register" className={`button ${styles.extra_button}`}>
-        Registrarse
-      </Link>
-      <Link href="/forgot-password" className={`button ${styles.extra_button}`}>
+     
+      <Link href="/forgot-password" className={`button ${styles.extra_button} col-span-2`}>
         Recuperar contraseña
       </Link>
     </form>
