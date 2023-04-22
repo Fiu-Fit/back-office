@@ -1,0 +1,8 @@
+.back_arrow {
+    @apply p-2 bg-transparent duration-200 transition-colors rounded-full;
+}
+
+.back_arrow:hover {
+    color: rgb(var(--background-start-rgb));
+    background-color: rgb(var(--foreground-rgb));
+}
