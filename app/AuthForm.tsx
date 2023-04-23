@@ -1,11 +1,11 @@
 'use client';
-
 import FormInput from '@/components/FormInput/FormInput';
 import Link from 'next/link';
 import { FieldValues, useForm } from 'react-hook-form';
 import { validateEmail, validatePassword } from '@/utils';
 import styles from './page.module.css';
-import axiosInstance from '@/api/axiosConfig';
+import axiosInstance from '@/api/clientSideAxiosConfig';
+import { useRouter } from 'next/navigation';
 
 export default function AuthForm() {
   const {
@@ -13,11 +13,13 @@ export default function AuthForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'onTouched' });
+  const router = useRouter();
 
   const onSubmit = async (formData: FieldValues) => {
     try {
-      const { data: {token: token} } = await axiosInstance.post('api/auth/login', formData);
-      console.log(token);
+      const response = await axiosInstance.post('api/auth/login', formData);
+      console.log(response);
+      router.push('/register');
     } catch (err) {
       console.error(err);
     }

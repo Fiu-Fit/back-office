@@ -1,6 +1,6 @@
 'use client';
 import FormInput from '@/components/FormInput/FormInput';
-import axiosInstance from '@/api/axiosConfig';
+import axiosInstance from '@/api/clientSideAxiosConfig';
 import { validateName, validateEmail, validatePassword } from '@/utils';
 import { FieldValues, useForm } from 'react-hook-form';
   
