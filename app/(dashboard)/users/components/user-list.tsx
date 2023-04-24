@@ -12,7 +12,7 @@ import {
   tableCellClasses,
 } from '@mui/material';
 import { User } from '@/app/(dashboard)/users/interfaces/User';
-import {Page, RoleEnumToName} from '@/app/utils/interfaces';
+import { Page, RoleEnumToName } from '@/app/utils/interfaces';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -53,7 +53,7 @@ export const UsersList = ({ page }: { page: Page<User> }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {page.rows.map(row => (
+            {page?.rows?.map(row => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component='th' scope='row'>
                   {row.id}
@@ -61,7 +61,9 @@ export const UsersList = ({ page }: { page: Page<User> }) => {
                 <StyledTableCell align='right'>{row.firstName}</StyledTableCell>
                 <StyledTableCell align='right'>{row.lastName}</StyledTableCell>
                 <StyledTableCell align='right'>{row.email}</StyledTableCell>
-                <StyledTableCell align='right'>{RoleEnumToName[row.role]}</StyledTableCell>
+                <StyledTableCell align='right'>
+                  {RoleEnumToName[row.role]}
+                </StyledTableCell>
                 <StyledTableCell align='right'>
                   <Button href={`users/${row.id}`}>Detalle</Button>
                 </StyledTableCell>

@@ -1,13 +1,21 @@
 import { UserCard } from '@/app/(dashboard)/users/components/user-card';
+import UserDetailHeader from '@/app/(dashboard)/users/components/user-detail-header';
 import { User } from '@/app/(dashboard)/users/interfaces/User';
 import { api } from '@/app/api/api';
-import { GenericHeader } from '@/app/utils/GenericHeader';
 
 async function getUser(id: number): Promise<User> {
   const { data: user } = await api.get<User>(`/users/${id}`);
 
   return user;
 }
+
+async function deleteUser(id: number): Promise<User> {
+  'use server';
+  const { data: user } = await api.delete<User>(`/users/${id}`);
+
+  return user;
+}
+
 export default async function UserDetail({
   params: { id },
 }: {
@@ -17,16 +25,10 @@ export default async function UserDetail({
 
   return (
     <div style={{ height: '100%', width: '100%' }}>
-      <div className='header'>
-        <GenericHeader>
-          <div className='flex flex-col justify-between px-12 py-10'>
-            <h1 className='text-2xl text-white '>
-              {user.firstName} {user.lastName}
-            </h1>
-          </div>
-        </GenericHeader>
+      <UserDetailHeader user={user} deleteUser={deleteUser} />
+      <div className='mx-12 mt-12 w-1/2'>
+        <UserCard user={user} />
       </div>
-      <UserCard user={user} />
     </div>
   );
 }

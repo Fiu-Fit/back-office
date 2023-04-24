@@ -17,11 +17,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <MuiSetup>
           <div className='flex flex-row w-full'>
             <Sidebar />
-            <div className='flex flex-col w-full h-full gap-10'>
+            <div className='flex flex-col w-full h-full'>
               <Header />
-              <div className='container mt-40 mx-20 w-full h-full'>
-                {children}
-              </div>
+
+              <div className='container w-full h-full'>{children}</div>
             </div>
           </div>
         </MuiSetup>

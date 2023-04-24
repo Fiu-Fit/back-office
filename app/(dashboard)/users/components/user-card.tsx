@@ -5,7 +5,7 @@ import { RoleEnumToName } from '@/app/utils/interfaces';
 
 export const UserCard = ({ user }: { user: User }) => {
   return (
-    <Card className='w-1/2'>
+    <Card>
       <div className='shadow overflow-hidden rounded-md'>
         <div className='px-4 py-5 border-b border-gray-600 px-6'>
           <div className='rich-text'>
@@ -29,7 +29,6 @@ export const UserCard = ({ user }: { user: User }) => {
             <div className='mt-0 grid grid-cols-3 gap-4 border-t border-gray-600 px-6 py-5'>
               <dt className='text-sm leading-5 font-medium'>Nombre</dt>
               <dd className='mt-1 text-sm leading-5 mt-0 col-span-2'>
-                {' '}
                 {user.firstName}
               </dd>
             </div>
