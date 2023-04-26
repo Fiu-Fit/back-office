@@ -59,11 +59,10 @@ export default function RegisterForm() {
     };
 
     try {
-      const { data: token } = await axiosInstance.post(
+      await axiosInstance.post(
         '/api/auth/register',
         registerData
       );
-      console.log(token);
     } catch (err) {
       console.error(err);
     }
