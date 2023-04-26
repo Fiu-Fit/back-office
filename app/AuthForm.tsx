@@ -18,8 +18,7 @@ export default function AuthForm() {
   const onSubmit = async (formData: FieldValues) => {
     try {
       const response = await axiosInstance.post('api/auth/login', formData);
-      console.log(response);
-      router.push('/register');
+      if (response.status === 200) router.push('/register');
     } catch (err) {
       console.error(err);
     }
