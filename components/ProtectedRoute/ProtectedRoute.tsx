@@ -4,15 +4,15 @@ import { HttpStatusCode } from 'axios';
 import { cookies } from 'next/headers';
 import { ReactNode } from 'react';
 
-interface PrivateRouteProps {
+interface ProtectedRouteProps {
   children: ReactNode;
   redirectTo?: string;
 }
 
-export default (async function PrivateRoute({
+export default (async function ProtectedRoute({
   children,
   redirectTo,
-}: PrivateRouteProps) {
+}: ProtectedRouteProps) {
   const redirectUrl = redirectTo || '/';
   try {
     const token = cookies().get('token')?.value;
@@ -23,4 +23,4 @@ export default (async function PrivateRoute({
   }
 
   return children;
-} as unknown as ({ children }: PrivateRouteProps) => JSX.Element);
+} as unknown as ({ children }: ProtectedRouteProps) => JSX.Element);

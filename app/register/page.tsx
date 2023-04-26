@@ -2,11 +2,11 @@ import RegisterForm from './RegisterForm';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import styles from './page.module.css';
-import PrivateRoute from '@/components/PrivateRoute/PrivateRoute';
+import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 export default async function Register() {
   return (
-    <PrivateRoute>
+    <ProtectedRoute>
       <main className="flex flex-col min-h-screen min-w-full items-center relative">
         <div className="block self-start mt-2">
           <Link href="/">
@@ -15,6 +15,6 @@ export default async function Register() {
         </div>
         <RegisterForm />
       </main>
-    </PrivateRoute>
+    </ProtectedRoute>
   );
 }
