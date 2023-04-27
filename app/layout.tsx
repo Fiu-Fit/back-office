@@ -1,7 +1,8 @@
 import './globals.css';
 
 import { ReactNode } from 'react';
-import { MuiSetup } from '@/app/utils/MuiSetup';
+import { NextAppDirEmotionCacheProvider } from 'tss-react/next';
+import AppThemeProvider from '@/utils/AppThemeProvider';
 
 export const metadata = {
   title:       'Create Next App',
@@ -10,11 +11,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className='flex justify-center w-full'>
-        <MuiSetup>
-          <div className='container w-full h-full'>{children}</div>
-        </MuiSetup>
+        <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
+          <AppThemeProvider>{children}</AppThemeProvider>
+        </NextAppDirEmotionCacheProvider>
       </body>
     </html>
   );
