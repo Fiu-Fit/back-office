@@ -1,5 +1,5 @@
-import { UserCard } from '@/app/(dashboard)/users/components/user-card';
-import UserDetailHeader from '@/app/(dashboard)/users/components/user-detail-header';
+import { UserCard } from '@/app/(dashboard)/users/components/UserCard';
+import UserDetailHeader from '@/app/(dashboard)/users/components/UserDetailHeader';
 import { User } from '@/app/(dashboard)/users/interfaces/User';
 import { api } from '@/app/api/api';
 

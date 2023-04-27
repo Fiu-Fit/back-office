@@ -1,4 +1,4 @@
-import { UsersList } from '@/app/(dashboard)/users/components/user-list';
+import { UsersList } from '@/app/(dashboard)/users/components/UserList';
 import { User } from '@/app/(dashboard)/users/interfaces/User';
 import { api } from '@/app/api/api';
 import { Page } from '@/app/utils/interfaces';

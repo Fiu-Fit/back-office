@@ -36,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export const UsersList = ({ page }: { page: Page<User> }) => {
   return (
-    <div style={{ height: 400, width: '60%' }}>
+    <div className='w-2/3'>
       <TableContainer
         component={Paper}
         className='border border-transparent rounded-md'

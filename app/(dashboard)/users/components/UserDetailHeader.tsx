@@ -42,14 +42,13 @@ export default function UserDetailHeader({
           {user.firstName} {user.lastName}
         </h1>
         <div className='flex flex-row justify-between gap-3'>
-          <Button variant='contained' style={{ backgroundColor: '#90caf9' }}>
+          <Button variant='contained' className='bg-blue-400'>
             <EditIcon />
             Editar
           </Button>
           <Button
             variant='contained'
-            color='warning'
-            style={{ backgroundColor: 'red' }}
+            color='error'
             onClick={handleDelete}
           >
             <DeleteIcon />
