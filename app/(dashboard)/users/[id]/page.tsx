@@ -24,7 +24,7 @@ export default async function UserDetail({
   const user = await getUser(id);
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div className='w-full h-full'>
       <UserDetailHeader user={user} deleteUser={deleteUser} />
       <div className='mx-12 mt-12 w-1/2'>
         <UserCard user={user} />

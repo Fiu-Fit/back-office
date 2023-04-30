@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <div className='flex flex-col w-full h-full'>
         <Header />
 
-        <div className='container w-full h-full'>{children}</div>
+        <div className='w-full h-full'>{children}</div>
       </div>
     </div>
   );
