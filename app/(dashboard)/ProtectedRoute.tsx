@@ -9,7 +9,7 @@ interface ProtectedRouteProps {
   redirectTo?: string;
 }
 
-export default (async function ProtectedRoute({
+export default async function ProtectedRoute({
   children,
   redirectTo,
 }: ProtectedRouteProps) {
@@ -24,4 +24,4 @@ export default (async function ProtectedRoute({
   }
 
   return children;
-} as unknown as ({ children }: ProtectedRouteProps) => JSX.Element);
+}

@@ -12,7 +12,7 @@ export default async function UsersPage() {
   const page = await getUsers();
 
   return (
-    <div className='mx-12 mt-12'>
+    <div className='m-12'>
       <h1 className='text-4xl mb-4'>Usuarios</h1>
       <UsersList page={page} />
     </div>

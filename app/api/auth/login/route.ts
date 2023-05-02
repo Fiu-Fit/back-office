@@ -4,7 +4,6 @@ import api from '@/api/serverSideAxiosConfig';
 
 export async function POST(request: Request) {
   const loginData = await request.json();
-  console.log('loginData');
   try {
     const gatewayResponse = await api.post('/auth/login', loginData);
     const res = NextResponse.json(gatewayResponse.data, {

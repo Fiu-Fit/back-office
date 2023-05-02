@@ -17,7 +17,6 @@ export default function AuthForm() {
 
   const onSubmit = async (formData: FieldValues) => {
     try {
-      console.log(formData);
       const response = await api.post('api/auth/login', formData);
       if (response.status === 200) router.push('/register');
     } catch (err) {

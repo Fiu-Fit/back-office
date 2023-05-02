@@ -1,5 +1,6 @@
 'use client';
 import PersonIcon from '@mui/icons-material/Person';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import {
   Divider,
   Drawer,
@@ -12,6 +13,7 @@ import {
 import Image from 'next/image';
 import { ReactElement } from 'react';
 import { drawerWidth } from '@/app/utils/constants';
+import fiuFitLogo from '@/public/fiufit.svg';
 
 export const SidebarItems: Array<{
   displayName: string;
@@ -22,6 +24,11 @@ export const SidebarItems: Array<{
     displayName: 'Users',
     icon:        <PersonIcon />,
     link:        '/users',
+  },
+  {
+    displayName: 'Register account',
+    icon:        <SupervisorAccountIcon />,
+    link:        '/register',
   },
 ];
 export const Sidebar = () => {
@@ -40,11 +47,10 @@ export const Sidebar = () => {
     >
       <div className='flex justify-center'>
         <Image
-          src='/fiufit.svg'
-          className='w-1/3 lg:block invert dark:invert-0 m-6'
+          src={fiuFitLogo}
+          className='w-1/3 invert dark:invert-0 m-6'
           alt='FiuFit'
-          width={50}
-          height={50}
+          priority
         />
       </div>
 

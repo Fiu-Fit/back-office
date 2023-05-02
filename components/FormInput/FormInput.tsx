@@ -1,5 +1,5 @@
-import { FieldValues, UseFormRegister } from "react-hook-form";
-import styles from "./FormInput.module.css";
+import { FieldValues, UseFormRegister } from 'react-hook-form';
+import styles from './FormInput.module.css';
 
 interface InputProps {
   name: string;
@@ -26,7 +26,7 @@ export default function FormInput({
 }: InputProps) {
   return (
     <div className={`min-w-full ${containerClassName}`}>
-      <label className="block text-sm font-bold mb-2" htmlFor={name}>
+      <label className='block text-sm font-bold mb-2' htmlFor={name}>
         {label}
       </label>
       <input

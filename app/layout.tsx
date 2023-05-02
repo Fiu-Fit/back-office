@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className='flex justify-center w-full'>
+      <body className='flex justify-center w-full h-screen'>
         <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
           <AppThemeProvider>{children}</AppThemeProvider>
         </NextAppDirEmotionCacheProvider>

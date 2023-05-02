@@ -1,6 +1,7 @@
 import '../globals.css';
 
 import { ReactNode } from 'react';
+import ProtectedRoute from '@/app/(dashboard)/ProtectedRoute';
 import { Header } from '@/app/utils/Header';
 import { Sidebar } from '@/app/utils/Sidebar';
 
@@ -15,8 +16,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <Sidebar />
       <div className='flex flex-col w-full h-full'>
         <Header />
-
-        <div className='w-full h-full'>{children}</div>
+        {/* @ts-expect-error Server Component */}
+        <ProtectedRoute>
+          <div className='w-full h-full'>{children}</div>
+        </ProtectedRoute>
       </div>
     </div>
   );
