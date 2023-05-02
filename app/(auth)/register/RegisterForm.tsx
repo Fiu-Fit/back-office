@@ -1,8 +1,8 @@
 'use client';
-import FormInput from '@/components/FormInput/FormInput';
-import axiosInstance from '@/api/clientSideAxiosConfig';
-import { validateName, validateEmail, validatePassword } from '@/utils';
 import { FieldValues, useForm } from 'react-hook-form';
+import api from '@/api/clientSideAxiosConfig';
+import FormInput from '@/components/FormInput/FormInput';
+import { validateEmail, validateName, validatePassword } from '@/utils';
 
 const ADMIN_ROLE = 'Admin';
 
@@ -16,39 +16,39 @@ export default function RegisterForm() {
 
   const inputs = [
     {
-      name: 'firstName',
-      label: 'Nombre',
-      type: 'text',
+      name:      'firstName',
+      label:     'Nombre',
+      type:      'text',
       halfWidth: true,
-      options: validateName(true),
+      options:   validateName(true),
     },
     {
-      name: 'lastName',
-      label: 'Apellido',
-      type: 'text',
+      name:      'lastName',
+      label:     'Apellido',
+      type:      'text',
       halfWidth: true,
-      options: validateName(true),
+      options:   validateName(true),
     },
     {
-      name: 'email',
-      label: 'Email',
-      type: 'email',
+      name:      'email',
+      label:     'Email',
+      type:      'email',
       halfWidth: false,
-      options: validateEmail(true),
+      options:   validateEmail(true),
     },
     {
-      name: 'password',
-      label: 'Contraseña',
-      type: 'password',
+      name:      'password',
+      label:     'Contraseña',
+      type:      'password',
       halfWidth: false,
-      options: validatePassword(true),
+      options:   validatePassword(true),
     },
     {
-      name: 'passwordConfirmation',
-      label: 'Confirmar contraseña',
-      type: 'password',
+      name:      'passwordConfirmation',
+      label:     'Confirmar contraseña',
+      type:      'password',
       halfWidth: false,
-      options: validatePassword(true, watch('password')),
+      options:   validatePassword(true, watch('password')),
     },
   ];
 
@@ -59,7 +59,7 @@ export default function RegisterForm() {
     };
 
     try {
-      await axiosInstance.post(
+      await api.post(
         '/api/auth/register',
         registerData
       );
@@ -71,8 +71,8 @@ export default function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit(data => onSubmit(data))}
-      method="post"
-      className="grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow"
+      method='post'
+      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow'
     >
       {inputs.map(input => (
         <FormInput
@@ -89,8 +89,8 @@ export default function RegisterForm() {
         />
       ))}
       <button
-        type="submit"
-        className="text-white bg-blue-600 hover:bg-blue-700 col-span-2 button"
+        type='submit'
+        className='text-white bg-blue-600 hover:bg-blue-700 col-span-2 button'
       >
         Registrarse
       </button>

@@ -1,11 +1,11 @@
-import axiosInstance from '@/api/serverSideAxiosConfig';
 import { AxiosError } from 'axios';
 import { NextResponse } from 'next/server';
+import api from '@/api/serverSideAxiosConfig';
 
 export async function POST(request: Request) {
-  const loginData = await request.json();
+  const registerData = await request.json();
   try {
-    const { status } = await axiosInstance.post('/auth/register', loginData);
+    const { status } = await api.post('/auth/register', registerData);
     const res = new NextResponse(null, {
       status: status,
     });

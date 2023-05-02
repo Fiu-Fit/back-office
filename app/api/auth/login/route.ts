@@ -1,19 +1,20 @@
-import axiosInstance from '@/api/serverSideAxiosConfig';
 import { AxiosError } from 'axios';
 import { NextResponse } from 'next/server';
+import api from '@/api/serverSideAxiosConfig';
 
 export async function POST(request: Request) {
   const loginData = await request.json();
+  console.log('loginData');
   try {
-    const gatewayResponse = await axiosInstance.post('/auth/login', loginData);
+    const gatewayResponse = await api.post('/auth/login', loginData);
     const res = NextResponse.json(gatewayResponse.data, {
       status: gatewayResponse.status,
     });
     res.cookies.set('token', gatewayResponse.data.token, {
       httpOnly: true,
-      secure: true,
+      secure:   true,
       sameSite: 'strict',
-      path: '/',
+      path:     '/',
     });
 
     return res;

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
-const axiosInstance = axios.create();
+const api = axios.create({
+  baseURL: process.env.API_URL,
+});
 
-axiosInstance.defaults.baseURL = process.env.API_URL;
-
-axiosInstance.interceptors.request.use((config) => {
+api.interceptors.request.use((config) => {
   const token  = cookies().get('token')?.value;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -13,4 +13,4 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-export default axiosInstance;
+export default api;

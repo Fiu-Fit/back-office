@@ -1,8 +1,8 @@
-import { redirect } from 'next/navigation';
-import axiosInstance from '@/api/serverSideAxiosConfig';
 import { HttpStatusCode } from 'axios';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
+import api from '@/api/serverSideAxiosConfig';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -16,9 +16,10 @@ export default (async function ProtectedRoute({
   const redirectUrl = redirectTo || '/';
   try {
     const token = cookies().get('token')?.value;
-    const response = await axiosInstance.post('/auth/validate', { token });
+    const response = await api.post('/auth/validate', { token });
     if (response.status !== HttpStatusCode.Ok) redirect(redirectUrl);
   } catch (error) {
+    console.error(error);
     redirect(redirectUrl);
   }
 
