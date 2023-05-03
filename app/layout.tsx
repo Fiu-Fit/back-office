@@ -1,4 +1,5 @@
 import './globals.css';
+import './preflight.css';
 
 import { ReactNode } from 'react';
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next';
@@ -12,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className='flex justify-center w-full'>
+      <body className='flex justify-center w-full h-screen'>
         <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
           <AppThemeProvider>{children}</AppThemeProvider>
         </NextAppDirEmotionCacheProvider>

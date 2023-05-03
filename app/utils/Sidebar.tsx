@@ -12,6 +12,7 @@ import {
 import Image from 'next/image';
 import { ReactElement } from 'react';
 import { drawerWidth } from '@/app/utils/constants';
+import fiuFitLogo from '@/public/fiufit.svg';
 
 export const SidebarItems: Array<{
   displayName: string;
@@ -40,11 +41,10 @@ export const Sidebar = () => {
     >
       <div className='flex justify-center'>
         <Image
-          src='/fiufit.svg'
-          className='w-1/3 lg:block invert dark:invert-0 m-6'
+          src={fiuFitLogo}
+          className='w-1/3 invert dark:invert-0 m-6'
           alt='FiuFit'
-          width={50}
-          height={50}
+          priority
         />
       </div>
 

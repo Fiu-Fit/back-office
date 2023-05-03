@@ -19,6 +19,11 @@
       "jsx": true
     }
   },
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true
+  },
   "rules": {
     /* plugin:@typescript-eslint */
     "@typescript-eslint/array-type": [

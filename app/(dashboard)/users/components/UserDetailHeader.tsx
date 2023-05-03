@@ -22,9 +22,7 @@ export default function UserDetailHeader({
       text:               'Esta accion no se puede revertir!',
       icon:               'warning',
       showCancelButton:   true,
-      confirmButtonColor: '#3085d6',
       cancelButtonColor:  '#d33',
-      confirmButtonText:  'Eliminar',
     }).then(result => {
       if (result.isConfirmed) {
         Swal.fire('Eliminado!', 'El usuario fue eliminado.', 'success');
