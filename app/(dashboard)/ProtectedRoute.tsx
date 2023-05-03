@@ -19,7 +19,6 @@ export default async function ProtectedRoute({
     const response = await api.post('/auth/validate', { token });
     if (response.status !== HttpStatusCode.Ok) redirect(redirectUrl);
   } catch (error) {
-    console.error(error);
     redirect(redirectUrl);
   }
 

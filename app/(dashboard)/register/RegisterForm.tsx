@@ -1,7 +1,7 @@
 'use client';
 import { Button, TextField } from '@mui/material';
+import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
-import api from '@/api/clientSideAxiosConfig';
 import { validateEmail, validateName, validatePassword } from '@/utils';
 
 const ADMIN_ROLE = 'Admin';
@@ -59,7 +59,7 @@ export default function RegisterForm() {
     };
 
     try {
-      await api.post(
+      await axios.post(
         '/api/auth/register',
         registerData
       );

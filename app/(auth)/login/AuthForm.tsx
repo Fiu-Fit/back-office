@@ -1,12 +1,11 @@
 'use client';
 import { Button, CircularProgress, TextField } from '@mui/material';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import api from '@/api/clientSideAxiosConfig';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -21,7 +20,7 @@ export default function AuthForm() {
   const onSubmit = async (formData: FieldValues) => {
     setIsLoading(true);
     try {
-      const response = await api.post('api/auth/login', formData);
+      const response = await axios.post('api/auth/login', formData);
       if (response.status === 200) router.push('/users');
     } catch (err) {
       const error = err as AxiosError;
