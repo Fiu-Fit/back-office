@@ -7,7 +7,7 @@ export default function Login() {
     <main className='flex items-center justify-evenly h-screen w-screen container'>
       <Image
         src={fiuFitLogo}
-        className='w-1/4 hidden lg:block invert dark:invert-0'
+        className='w-1/4 h-auto hidden lg:block invert dark:invert-0'
         alt='FiuFit'
       />
       <AuthForm />

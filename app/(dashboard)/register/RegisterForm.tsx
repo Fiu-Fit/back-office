@@ -1,7 +1,7 @@
 'use client';
+import { Button, TextField } from '@mui/material';
 import { FieldValues, useForm } from 'react-hook-form';
 import api from '@/api/clientSideAxiosConfig';
-import FormInput from '@/components/FormInput/FormInput';
 import { validateEmail, validateName, validatePassword } from '@/utils';
 
 const ADMIN_ROLE = 'Admin';
@@ -75,25 +75,24 @@ export default function RegisterForm() {
       className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow'
     >
       {inputs.map(input => (
-        <FormInput
+        <TextField
           key={input.name}
           label={input.label}
           type={input.type}
-          name={input.name}
-          containerClassName={`col-span-2 ${
-            input.halfWidth && 'sm:col-span-1'
-          }`}
-          register={register}
-          errorMessage={errors[input.name]?.message as string}
-          options={input.options}
+          {...register(input.name, input.options)}
+          error={errors[input.name] ? true : false}
+          helperText={errors[input.name] ? errors[input.name]?.message as string : ' '}
+          className={input.halfWidth ? 'col-span-1' : 'col-span-2'}
         />
       ))}
-      <button
+      <Button
         type='submit'
-        className='text-white bg-blue-600 hover:bg-blue-700 col-span-2 button'
+        size='large'
+        variant='contained'
+        className='col-span-2'
       >
         Registrarse
-      </button>
+      </Button>
     </form>
   );
 }

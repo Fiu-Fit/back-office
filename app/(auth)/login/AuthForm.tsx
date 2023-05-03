@@ -1,10 +1,10 @@
 'use client';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import styles from '../../page.module.css';
 import api from '@/api/clientSideAxiosConfig';
-import FormInput from '@/components/FormInput/FormInput';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -13,51 +13,60 @@ export default function AuthForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'onTouched' });
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const onSubmit = async (formData: FieldValues) => {
+    setIsLoading(true);
     try {
       const response = await api.post('api/auth/login', formData);
-      if (response.status === 200) router.push('/register');
+      if (response.status === 200) router.push('/users');
     } catch (err) {
       console.error(err);
     }
+    setIsLoading(false);
   };
 
   return (
     <form
       onSubmit={handleSubmit(data => onSubmit(data))}
-      className='grid grid-cols-2 gap-4 w-11/12 max-w-md p-5 rounded bg-white dark:bg-zinc-900 shadow'
+      className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 rounded bg-white dark:bg-zinc-900 shadow'
     >
-      <FormInput
-        name='email'
+      <TextField
         label='Correo electrónico'
         type='text'
-        containerClassName='col-span-2'
-        register={register}
-        options={validateEmail(true)}
-        errorMessage={errors.email?.message as string}
+        {...register('email', {
+          ...validateEmail(true),
+        })}
+        error={errors.email ? true : false}
+        helperText={errors.email ? (errors.email.message as string) : ' '}
       />
-      <FormInput
-        name='password'
+      <TextField
         label='Contraseña'
         type='password'
-        containerClassName='col-span-2'
-        register={register}
-        errorMessage={errors.password?.message as string}
+        {...register('password', {
+          required: 'Este campo es requerido',
+        })}
+        error={errors.password ? true : false}
+        helperText={errors.password ? (errors.password.message as string) : ' '}
       />
-      <button
+      <Button
         type='submit'
-        className='text-white bg-blue-600 hover:bg-blue-700 col-span-2 button'
+        size='large'
+        variant='contained'
+        disabled={isLoading}
       >
-        Iniciar sesión
-      </button>
-      <Link
-        href='/forgot-password'
-        className={`button ${styles.extra_button} col-span-2`}
-      >
+        {isLoading ? (
+          <span className='flex justify-center items-center'>
+            <CircularProgress color='inherit' size='1.5rem' className='mr-2' /> Cargando...
+          </span>
+        ) : (
+          'Iniciar sesión'
+        )}
+      </Button>
+      <Button size='large' LinkComponent={Link} href='forgot-password'>
         Recuperar contraseña
-      </Link>
+      </Button>
     </form>
   );
 }
