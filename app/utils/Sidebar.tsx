@@ -1,6 +1,5 @@
 'use client';
 import PersonIcon from '@mui/icons-material/Person';
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import {
   Divider,
   Drawer,
@@ -24,11 +23,6 @@ export const SidebarItems: Array<{
     displayName: 'Users',
     icon:        <PersonIcon />,
     link:        '/users',
-  },
-  {
-    displayName: 'Register account',
-    icon:        <SupervisorAccountIcon />,
-    link:        '/register',
   },
 ];
 export const Sidebar = () => {

@@ -17,7 +17,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <div className='flex flex-col w-full h-full'>
         <Header />
         {/* @ts-expect-error Server Component */}
-        <ProtectedRoute>
+        <ProtectedRoute redirectTo='/login'>
           <div className='w-full h-full'>{children}</div>
         </ProtectedRoute>
       </div>

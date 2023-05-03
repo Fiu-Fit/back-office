@@ -1,3 +1,4 @@
+import ControlHeader from './components/ControlHeader';
 import api from '@/api/serverSideAxiosConfig';
 import { UsersList } from '@/app/(dashboard)/users/components/UserList';
 import { User } from '@/app/(dashboard)/users/interfaces/User';
@@ -13,7 +14,7 @@ export default async function UsersPage() {
 
   return (
     <div className='m-12'>
-      <h1 className='text-4xl mb-4'>Usuarios</h1>
+      <ControlHeader />
       <UsersList page={page} />
     </div>
   );
