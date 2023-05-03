@@ -1,9 +1,11 @@
 'use client';
 import { Button, CircularProgress, TextField } from '@mui/material';
+import { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import api from '@/api/clientSideAxiosConfig';
 import { validateEmail } from '@/utils';
 
@@ -22,7 +24,15 @@ export default function AuthForm() {
       const response = await api.post('api/auth/login', formData);
       if (response.status === 200) router.push('/users');
     } catch (err) {
-      console.error(err);
+      const error = err as AxiosError;
+      Swal.fire({
+        icon:               'error',
+        title:              'Oops...',
+        html:               `Credenciales incorrectas.<pre>Error: ${error.response?.status} - ${error.response?.statusText}</pre>`,
+        background:         'rgb(24 24 27)',
+        color:              '#FFFFFF',
+        confirmButtonColor: '#3085d6',
+      });
     }
     setIsLoading(false);
   };
