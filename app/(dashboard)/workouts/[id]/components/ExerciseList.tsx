@@ -11,8 +11,8 @@ export default function ExerciseList({
   className?: string;
 }) {
   return (
-    <div className={`h-fit rounded-md overflow-hidden ${className}`}>
-      <div className='h-[640px] dark:bg-gray-950 overflow-y-scroll'>
+    <div className={`h-full rounded-md overflow-hidden ${className}`}>
+      <div className='h-full dark:bg-gray-950 overflow-y-scroll'>
         <table className='w-full divide-y divide-gray-200 dark:divide-black'>
           <thead>
             <tr className='sticky top-0 bg-gray-50 dark:bg-zinc-900 z-50'>

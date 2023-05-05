@@ -45,14 +45,26 @@ export default async function WorkoutDetail({
   return (
     <div className='w-full h-full'>
       <WorkoutDetailHeader workout={workout} deleteWorkout={deleteWorkout} />
-      <div className='p-12 w-full grid grid-cols-3 grid-rows-2 gap-8 '>
+      <div className='p-12 w-full gap-8 '>
+        <div className='flex relative'>
+          <div className='w-2/3'>
+            <ExerciseList
+              className='w-2/3 absolute'
+              headers={[
+                'ID',
+                'Nombre',
+                'Sets',
+                'Repeticiones',
+                'Peso',
+                'Unidad',
+                '',
+              ]}
+            />
+          </div>
+          <WorkoutCard workout={workout} className='w-1/3 ml-24' />
+        </div>
         <ExerciseList
-          className='col-span-2'
-          headers={['ID', 'Nombre', 'Sets', 'Repeticiones', 'Peso', 'Unidad', '']}
-        />
-        <WorkoutCard workout={workout} className='col-span-1' />
-        <ExerciseList
-          className='col-span-3'
+          className='mt-8'
           headers={['ID', 'Nombre', 'Apellido', 'Email', 'Rol', '']}
         />
       </div>

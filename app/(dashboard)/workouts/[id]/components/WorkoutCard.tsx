@@ -10,11 +10,11 @@ export default function WorkoutCard({ workout, className }: { workout: Workout, 
       <div className='p-0 flex flex-col justify-around'>
         <WorkoutCardRow title='ID' text={workout.id} />
         <WorkoutCardRow title='Nombre' text={workout.name} />
-        <WorkoutCardRow title='Description' text={workout.description} />
-        <WorkoutCardRow title='Duration' text={workout.duration} />
-        <WorkoutCardRow title='Difficulty' text={workout.difficulty} />
-        <WorkoutCardRow title='Category' text={workout.category} />
-        <WorkoutCardRow title='Updated At' text={workout.updatedAt} />
+        <WorkoutCardRow title='Descripcion' text={workout.description} />
+        <WorkoutCardRow title='Duracion' text={workout.duration} />
+        <WorkoutCardRow title='Difficultad' text={workout.difficulty} />
+        <WorkoutCardRow title='Categoria' text={workout.category} />
+        <WorkoutCardRow title='Actualizado' text={workout.updatedAt} />
       </div>
     </div>
   );
