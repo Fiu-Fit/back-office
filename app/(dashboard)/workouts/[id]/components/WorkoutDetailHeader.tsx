@@ -27,7 +27,7 @@ export default function WorkoutDetailHeader({
         Swal.fire('Eliminado!', 'La rutina fue eliminada.', 'success');
         deleteWorkout(workout._id);
 
-        router.push('/users');
+        router.push('/workouts');
       }
     });
   };

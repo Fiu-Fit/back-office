@@ -8,32 +8,15 @@ import api from '@/api/serverSideAxiosConfig';
 
 async function getWorkout(id: string): Promise<Workout> {
   const { data: workout } = await api.get<Workout>(`/workouts/${id}`);
-  // const workout: Workout = await new Promise(resolve => {
-  //   setTimeout(() => {
-  //     resolve({
-  //       id:   id,
-  //       name: 'Nombre',
-  //       description:
-  //         '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
-  //       authorId:   1,
-  //       duration:   1,
-  //       category:   Category.CARDIO,
-  //       difficulty: 1,
-  //       updatedAt:  new Date().toDateString(),
-  //       athleteIds: [1, 2, 3],
-  //       exercises:  [],
-  //     });
-  //   }, 1000);
-  // });
 
   return workout;
 }
 
 async function deleteWorkout(id: string): Promise<Workout> {
   'use server';
-  const { data: user } = await api.delete<Workout>(`/users/${id}`);
+  const { data: workout } = await api.delete<Workout>(`/workouts/${id}`);
 
-  return user;
+  return workout;
 }
 
 async function getUsers(ids: number[]): Promise<User[]> {
@@ -43,8 +26,8 @@ async function getUsers(ids: number[]): Promise<User[]> {
     try {
       const { data: user } = await api.get<User>(`/users/${id}`);
       users.push(user);
-    } catch (e) {
-      console.error(e);
+    } catch (_) {
+      console.error('User not found with id:', id);
     }
   }
 
