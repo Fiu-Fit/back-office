@@ -22,6 +22,8 @@ export default function WorkoutDetailHeader({
       icon:              'warning',
       showCancelButton:  true,
       cancelButtonColor: '#d33',
+      background:        '#1f2937',
+      color:             '#fff',
     }).then(result => {
       if (result.isConfirmed) {
         Swal.fire('Eliminado!', 'La rutina fue eliminada.', 'success');
