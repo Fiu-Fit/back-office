@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
 import { validateEmail, validateName, validatePassword } from '@/utils';
 
-const ADMIN_ROLE = 'Admin';
+export const ADMIN_ROLE = 'Admin';
 
 export default function RegisterForm() {
   const {
