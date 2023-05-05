@@ -6,17 +6,21 @@ import Link from 'next/link';
 export default function ExerciseList({
   headers,
   className,
+  values,
+  detailButtonHref,
 }: {
-  headers: string[];
+  headers: { [key: string]: string };
   className?: string;
+  values: any[];
+  detailButtonHref?: string;
 }) {
   return (
-    <div className={`h-full rounded-md overflow-hidden flex flex-col ${className}`}>
+    <div className={`rounded-md overflow-hidden flex flex-col ${className}`}>
       <div className='h-full flex-shrink dark:bg-gray-950 overflow-y-scroll'>
         <table className='w-full divide-y divide-gray-200 dark:divide-black'>
           <thead>
             <tr className='sticky top-0 bg-gray-50 dark:bg-zinc-900 z-50'>
-              {headers.map(header => (
+              {Object.keys(headers).map(header => (
                 <th
                   key={header}
                   className='px-6 py-3 text-left text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider'
@@ -24,21 +28,25 @@ export default function ExerciseList({
                   {header}
                 </th>
               ))}
+              {detailButtonHref && (
+                <th className='px-6 py-3 text-left text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider' />
+              )}
             </tr>
           </thead>
           <tbody className='bg-white dark:bg-zinc-950 divide-y divide-gray-700'>
-            {Array.from(Array(105).keys()).map(i => (
-              <tr key={i}>
-                {headers.map(
-                  header =>
-                    header != '' && <td className='px-6 py-4'> {header} </td>
+            {values.map(value => (
+              <tr key={value._id}>
+                {Object.values(headers).map(attribute => (
+                  <td className='px-6 py-4'> {value[attribute]} </td>
+                ))}
+
+                {detailButtonHref && (
+                  <td className='px-6 py-4'>
+                    <Button href={`${detailButtonHref}/${value[headers['ID']]}`} LinkComponent={Link}>
+                      Detalles
+                    </Button>
+                  </td>
                 )}
-                <td className='px-6 py-4'>
-                  <Button href='#' LinkComponent={Link}>
-                    {' '}
-                    Detalles{' '}
-                  </Button>
-                </td>
               </tr>
             ))}
           </tbody>

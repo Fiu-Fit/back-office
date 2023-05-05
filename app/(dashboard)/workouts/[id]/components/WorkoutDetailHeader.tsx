@@ -12,10 +12,9 @@ export default function WorkoutDetailHeader({
   deleteWorkout,
 }: {
   workout: Workout;
-  deleteWorkout: (id: number) => Promise<Workout>;
+  deleteWorkout: (id: string) => Promise<Workout>;
 }) {
   const router = useRouter();
-
   const handleDelete = () => {
     Swal.fire({
       title:             'Estas seguro de eliminar esta rutina?',
@@ -26,7 +25,7 @@ export default function WorkoutDetailHeader({
     }).then(result => {
       if (result.isConfirmed) {
         Swal.fire('Eliminado!', 'La rutina fue eliminada.', 'success');
-        deleteWorkout(workout.id);
+        deleteWorkout(workout._id);
 
         router.push('/users');
       }

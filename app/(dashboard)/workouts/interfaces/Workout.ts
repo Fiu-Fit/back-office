@@ -2,7 +2,7 @@ import { Category } from './Category';
 import { WorkoutExercise } from './Exercise';
 
 export interface Workout {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   duration: number;
