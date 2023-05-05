@@ -1,3 +1,8 @@
+'use client';
+
+import { Button } from '@mui/material';
+import Link from 'next/link';
+
 export default function ExerciseList({
   headers,
   className,
@@ -10,7 +15,7 @@ export default function ExerciseList({
       <div className='h-[640px] dark:bg-gray-950 overflow-y-scroll'>
         <table className='w-full divide-y divide-gray-200 dark:divide-black'>
           <thead>
-            <tr className='sticky top-0 bg-gray-50 dark:bg-zinc-900'>
+            <tr className='sticky top-0 bg-gray-50 dark:bg-zinc-900 z-50'>
               {headers.map(header => (
                 <th
                   key={header}
@@ -29,7 +34,7 @@ export default function ExerciseList({
                     header != '' && <td className='px-6 py-4'> {header} </td>
                 )}
                 <td className='px-6 py-4'>
-                  <a>Detalles</a>
+                  <Button href='#' LinkComponent={Link}> Detalles </Button>
                 </td>
               </tr>
             ))}
