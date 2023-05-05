@@ -1,7 +1,6 @@
 'use client';
 import { Card } from '@mui/material';
 import { User } from '@/app/(dashboard)/users/interfaces/User';
-import { RoleEnumToName } from '@/app/utils/interfaces';
 
 export const UserCard = ({ user }: { user: User }) => {
   return (
@@ -39,7 +38,7 @@ export const UserCard = ({ user }: { user: User }) => {
             <div className='mt-0 grid grid-cols-3 gap-4 border-t border-gray-600 px-6 py-5'>
               <dt className='text-sm leading-5 font-medium'>Rol</dt>
               <dd className='text-sm leading-5 mt-0 col-span-2'>
-                {RoleEnumToName[user.role]}
+                {user.role}
               </dd>
             </div>
           </dl>
