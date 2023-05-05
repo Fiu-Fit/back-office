@@ -1,4 +1,5 @@
 'use client';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import PersonIcon from '@mui/icons-material/Person';
 import {
   Divider,
@@ -24,6 +25,11 @@ export const SidebarItems: Array<{
     icon:        <PersonIcon />,
     link:        '/users',
   },
+  {
+    displayName: 'Workouts',
+    icon:        <FitnessCenterIcon />,
+    link:        '/workouts',
+  }
 ];
 export const Sidebar = () => {
   return (

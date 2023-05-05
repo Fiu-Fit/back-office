@@ -21,7 +21,8 @@ export default function AuthForm() {
     setIsLoading(true);
     try {
       const response = await axios.post('api/auth/login', formData);
-      if (response.status === 200) router.push('/users');
+      console.log(response);
+      if (response.status === 201) router.push('/users');
     } catch (err) {
       const error = err as AxiosError;
       Swal.fire({

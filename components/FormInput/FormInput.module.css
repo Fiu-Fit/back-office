@@ -8,5 +8,5 @@
 }
 
 .error_input {
-  @apply border-red-500 focus:ring-red-500;
+  @apply border-green-500 focus:ring-red-500;
 }
