@@ -9,7 +9,7 @@ export const UserCard = ({ user }: { user: User }) => {
       <div className='shadow overflow-hidden rounded-md'>
         <div className='py-5 border-b border-gray-600 px-6'>
           <div className='rich-text'>
-            <h2 className=''>Detalle del Usuario</h2>
+            <h2>Detalle del Usuario</h2>
           </div>
         </div>
         <div className='p-0'>
