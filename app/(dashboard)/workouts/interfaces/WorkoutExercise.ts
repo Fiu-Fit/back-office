@@ -1,4 +1,4 @@
-import { Unit } from './Unit';
+import { Unit } from '@/utils/interfaces/Unit';
 
 export interface WorkoutExercise {
   exerciseId: string;
