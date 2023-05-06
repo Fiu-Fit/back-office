@@ -3,7 +3,7 @@
 import { Button } from '@mui/material';
 import Link from 'next/link';
 
-export default function ExerciseList({
+export default function List({
   headers,
   className,
   values,

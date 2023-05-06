@@ -1,6 +1,6 @@
 import { User } from '../../users/interfaces/User';
 import { Workout } from '../interfaces/Workout';
-import ExerciseList from './components/ExerciseList';
+import List from './components/List';
 import api from '@/api/serverSideAxiosConfig';
 import DetailCard from '@/components/DetailCard';
 import DetailHeader from '@/components/DetailHeader';
@@ -55,7 +55,7 @@ export default async function WorkoutDetail({
       <div className='p-12 w-full gap-8 '>
         <div className='flex relative'>
           <div className='w-2/3'>
-            <ExerciseList
+            <List
               className='w-2/3 absolute h-full'
               headers={{
                 ID:           'exerciseId',
@@ -81,7 +81,7 @@ export default async function WorkoutDetail({
             className='w-1/3 ml-24'
           />
         </div>
-        <ExerciseList
+        <List
           className='mt-8 h-[600px]'
           headers={{
             ID:       'id',
