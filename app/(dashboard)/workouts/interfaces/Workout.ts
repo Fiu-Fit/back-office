@@ -1,5 +1,5 @@
-import { Category } from './Category';
-import { WorkoutExercise } from './Exercise';
+import { Category } from '../../../../utils/interfaces/Category';
+import { WorkoutExercise } from './WorkoutExercise';
 
 export interface Workout {
   _id: string;

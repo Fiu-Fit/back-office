@@ -1,4 +1,3 @@
-import { Category } from './Category';
 import { Unit } from './Unit';
 
 export interface WorkoutExercise {
@@ -7,11 +6,4 @@ export interface WorkoutExercise {
   reps: number;
   weight?: number;
   unit: Unit; // for reps
-}
-
-export interface Exercise {
-  id: string;
-  name: string;
-  description: string;
-  category: Category;
 }

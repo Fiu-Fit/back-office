@@ -4,15 +4,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import { Workout } from '../../interfaces/Workout';
 import { GenericHeader } from '@/app/utils/GenericHeader';
 
-export default function WorkoutDetailHeader({
-  workout,
-  deleteWorkout,
+export default function DetailHeader({
+  title,
+  onDelete,
+  afterDeleteRoute
 }: {
-  workout: Workout;
-  deleteWorkout: (id: string) => Promise<Workout>;
+  title: string;
+  onDelete: () => Promise<any>;
+  afterDeleteRoute: string;
 }) {
   const router = useRouter();
   const handleDelete = () => {
@@ -27,9 +28,9 @@ export default function WorkoutDetailHeader({
     }).then(result => {
       if (result.isConfirmed) {
         Swal.fire('Eliminado!', 'La rutina fue eliminada.', 'success');
-        deleteWorkout(workout._id);
+        onDelete();
 
-        router.push('/workouts');
+        router.push(afterDeleteRoute);
       }
     });
   };
@@ -38,7 +39,7 @@ export default function WorkoutDetailHeader({
     <GenericHeader>
       <div className='flex flex-row justify-between px-12 py-10'>
         <h1 className='text-2xl text-white text-bold'>
-          {workout.name}
+          {title}
         </h1>
         <div className='flex flex-row justify-between gap-3'>
           <Button variant='contained' className='bg-blue-400'>

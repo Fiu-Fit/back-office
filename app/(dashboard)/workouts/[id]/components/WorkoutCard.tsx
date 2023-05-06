@@ -1,4 +1,4 @@
-import { categoryToString } from '../../interfaces/Category';
+import { categoryToString } from '../../../../../utils/interfaces/Category';
 import { Workout } from '../../interfaces/Workout';
 import WorkoutCardRow from './WorkoutCardRow';
 

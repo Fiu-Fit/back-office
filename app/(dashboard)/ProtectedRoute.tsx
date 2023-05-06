@@ -14,13 +14,13 @@ export default async function ProtectedRoute({
   redirectTo,
 }: ProtectedRouteProps) {
   const redirectUrl = redirectTo || '/';
-  // try {
-  //   const token = cookies().get('token')?.value;
-  //   const response = await api.post('/auth/validate', { token });
-  //   if (response.status !== HttpStatusCode.Ok) redirect(redirectUrl);
-  // } catch (error) {
-  //   redirect(redirectUrl);
-  // }
+  try {
+    const token = cookies().get('token')?.value;
+    const response = await api.post('/auth/validate', { token });
+    if (response.status !== HttpStatusCode.Ok) redirect(redirectUrl);
+  } catch (error) {
+    redirect(redirectUrl);
+  }
 
   return children;
 }

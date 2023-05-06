@@ -1,20 +1,14 @@
 import { User } from '../../users/interfaces/User';
-import { unitToString } from '../interfaces/Unit';
 import { Workout } from '../interfaces/Workout';
 import ExerciseList from './components/ExerciseList';
-import WorkoutCard from './components/WorkoutCard';
-import WorkoutDetailHeader from './components/WorkoutDetailHeader';
 import api from '@/api/serverSideAxiosConfig';
+import DetailCard from '@/components/DetailCard';
+import DetailHeader from '@/components/DetailHeader';
+import { categoryToString } from '@/utils/interfaces/Category';
+import { unitToString } from '@/utils/interfaces/Unit';
 
 async function getWorkout(id: string): Promise<Workout> {
   const { data: workout } = await api.get<Workout>(`/workouts/${id}`);
-
-  return workout;
-}
-
-async function deleteWorkout(id: string): Promise<Workout> {
-  'use server';
-  const { data: workout } = await api.delete<Workout>(`/workouts/${id}`);
 
   return workout;
 }
@@ -46,9 +40,18 @@ export default async function WorkoutDetail({
 
   const users = await getUsers(workout.athleteIds);
 
+  async function deleteWorkout(): Promise<Workout> {
+    'use server';
+    const { data: deletedWorkout } = await api.delete<Workout>(
+      `/workouts/${workout._id}`
+    );
+
+    return deletedWorkout;
+  }
+
   return (
     <div className='w-full h-full'>
-      <WorkoutDetailHeader workout={workout} deleteWorkout={deleteWorkout} />
+      <DetailHeader title={workout.name} onDelete={deleteWorkout} afterDeleteRoute='/workouts' />
       <div className='p-12 w-full gap-8 '>
         <div className='flex relative'>
           <div className='w-2/3'>
@@ -65,7 +68,18 @@ export default async function WorkoutDetail({
               detailButtonHref='/exercises'
             />
           </div>
-          <WorkoutCard workout={workout} className='w-1/3 ml-24' />
+          <DetailCard
+            title='Detalles de la rutina'
+            fields={{
+              ID:          workout._id,
+              Nombre:      workout.name,
+              Descripción: workout.description,
+              Duracion:    workout.duration,
+              Dificultad:  workout.difficulty,
+              Categoria:   categoryToString(workout.category),
+            }}
+            className='w-1/3 ml-24'
+          />
         </div>
         <ExerciseList
           className='mt-8 h-[600px]'
