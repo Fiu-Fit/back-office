@@ -1,8 +1,7 @@
-import { Exercise } from '../interfaces/Exercise';
+import { Exercise, categoryToString } from '@fiu-fit/common';
 import api from '@/api/serverSideAxiosConfig';
 import DetailCard from '@/components/DetailCard';
 import DetailHeader from '@/components/DetailHeader';
-import { categoryToString } from '@/utils/interfaces/Category';
 
 async function getExercise(id: string): Promise<Exercise> {
   const { data: exercise } = await api.get<Exercise>(`/exercises/${id}`);

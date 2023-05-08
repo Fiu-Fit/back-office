@@ -1,6 +1,6 @@
 'use client';
+import { User } from '@fiu-fit/common';
 import { Card } from '@mui/material';
-import { User } from '@/app/(dashboard)/users/interfaces/User';
 
 export const UserCard = ({ user }: { user: User }) => {
   return (

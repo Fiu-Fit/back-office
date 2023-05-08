@@ -1,11 +1,8 @@
-import { User } from '../../users/interfaces/User';
-import { Workout } from '../interfaces/Workout';
+import { User, Workout, categoryToString, unitToString } from '@fiu-fit/common';
 import List from './components/List';
 import api from '@/api/serverSideAxiosConfig';
 import DetailCard from '@/components/DetailCard';
 import DetailHeader from '@/components/DetailHeader';
-import { categoryToString } from '@/utils/interfaces/Category';
-import { unitToString } from '@/utils/interfaces/Unit';
 
 async function getWorkout(id: string): Promise<Workout> {
   const { data: workout } = await api.get<Workout>(`/workouts/${id}`);

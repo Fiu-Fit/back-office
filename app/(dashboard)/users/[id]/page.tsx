@@ -1,7 +1,7 @@
+import { User } from '@fiu-fit/common';
 import api from '@/api/serverSideAxiosConfig';
 import { UserCard } from '@/app/(dashboard)/users/components/UserCard';
 import UserDetailHeader from '@/app/(dashboard)/users/components/UserDetailHeader';
-import { User } from '@/app/(dashboard)/users/interfaces/User';
 
 async function getUser(id: number): Promise<User> {
   const { data: user } = await api.get<User>(`/users/${id}`);

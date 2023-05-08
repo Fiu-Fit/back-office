@@ -1,10 +1,10 @@
 'use client';
+import { User } from '@fiu-fit/common';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import { User } from '@/app/(dashboard)/users/interfaces/User';
 import { GenericHeader } from '@/app/utils/GenericHeader';
 
 export default function UserDetailHeader({

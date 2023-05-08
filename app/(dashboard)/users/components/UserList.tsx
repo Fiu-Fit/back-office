@@ -1,4 +1,5 @@
 'use client';
+import { Page, User } from '@fiu-fit/common';
 import {
   Button,
   Paper,
@@ -11,8 +12,6 @@ import {
   styled,
   tableCellClasses,
 } from '@mui/material';
-import { User } from '@/app/(dashboard)/users/interfaces/User';
-import { Page } from '@/app/utils/interfaces';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

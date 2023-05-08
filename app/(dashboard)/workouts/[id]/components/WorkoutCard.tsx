@@ -1,5 +1,4 @@
-import { categoryToString } from '../../../../../utils/interfaces/Category';
-import { Workout } from '../../interfaces/Workout';
+import { Workout, categoryToString } from '@fiu-fit/common';
 import WorkoutCardRow from './WorkoutCardRow';
 
 export default function WorkoutCard({ workout, className }: { workout: Workout, className?: string }) {
