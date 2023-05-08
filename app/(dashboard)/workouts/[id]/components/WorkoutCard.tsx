@@ -19,4 +19,3 @@ export default function WorkoutCard({ workout, className }: { workout: Workout, 
     </div>
   );
 }
-// FALTA: Exercises y athletes
