@@ -14,14 +14,11 @@ export default async function ProtectedRoute({
   redirectTo,
 }: ProtectedRouteProps) {
   const redirectUrl = redirectTo || '/';
-
   try {
     const token = cookies().get('token')?.value;
     const response = await api.post('/auth/validate', { token });
-    console.log(response);
-    if (response.status !== HttpStatusCode.Created) redirect(redirectUrl);
+    if (response.status !== HttpStatusCode.Ok) redirect(redirectUrl);
   } catch (error) {
-    console.log(error);
     redirect(redirectUrl);
   }
 
