@@ -1,8 +1,7 @@
+import { Page, User } from '@fiu-fit/common';
 import { mdiAccountSupervisor } from '@mdi/js';
 import api from '@/api/serverSideAxiosConfig';
 import { UsersList } from '@/app/(dashboard)/users/components/UserList';
-import { User } from '@/app/(dashboard)/users/interfaces/User';
-import { Page } from '@/app/utils/interfaces';
 import ControlHeader from '@/components/ControlHeader';
 
 async function getUsers(): Promise<Page<User>> {

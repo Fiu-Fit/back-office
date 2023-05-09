@@ -1,8 +1,8 @@
+import { Workout, categoryToString } from '@fiu-fit/common';
 import { mdiDumbbell } from '@mdi/js';
 import api from '@/api/serverSideAxiosConfig';
-import { WorkoutList } from '@/app/(dashboard)/workouts/components/WorkoutList';
-import { Workout } from '@/app/(dashboard)/workouts/interfaces/Workout';
 import { ControlHeader } from '@/components';
+import List from '@/components/List';
 
 async function getWorkouts(): Promise<Workout[]> {
   const { data: workoutList } = await api.get<Workout[]>('/workouts');
@@ -12,6 +12,11 @@ async function getWorkouts(): Promise<Workout[]> {
 
 export default async function WorkoutsPage() {
   const workoutList = await getWorkouts();
+  workoutList.forEach((workout: any) => {
+    workout.categoryString = categoryToString(workout.category);
+    workout.exerciseNumber = workout.exercises.length;
+    workout.athleteNumber = workout.athleteIds.length;
+  });
 
   return (
     <div className='m-12'>
@@ -21,7 +26,22 @@ export default async function WorkoutsPage() {
         icon={mdiDumbbell}
         createHref='./workouts'
       />
-      <WorkoutList workoutList={workoutList} />
+      <List
+        headers={{
+          ID:            '_id',
+          Nombre:        'name',
+          Descripción:   'description',
+          Duración:      'duration',
+          Dificultad:    'difficulty',
+          Categoría:     'categoryString',
+          Ejercicios:    'exerciseNumber',
+          Atletas:       'athleteNumber',
+          'ID Autor':    'authorId',
+          'Última act.': 'updatedAt',
+        }}
+        values={workoutList}
+        detailButtonHref='./workouts'
+      />
     </div>
   );
 }

@@ -27,7 +27,7 @@ export default function AuthForm() {
       Swal.fire({
         icon:               'error',
         title:              'Oops...',
-        html:               `Credenciales incorrectas.<pre>Error: ${error.response?.status} - ${error.response?.statusText}</pre>`,
+        html:               `Hubo un error.<pre>Error: ${error.response?.status} - ${error.response?.statusText}</pre>`,
         background:         'rgb(24 24 27)',
         color:              '#FFFFFF',
         confirmButtonColor: '#3085d6',

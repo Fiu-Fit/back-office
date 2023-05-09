@@ -1,4 +1,5 @@
 'use client';
+import { Page, User } from '@fiu-fit/common';
 import {
   Button,
   Paper,
@@ -11,8 +12,6 @@ import {
   styled,
   tableCellClasses,
 } from '@mui/material';
-import { User } from '@/app/(dashboard)/users/interfaces/User';
-import { Page, RoleEnumToName } from '@/app/utils/interfaces';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -62,7 +61,7 @@ export const UsersList = ({ page }: { page: Page<User> }) => {
                 <StyledTableCell align='right'>{row.lastName}</StyledTableCell>
                 <StyledTableCell align='right'>{row.email}</StyledTableCell>
                 <StyledTableCell align='right'>
-                  {RoleEnumToName[row.role]}
+                  {row.role}
                 </StyledTableCell>
                 <StyledTableCell align='right'>
                   <Button href={`users/${row.id}`}>Detalle</Button>
