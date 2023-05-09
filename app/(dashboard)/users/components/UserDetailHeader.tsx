@@ -36,11 +36,11 @@ export default function UserDetailHeader({
   return (
     <GenericHeader>
       <div className='flex flex-row justify-between px-12 py-10'>
-        <h1 className='text-2xl text-white text-bold'>
+        <h1 className='text-2xl text-bold'>
           {user.firstName} {user.lastName}
         </h1>
         <div className='flex flex-row justify-between gap-3'>
-          <Button variant='contained' className='bg-blue-400'>
+          <Button variant='contained' className='bg-primary'>
             <EditIcon />
             Editar
           </Button>

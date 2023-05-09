@@ -1,6 +1,6 @@
 'use client';
 import { Button, CircularProgress, TextField } from '@mui/material';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ export default function AuthForm() {
     setIsLoading(true);
     try {
       const response = await axios.post('api/auth/login', formData);
-      if (response.status === 200) router.push('/users');
+      if (response.status === HttpStatusCode.Ok) router.push('/users');
     } catch (err) {
       const error = err as AxiosError;
       Swal.fire({
@@ -39,7 +39,7 @@ export default function AuthForm() {
   return (
     <form
       onSubmit={handleSubmit(data => onSubmit(data))}
-      className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 rounded bg-white dark:bg-zinc-900 shadow'
+      className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 rounded bg-neutral shadow'
     >
       <TextField
         label='Correo electrónico'

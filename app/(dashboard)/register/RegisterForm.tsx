@@ -72,7 +72,7 @@ export default function RegisterForm() {
     <form
       onSubmit={handleSubmit(data => onSubmit(data))}
       method='post'
-      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow'
+      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-base-light dark:bg-base-dark shadow'
     >
       {inputs.map(input => (
         <TextField
