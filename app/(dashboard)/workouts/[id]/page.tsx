@@ -1,8 +1,8 @@
-import { User, Workout, categoryToString, unitToString } from '@fiu-fit/common';
-import List from './components/List';
+import { Page, User, Workout, categoryToString, unitToString } from '@fiu-fit/common';
 import api from '@/api/serverSideAxiosConfig';
 import DetailCard from '@/components/DetailCard';
 import DetailHeader from '@/components/DetailHeader';
+import List from '@/components/List';
 
 async function getWorkout(id: string): Promise<Workout> {
   const { data: workout } = await api.get<Workout>(`/workouts/${id}`);
@@ -10,18 +10,8 @@ async function getWorkout(id: string): Promise<Workout> {
   return workout;
 }
 
-async function getUsers(ids: number[]): Promise<User[]> {
-  // const { data: users } = await api.get<any[]>(`/users?ids=${ids.join(',')}`);
-  const users: User[] = [];
-  for (const id of ids) {
-    try {
-      const { data: user } = await api.get<User>(`/users/${id}`);
-      users.push(user);
-    } catch (_) {
-      console.error('User not found with id:', id);
-    }
-  }
-
+async function getUsers(ids: number[]): Promise<Page<User>> {
+  const { data: users } = await api.get<Page<User>>(`/users?ids=${ids.join(',')}`);
   return users;
 }
 
@@ -88,7 +78,7 @@ export default async function WorkoutDetail({
             Apellido: 'lastName',
             Rol:      'role',
           }}
-          values={users}
+          values={users.rows}
           detailButtonHref='/users'
         />
       </div>

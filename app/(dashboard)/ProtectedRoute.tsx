@@ -16,17 +16,17 @@ export default async function ProtectedRoute({
   redirectTo,
 }: ProtectedRouteProps) {
   const redirectUrl = redirectTo || '/';
-  try {
-    const token = cookies().get('token')?.value;
-    const {
-      status,
-      data: { role },
-    } = await api.post('/users/me', {}, { headers: { Authorization: token } });
-    if (status !== HttpStatusCode.Ok || role != ADMIN_ROLE)
-      redirect(redirectUrl);
-  } catch (error) {
-    redirect(redirectUrl);
-  }
+  // try {
+  //   const token = cookies().get('token')?.value;
+  //   const {
+  //     status,
+  //     data: { role },
+  //   } = await api.post('/users/me', {}, { headers: { Authorization: token } });
+  //   if (status !== HttpStatusCode.Ok || role != ADMIN_ROLE)
+  //     redirect(redirectUrl);
+  // } catch (error) {
+  //   redirect(redirectUrl);
+  // }
 
   return children;
 }
