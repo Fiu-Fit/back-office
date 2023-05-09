@@ -1,6 +1,6 @@
 'use client';
 import { Button, CircularProgress, TextField } from '@mui/material';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ export default function AuthForm() {
     setIsLoading(true);
     try {
       const response = await axios.post('api/auth/login', formData);
-      if (response.status === 200) router.push('/users');
+      if (response.status === HttpStatusCode.Ok) router.push('/users');
     } catch (err) {
       const error = err as AxiosError;
       Swal.fire({
