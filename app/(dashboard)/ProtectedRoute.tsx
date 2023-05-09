@@ -17,11 +17,10 @@ export default async function ProtectedRoute({
 }: ProtectedRouteProps) {
   const redirectUrl = redirectTo || '/';
   try {
-    const token = cookies().get('token')?.value;
     const {
       status,
       data: { role },
-    } = await api.post('/users/me', {}, { headers: { Authorization: token } });
+    } = await api.post('/users/me');
     if (status !== HttpStatusCode.Ok || role != ADMIN_ROLE)
       redirect(redirectUrl);
   } catch (error) {
