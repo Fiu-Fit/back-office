@@ -4,10 +4,30 @@ const MAX_EMAIL_LENGTH = 50;
 const MAX_NAME_LENGTH = 30;
 const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
+export interface ValidationOptions {
+  required?: {
+    value: boolean;
+    message: string;
+  };
+  minLength?: {
+    value: number;
+    message: string;
+  };
+  maxLength?: {
+    value: number;
+    message: string;
+  };
+  pattern?: {
+    value: RegExp;
+    message: string;
+  };
+  validate?: (value: string) => boolean | string;
+}
+
 export const validatePassword = (
   required: boolean,
   passwordConfirmation?: string
-) => {
+): ValidationOptions => {
   return {
     minLength: {
       value:   MIN_PASSWORD_LENGTH,
@@ -28,7 +48,7 @@ export const validatePassword = (
   };
 };
 
-export const validateEmail = (required: boolean) => {
+export const validateEmail = (required: boolean): ValidationOptions => {
   return {
     maxLength: {
       value:   MAX_EMAIL_LENGTH,
@@ -45,7 +65,7 @@ export const validateEmail = (required: boolean) => {
   };
 };
 
-export const validateName = (required: boolean) => {
+export const validateName = (required: boolean): ValidationOptions => {
   return {
     maxLength: {
       value:   MAX_NAME_LENGTH,
