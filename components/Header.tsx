@@ -13,7 +13,6 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
   const handleLogout = async () => {
     try {
       const response = await axios.get('api/auth/logout');
-      console.log('la response', response);
       if (response.status === HttpStatusCode.Ok) redirect('/login');
       else
         throw new AxiosError(
