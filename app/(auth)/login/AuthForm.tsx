@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { Button, ErrorModal, TextInput } from '@/components';
+import { Button, ErrorModal, Form, TextInput } from '@/components';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -43,9 +43,9 @@ export default function AuthForm() {
 
   return (
     <>
-      <form
+      <Form
         onSubmit={handleSubmit(onSubmit)}
-        className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 border-base-content/5 border bg-base-200 rounded-box'
+        className='grid grid-cols-1 gap-4 w-11/12 max-w-md'
       >
         <TextInput
           name='email'
@@ -67,7 +67,7 @@ export default function AuthForm() {
         <Link className='btn btn-secondary' href='/forgot-password'>
           Recuperar contraseña
         </Link>
-      </form>
+      </Form>
 
       <ErrorModal
         title='Oops... Ocurrio un problema'

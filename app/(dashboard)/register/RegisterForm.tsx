@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
-import { Button, TextInput } from '@/components';
+import { Button, Form, TextInput } from '@/components';
 import { validateEmail, validateName, validatePassword } from '@/utils';
 
 const ADMIN_ROLE = 'Admin';
@@ -66,10 +66,9 @@ export default function RegisterForm() {
   };
 
   return (
-    <form
+    <Form
       onSubmit={handleSubmit(data => onSubmit(data))}
-      method='post'
-      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded-box bg-base-200 border-base-content/5 border'
+      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto'
     >
       {inputs.map(input => (
         <TextInput
@@ -84,6 +83,6 @@ export default function RegisterForm() {
         />
       ))}
       <Button text='Registrar' type='submit' className='col-span-2' />
-    </form>
+    </Form>
   );
 }
