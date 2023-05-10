@@ -1,5 +1,4 @@
 'use client';
-import { CircularProgress } from '@mui/material';
 import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -64,19 +63,12 @@ export default function AuthForm() {
           errorMessage={errors.password?.message as string}
           required
         />
-        <button type='submit' className='btn btn-primary' disabled={isLoading}>
-          {isLoading ? (
-            <span className='flex justify-center items-center'>
-              <CircularProgress
-                color='inherit'
-                size='1.5rem'
-                className='mr-2'
-              />{' '}
-              Cargando...
-            </span>
-          ) : (
-            'Iniciar sesión'
-          )}
+        <button
+          type='submit'
+          className={`btn btn-primary ${isLoading && 'loading'}`}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Cargando...' : 'Iniciar sesión'}
         </button>
         <Link className='btn btn-secondary' href='/forgot-password'>
           Recuperar contraseña

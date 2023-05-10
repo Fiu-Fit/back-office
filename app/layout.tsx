@@ -2,8 +2,6 @@ import './globals.css';
 import './preflight.css';
 
 import { ReactNode } from 'react';
-import { NextAppDirEmotionCacheProvider } from 'tss-react/next';
-import AppThemeProvider from '@/utils/AppThemeProvider';
 
 export const metadata = {
   title:       'Create Next App',
@@ -13,11 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className='flex justify-center w-full h-screen'>
-        <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
-          <AppThemeProvider>{children}</AppThemeProvider>
-        </NextAppDirEmotionCacheProvider>
-      </body>
+      <body className='flex justify-center w-full h-screen'>{children}</body>
     </html>
   );
 }
