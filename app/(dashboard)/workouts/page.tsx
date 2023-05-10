@@ -1,6 +1,6 @@
 import { Workout, categoryToString } from '@fiu-fit/common';
 import { mdiDumbbell } from '@mdi/js';
-import { workoutListHeaders } from './displayedHeaders';
+import { workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { ControlHeader } from '@/components';
 import List from '@/components/List';

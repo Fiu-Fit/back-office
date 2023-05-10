@@ -1,4 +1,5 @@
 import { User } from '@fiu-fit/common';
+import { userCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import DetailCard from '@/components/DetailCard';
 import DetailHeader from '@/components/DetailHeader';
@@ -33,13 +34,7 @@ export default async function UserDetail({
         />
         <DetailCard
           title='Detalle de usuario'
-          fields={{
-            ID:       user.id,
-            Email:    user.email,
-            Nombre:   user.firstName,
-            Apellido: user.lastName,
-            Rol:      user.role,
-          }}
+          fields={userCardFields(user)}
         />
       </div>
     </div>
