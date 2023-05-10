@@ -8,7 +8,7 @@ export default function DetailCard({
   className?: string;
 }) {
   return (
-    <div className={`bg-neutral card overflow-hidden rounded-md ${className}`}>
+    <div className={`bg-neutral text-neutral-content card overflow-hidden rounded-md ${className}`}>
       <div className='card-body'>
         <h2 className='card-title'>{title}</h2>
         <dl className='divide-y divide-base-100'>
