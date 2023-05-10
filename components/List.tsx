@@ -12,7 +12,9 @@ export default function List({
   detailButtonHref?: string;
 }) {
   return (
-    <div className={`rounded-box overflow-hidden flex flex-col border-base-content/5 border ${className}`}>
+    <div
+      className={`rounded-box overflow-hidden flex flex-col border-base-content/5 border ${className}`}
+    >
       <div className='h-full flex-shrink overflow-y-scroll'>
         <table className='w-full table table-zebra'>
           <thead>
@@ -34,9 +36,14 @@ export default function List({
           </thead>
           <tbody className='divide-y'>
             {values.map(value => (
-              <tr key={value._id} className=''>
+              <tr key={value[headers['ID']]}>
                 {Object.values(headers).map(attribute => (
-                  <td className='px-6 py-4'> {value[attribute]} </td>
+                  <td
+                    key={`${headers['ID']}-${attribute}`}
+                    className='px-6 py-4'
+                  >
+                    {value[attribute]}
+                  </td>
                 ))}
 
                 {detailButtonHref && (
