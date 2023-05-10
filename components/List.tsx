@@ -26,7 +26,9 @@ export default function List({
                 </th>
               ))}
               {detailButtonHref && (
-                <th className='px-6 py-3 text-left text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider' />
+                <th className='px-10 py-3 text-right text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
+                  Acciones
+                </th>
               )}
             </tr>
           </thead>
@@ -38,8 +40,11 @@ export default function List({
                 ))}
 
                 {detailButtonHref && (
-                  <td className='px-6 py-4'>
-                    <Link href={`${detailButtonHref}/${value[headers['ID']]}`} className='btn'>
+                  <td className='px-6 py-4 flex justify-end'>
+                    <Link
+                      href={`${detailButtonHref}/${value[headers['ID']]}`}
+                      className='btn'
+                    >
                       Detalles
                     </Link>
                   </td>
@@ -51,12 +56,8 @@ export default function List({
       </div>
       <div className='block bg-gray-50 dark:bg-zinc-900 px-4 py-3'>
         <div className='flex justify-between'>
-          <button className='btn btn-primary'>
-            Anterior
-          </button>
-          <button className='btn btn-primary'>
-            Siguiente
-          </button>
+          <button className='btn btn-primary'>Anterior</button>
+          <button className='btn btn-primary'>Siguiente</button>
         </div>
       </div>
     </div>
