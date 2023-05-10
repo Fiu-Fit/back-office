@@ -3,7 +3,7 @@ import { mdiAccountGroup, mdiDumbbell } from '@mdi/js';
 import Icon from '@mdi/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 import FiuFitIcon from '@/public/fiufit.svg';
 
 export const SidebarItems: Array<{
@@ -30,14 +30,20 @@ export default function Sidebar({
   children: ReactNode;
   id: string;
 }) {
+  const sidebarRef = useRef<HTMLInputElement | null>(null);
+
   const hideSidebar = () => {
-    const checkbox = document.getElementById(id) as HTMLInputElement;
-    checkbox.checked = false;
+    sidebarRef.current?.click();
   };
 
   return (
     <aside className='drawer'>
-      <input id={id} type='checkbox' className='drawer-toggle' />
+      <input
+        id={id}
+        type='checkbox'
+        className='drawer-toggle'
+        ref={sidebarRef}
+      />
       <div className='drawer-content'>{children}</div>
       <div className='drawer-side'>
         <label htmlFor='drawer' className='drawer-overlay'></label>

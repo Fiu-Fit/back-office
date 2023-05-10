@@ -1,5 +1,6 @@
 import { Page, User } from '@fiu-fit/common';
 import { mdiAccountSupervisor } from '@mdi/js';
+import { userListHeaders } from './displayedHeaders';
 import api from '@/api/serverSideAxiosConfig';
 import ControlHeader from '@/components/ControlHeader';
 import List from '@/components/List';
@@ -21,13 +22,7 @@ export default async function UsersPage() {
         createHref='./register'
       />
       <List
-        headers={{
-          ID:       'id',
-          Nombre:   'firstName',
-          Apellido: 'lastName',
-          Email:    'email',
-          Rol:      'role',
-        }}
+        headers={userListHeaders}
         values={page.rows}
         detailButtonHref='/users'
       />

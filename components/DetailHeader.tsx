@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import Modal from './Modal';
+import { useRef } from 'react';
+import DetailDeleteModal from './DetailDeleteModal';
 
 export default function DetailHeader({
   title,
@@ -12,9 +13,10 @@ export default function DetailHeader({
   afterDeleteRoute: string;
 }) {
   const router = useRouter();
-  const toggleModal = () =>
-    document.getElementById('confirm-delete-modal')?.click();
-
+  const modalRef = useRef<HTMLInputElement | null>(null);
+  const openModal = () => {
+    if (!modalRef.current?.checked) modalRef.current?.click();
+  };
   const handleDelete = () => {
     onDelete();
     router.push(afterDeleteRoute);
@@ -27,26 +29,13 @@ export default function DetailHeader({
           <h1 className='text-2xl font-medium'>{title}</h1>
         </div>
         <div className='flex-none gap-2'>
-          <button className='btn btn-error' onClick={toggleModal}>
+          <button className='btn btn-error' onClick={openModal}>
             Eliminar
           </button>
           <button className='btn btn-primary'>Editar</button>
         </div>
       </div>
-      <Modal id='confirm-delete-modal'>
-        <h1 className='text-2xl font-medium'>
-          Estas seguro de que quieres eliminar esta rutina?
-        </h1>
-        <p>Esta accion no se puede deshacer!</p>
-        <div className='w-full flex justify-center gap-2 mt-4'>
-          <button className='btn btn-primary' onClick={toggleModal}>
-            Cancelar
-          </button>
-          <button className='btn btn-error' onClick={handleDelete}>
-            Eliminar
-          </button>
-        </div>
-      </Modal>
+      <DetailDeleteModal innerRef={modalRef} handleDelete={handleDelete} />
     </>
   );
 }

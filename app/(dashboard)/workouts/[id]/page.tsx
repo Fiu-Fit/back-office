@@ -1,4 +1,5 @@
-import { Page, User, Workout, categoryToString, unitToString } from '@fiu-fit/common';
+import { Page, User, Workout, unitToString } from '@fiu-fit/common';
+import { exerciseListHeaders, userListHeaders, workoutCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import DetailCard from '@/components/DetailCard';
 import DetailHeader from '@/components/DetailHeader';
@@ -44,40 +45,20 @@ export default async function WorkoutDetail({
           <div className='w-2/3'>
             <List
               className='w-2/3 absolute h-full'
-              headers={{
-                ID:           'exerciseId',
-                Sets:         'sets',
-                Repeticiones: 'reps',
-                Peso:         'weight',
-                Unidad:       'unitString',
-              }}
+              headers={exerciseListHeaders}
               values={workout.exercises}
               detailButtonHref='/exercises'
             />
           </div>
           <DetailCard
             title='Detalles de la rutina'
-            fields={{
-              ID:          workout._id,
-              Nombre:      workout.name,
-              Descripción: workout.description,
-              Duracion:    workout.duration,
-              Dificultad:  workout.difficulty,
-              Categoria:   categoryToString(workout.category),
-            }}
+            fields={workoutCardFields(workout)}
             className='w-1/3 ml-24'
           />
         </div>
         <List
           className='mt-8 max-h-[600px]'
-          headers={{
-            ID:       'id',
-            UID:      'uid',
-            Correo:   'email',
-            Nombre:   'firstName',
-            Apellido: 'lastName',
-            Rol:      'role',
-          }}
+          headers={userListHeaders}
           values={users.rows}
           detailButtonHref='/users'
         />

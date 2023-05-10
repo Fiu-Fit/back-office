@@ -3,18 +3,18 @@ import { mdiDotsHorizontal, mdiMenu } from '@mdi/js';
 import Icon from '@mdi/react';
 import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import Modal from './Modal';
+import { redirect } from 'next/navigation';
+import { useRef, useState } from 'react';
+import { ErrorModal } from '.';
 
 export default function Header({ sidebarId }: { sidebarId: string }) {
-  const router = useRouter();
   const [error, setError] = useState('');
+  const modalRef = useRef<HTMLInputElement | null>(null);
   const handleLogout = async () => {
     try {
-      const response = await axios.post('api/auth/logout');
-      console.log(response);
-      if (response.status === HttpStatusCode.Ok) router.replace('/login');
+      const response = await axios.get('api/auth/logout');
+      console.log('la response', response);
+      if (response.status === HttpStatusCode.Ok) redirect('/login');
       else
         throw new AxiosError(
           undefined,
@@ -24,9 +24,10 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
           response
         );
     } catch (err) {
-      const axiosErr = err as AxiosError;
-      setError(`${axiosErr.response?.status} - ${axiosErr.response?.statusText}`);
-      document.getElementById('error-modal')?.click();
+      if (!(err instanceof AxiosError)) return;
+
+      setError(`${err.response?.status} - ${err.response?.statusText}`);
+      modalRef.current?.click();
     }
   };
 
@@ -65,11 +66,11 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
           </div>
         </div>
       </div>
-      <Modal id='error-modal'>
-        <h2 className='text-lg font-bold'>Oops... Hubo un error</h2>
-        <h3>Detalles adicionales:</h3>
-        <pre>{error}</pre>
-      </Modal>
+      <ErrorModal
+        title='Oops... Ocurrio un problema'
+        error={error}
+        innerRef={modalRef}
+      />
     </>
   );
 }

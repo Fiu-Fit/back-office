@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 import api from '@/api/serverSideAxiosConfig';
 
-export async function POST() {
+export async function GET() {
   try {
     const gatewayResponse = await api.post('/auth/logout');
     const res = new NextResponse(null, {

@@ -2,10 +2,9 @@
 import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { TextInput } from '@/components';
-import Modal from '@/components/Modal';
+import { ErrorModal, TextInput } from '@/components';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -16,6 +15,7 @@ export default function AuthForm() {
   } = useForm({ mode: 'onTouched' });
   const [isLoading, setIsLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
+  const modalRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
   const onSubmit = async (formData: FieldValues) => {
@@ -36,7 +36,7 @@ export default function AuthForm() {
       setLoginError(
         `${error.response?.status} - ${error.response?.statusText}`
       );
-      document.getElementById('error-modal')?.click();
+      modalRef.current?.click();
       setIsLoading(false);
     }
   };
@@ -75,11 +75,11 @@ export default function AuthForm() {
         </Link>
       </form>
 
-      <Modal id='error-modal'>
-        <h2 className='text-lg font-bold'>Oops... Hubo un error</h2>
-        <h3>Detalles adicionales:</h3>
-        <pre>{loginError}</pre>
-      </Modal>
+      <ErrorModal
+        title='Oops... Ocurrio un problema'
+        error={loginError}
+        innerRef={modalRef}
+      />
     </>
   );
 }
