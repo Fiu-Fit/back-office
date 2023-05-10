@@ -23,13 +23,13 @@ export const SidebarItems: Array<{
   },
 ];
 
-export const Sidebar = ({
+export default function Sidebar({
   children,
   id,
 }: {
   children: ReactNode;
   id: string;
-}) => {
+}) {
   const hideSidebar = () => {
     const checkbox = document.getElementById(id) as HTMLInputElement;
     checkbox.checked = false;
@@ -47,7 +47,7 @@ export const Sidebar = ({
               <Image
                 src={FiuFitIcon}
                 alt={'Fiu-Fit Icon'}
-                className='w-full'
+                className='w-full invert dark:invert-0'
                 priority
               />
             </Link>
@@ -65,4 +65,4 @@ export const Sidebar = ({
       </div>
     </aside>
   );
-};
+}

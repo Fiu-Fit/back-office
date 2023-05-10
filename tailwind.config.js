@@ -15,4 +15,8 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
+  daisyui: {
+    themes:    ['light', 'dark'],
+    darkTheme: 'dark',
+  },
 };
