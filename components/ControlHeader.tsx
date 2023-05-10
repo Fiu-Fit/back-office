@@ -1,6 +1,5 @@
 'use client';
 import Icon from '@mdi/react';
-import { Button } from '@mui/material';
 import Link from 'next/link';
 
 export default function ControlHeader({
@@ -17,10 +16,10 @@ export default function ControlHeader({
   return (
     <div className='mb-4 flex flex-row justify-between'>
       <h1 className='text-4xl'>{title}</h1>
-      <Button LinkComponent={Link} href={createHref}>
+      <Link href={createHref} className='btn btn-primary'>
         {icon && <Icon path={icon} className='mr-2' size={1} />}
         {buttonText}
-      </Button>
+      </Link>
     </div>
   );
 }

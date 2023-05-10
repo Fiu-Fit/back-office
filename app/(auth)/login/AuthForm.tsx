@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { TextInput } from '@/components';
+import Modal from '@/components/Modal';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -36,6 +37,7 @@ export default function AuthForm() {
       setLoginError(
         `${error.response?.status} - ${error.response?.statusText}`
       );
+      document.getElementById('error-modal')?.click();
       setIsLoading(false);
     }
   };
@@ -81,20 +83,11 @@ export default function AuthForm() {
         </Link>
       </form>
 
-      <input
-        type='checkbox'
-        checked={!!loginError}
-        id='my-modal-4'
-        className='modal-toggle'
-        onClick={() => setLoginError('')}
-      />
-      <label htmlFor='my-modal-4' className='modal cursor-pointer'>
-        <label className='modal-box relative' htmlFor=''>
-          <h2 className='text-lg font-bold'>Oops... Hubo un error</h2>
-          <h3>Detalles adicionales:</h3>
-          <pre>{loginError}</pre>
-        </label>
-      </label>
+      <Modal id='error-modal'>
+        <h2 className='text-lg font-bold'>Oops... Hubo un error</h2>
+        <h3>Detalles adicionales:</h3>
+        <pre>{loginError}</pre>
+      </Modal>
     </>
   );
 }

@@ -1,57 +1,52 @@
 'use client';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import Swal from 'sweetalert2';
-import { GenericHeader } from '@/app/utils/GenericHeader';
+import Modal from './Modal';
 
 export default function DetailHeader({
   title,
   onDelete,
-  afterDeleteRoute
+  afterDeleteRoute,
 }: {
   title: string;
   onDelete: () => Promise<any>;
   afterDeleteRoute: string;
 }) {
   const router = useRouter();
-  const handleDelete = () => {
-    Swal.fire({
-      title:             'Estas seguro de eliminar esta rutina?',
-      text:              'Esta accion no se puede revertir!',
-      icon:              'warning',
-      showCancelButton:  true,
-      cancelButtonColor: '#d33',
-      background:        '#1f2937',
-      color:             '#fff',
-    }).then(result => {
-      if (result.isConfirmed) {
-        Swal.fire('Eliminado!', 'La rutina fue eliminada.', 'success');
-        onDelete();
+  const toggleModal = () =>
+    document.getElementById('confirm-delete-modal')?.click();
 
-        router.push(afterDeleteRoute);
-      }
-    });
+  const handleDelete = () => {
+    onDelete();
+    router.push(afterDeleteRoute);
   };
 
   return (
-    <GenericHeader>
-      <div className='flex flex-row justify-between px-12 py-10'>
-        <h1 className='text-2xl text-white text-bold'>
-          {title}
-        </h1>
-        <div className='flex flex-row justify-between gap-3'>
-          <Button variant='contained' className='bg-blue-400'>
-            <EditIcon />
-            Editar
-          </Button>
-          <Button variant='contained' color='error' onClick={handleDelete}>
-            <DeleteIcon />
+    <>
+      <div className='navbar bg-base-100 w-full'>
+        <div className='flex-1'>
+          <h1 className='text-2xl font-medium'>{title}</h1>
+        </div>
+        <div className='flex-none gap-2'>
+          <button className='btn btn-error' onClick={toggleModal}>
             Eliminar
-          </Button>
+          </button>
+          <button className='btn btn-primary'>Editar</button>
         </div>
       </div>
-    </GenericHeader>
+      <Modal id='confirm-delete-modal'>
+        <h1 className='text-2xl font-medium'>
+          Estas seguro de que quieres eliminar esta rutina?
+        </h1>
+        <p>Esta accion no se puede deshacer!</p>
+        <div className='w-full flex justify-center gap-2 mt-4'>
+          <button className='btn btn-primary' onClick={toggleModal}>
+            Cancelar
+          </button>
+          <button className='btn btn-error' onClick={handleDelete}>
+            Eliminar
+          </button>
+        </div>
+      </Modal>
+    </>
   );
 }

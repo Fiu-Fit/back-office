@@ -37,9 +37,9 @@ export default async function WorkoutDetail({
   }
 
   return (
-    <div className='w-full h-full'>
-      <DetailHeader title={workout.name} onDelete={deleteWorkout} afterDeleteRoute='/workouts' />
+    <div className='w-full'>
       <div className='p-12 w-full gap-8 '>
+      <DetailHeader title={workout.name} onDelete={deleteWorkout} afterDeleteRoute='/workouts' />
         <div className='flex relative'>
           <div className='w-2/3'>
             <List
