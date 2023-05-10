@@ -69,7 +69,7 @@ export default async function WorkoutDetail({
           />
         </div>
         <List
-          className='mt-8 h-[600px]'
+          className='mt-8 max-h-[600px]'
           headers={{
             ID:       'id',
             UID:      'uid',
