@@ -1,70 +1,58 @@
 'use client';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import PersonIcon from '@mui/icons-material/Person';
-import {
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material';
-import Image from 'next/image';
-import { ReactElement } from 'react';
-import { drawerWidth } from '@/app/utils/constants';
-import fiuFitLogo from '@/public/fiufit.svg';
+import { mdiAccountGroup, mdiDumbbell } from '@mdi/js';
+import Icon from '@mdi/react';
+import Link from 'next/link';
+
+import { ReactNode } from 'react';
 
 export const SidebarItems: Array<{
   displayName: string;
-  icon: ReactElement;
+  iconPath: string;
   link: string;
 }> = [
   {
     displayName: 'Users',
-    icon:        <PersonIcon />,
+    iconPath:    mdiAccountGroup,
     link:        '/users',
   },
   {
     displayName: 'Workouts',
-    icon:        <FitnessCenterIcon />,
+    iconPath:    mdiDumbbell,
     link:        '/workouts',
-  }
+  },
 ];
-export const Sidebar = () => {
-  return (
-    <Drawer
-      sx={{
-        width:                drawerWidth,
-        flexShrink:           0,
-        '& .MuiDrawer-paper': {
-          width:     drawerWidth,
-          boxSizing: 'border-box',
-        },
-      }}
-      variant='permanent'
-      anchor='left'
-    >
-      <div className='flex justify-center'>
-        <Image
-          src={fiuFitLogo}
-          className='w-1/3 invert dark:invert-0 m-6'
-          alt='FiuFit'
-          priority
-        />
-      </div>
 
-      <Divider />
-      <List>
-        {SidebarItems.map(({ displayName, icon, link }) => (
-          <ListItem key={displayName} disablePadding>
-            <ListItemButton href={link}>
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText primary={displayName} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
+export const Sidebar = ({
+  children,
+  id,
+}: {
+  children: ReactNode;
+  id: string;
+}) => {
+  const hideSidebar = () => {
+    const checkbox = document.getElementById(id) as HTMLInputElement;
+    checkbox.checked = false;
+  };
+
+  return (
+    <aside className='drawer'>
+      <input id={id} type='checkbox' className='drawer-toggle' />
+      <div className='drawer-content flex flex-col items-center justify-center'>
+        {children}
+      </div>
+      <div className='drawer-side'>
+        <label htmlFor='drawer' className='drawer-overlay'></label>
+        <ul className='menu p-4 w-80 bg-base-100 text-base-content'>
+          {SidebarItems.map(item => (
+            <li key={item.link}>
+              <Link href={item.link} onClick={hideSidebar}>
+                <Icon path={item.iconPath} size={1.5} />
+                {item.displayName}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
   );
 };
