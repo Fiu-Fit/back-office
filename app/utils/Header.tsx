@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const Header = ({ sidebarId }: { sidebarId: string }) => {
   return (
-    <div className='navbar bg-base-100 bg-opacity-60 sticky top-0 backdrop-blur-lg z-50'>
+    <div className='navbar bg-base-100 bg-opacity-60 backdrop-blur-lg z-50'>
       <div className='flex-none'>
         <label
           className='btn btn-square btn-ghost drawer-button'
