@@ -5,7 +5,7 @@ import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useRef, useState } from 'react';
-import { ErrorModal } from '.';
+import { Button, ErrorModal } from '.';
 
 export default function Header({ sidebarId }: { sidebarId: string }) {
   const [error, setError] = useState('');
@@ -56,12 +56,13 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
               tabIndex={0}
               className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52'
             >
-              <button
-                className='btn btn-ghost btn-sm align-middle normal-case'
+              <Button
+                text='Cerrar sesión'
+                variant='text'
+                size='sm'
+                className='align-middle normal-case'
                 onClick={handleLogout}
-              >
-                Cerrar sesión
-              </button>
+              />
             </ul>
           </div>
         </div>

@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import DetailDeleteModal from './DetailDeleteModal';
+import { Button } from '.';
 
 export default function DetailHeader({
   title,
@@ -29,10 +30,8 @@ export default function DetailHeader({
           <h1 className='text-2xl font-medium'>{title}</h1>
         </div>
         <div className='flex-none gap-2'>
-          <button className='btn btn-error' onClick={openModal}>
-            Eliminar
-          </button>
-          <button className='btn btn-primary'>Editar</button>
+          <Button text='Editar' />
+          <Button text='Eliminar' color='error' onClick={openModal} />
         </div>
       </div>
       <DetailDeleteModal innerRef={modalRef} handleDelete={handleDelete} />

@@ -1,4 +1,4 @@
-import Modal from './Modal';
+import { Button, Modal } from '.';
 
 export default function DetailDeleteModal({
   innerRef,
@@ -22,12 +22,8 @@ export default function DetailDeleteModal({
       </h1>
       <p>Esta accion no se puede deshacer!</p>
       <div className='w-full flex justify-center gap-2 mt-4'>
-        <button className='btn btn-primary' onClick={innerToggleModal}>
-          Cancelar
-        </button>
-        <button className='btn btn-error' onClick={innerHandleDelete}>
-          Eliminar
-        </button>
+        <Button text='Cancelar' onClick={innerToggleModal} />
+        <Button text='Eliminar' color='error' onClick={innerHandleDelete} />
       </div>
     </Modal>
   );

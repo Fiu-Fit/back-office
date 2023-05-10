@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
-import { TextInput } from '@/components';
+import { Button, TextInput } from '@/components';
 import { validateEmail, validateName, validatePassword } from '@/utils';
 
 const ADMIN_ROLE = 'Admin';
@@ -83,9 +83,7 @@ export default function RegisterForm() {
           containerClassName={input.halfWidth ? 'col-span-1' : 'col-span-2'}
         />
       ))}
-      <button type='submit' className='btn btn-primary col-span-2'>
-        Registrarse
-      </button>
+      <Button text='Registrar' type='submit' className='col-span-2' />
     </form>
   );
 }

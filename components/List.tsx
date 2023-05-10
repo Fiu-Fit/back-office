@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Button } from '.';
 
 export default function List({
   headers,
@@ -63,8 +64,8 @@ export default function List({
       </div>
       <div className='block px-4 py-3 border-base-content/5 border-t bg-neutral'>
         <div className='flex justify-between'>
-          <button className='btn btn-primary'>Anterior</button>
-          <button className='btn btn-primary'>Siguiente</button>
+          <Button text='Anterior' />
+          <Button text='Siguiente' />
         </div>
       </div>
     </div>

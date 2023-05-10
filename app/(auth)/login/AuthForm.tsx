@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { ErrorModal, TextInput } from '@/components';
+import { Button, ErrorModal, TextInput } from '@/components';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -63,13 +63,7 @@ export default function AuthForm() {
           errorMessage={errors.password?.message as string}
           required
         />
-        <button
-          type='submit'
-          className={`btn btn-primary ${isLoading && 'loading'}`}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Cargando...' : 'Iniciar sesión'}
-        </button>
+        <Button text='Iniciar sesión' isLoading={isLoading} type='submit' />
         <Link className='btn btn-secondary' href='/forgot-password'>
           Recuperar contraseña
         </Link>
