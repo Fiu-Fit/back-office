@@ -8,7 +8,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     <div className='flex flex-row w-full'>
       <Sidebar id='drawer'>
         <Header sidebarId='drawer'/>
-        <div className='flex flex-col w-full h-full'>
+        <div className='flex flex-col w-full'>
           {/* @ts-expect-error Server Component */}
           <ProtectedRoute redirectTo='/login'>
             <div className='w-full h-full'>{children}</div>

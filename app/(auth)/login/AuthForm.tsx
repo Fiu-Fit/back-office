@@ -46,7 +46,7 @@ export default function AuthForm() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 border-base-content/5 border bg-base-100 rounded-box'
+        className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 border-base-content/5 border bg-base-200 rounded-box'
       >
         <TextInput
           name='email'

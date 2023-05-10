@@ -31,7 +31,7 @@ export default function TextInput({
   const requiredMessage =
     validation?.required?.message || 'Este campo es requerido';
   return (
-    <div className='form-control w-full'>
+    <div className={`form-control w-full ${containerClassName}`}>
       <label className='label'>
         <span className='label-text'>{label}</span>
       </label>
