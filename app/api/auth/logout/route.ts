@@ -12,8 +12,13 @@ export async function GET() {
 
     return res;
   } catch (err: unknown) {
+    if (!(err instanceof AxiosError)) {
+      return NextResponse.json(err, {
+        status: 500,
+      });
+    }
+    
     const error = err as AxiosError;
-
     return NextResponse.json(error.response?.data, {
       status: error.response?.status,
     });
