@@ -30,7 +30,6 @@ export default async function WorkoutsPage() {
         headers={{
           ID:            '_id',
           Nombre:        'name',
-          Descripción:   'description',
           Duración:      'duration',
           Dificultad:    'difficulty',
           Categoría:     'categoryString',

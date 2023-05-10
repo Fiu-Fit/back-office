@@ -12,29 +12,29 @@ export default function List({
   detailButtonHref?: string;
 }) {
   return (
-    <div className={`rounded-md overflow-hidden flex flex-col ${className}`}>
-      <div className='h-full flex-shrink dark:bg-gray-950 overflow-y-scroll'>
-        <table className='w-full divide-y divide-gray-200 dark:divide-black'>
+    <div className={`rounded-box overflow-hidden flex flex-col border-base-content/5 border ${className}`}>
+      <div className='h-full flex-shrink overflow-y-scroll'>
+        <table className='w-full table table-zebra'>
           <thead>
-            <tr className='sticky top-0 bg-gray-50 dark:bg-zinc-900 z-40'>
+            <tr className='sticky top-0 z-40'>
               {Object.keys(headers).map(header => (
                 <th
                   key={header}
-                  className='px-6 py-3 text-left text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider'
+                  className='px-6 py-3 text-left text-xs uppercase tracking-wider'
                 >
                   {header}
                 </th>
               ))}
               {detailButtonHref && (
-                <th className='px-10 py-3 text-right text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
+                <th className='px-10 py-3 text-right text-xs uppercase tracking-wider'>
                   Acciones
                 </th>
               )}
             </tr>
           </thead>
-          <tbody className='bg-white dark:bg-zinc-950 divide-y divide-gray-700'>
+          <tbody className='divide-y'>
             {values.map(value => (
-              <tr key={value._id}>
+              <tr key={value._id} className=''>
                 {Object.values(headers).map(attribute => (
                   <td className='px-6 py-4'> {value[attribute]} </td>
                 ))}
@@ -54,7 +54,7 @@ export default function List({
           </tbody>
         </table>
       </div>
-      <div className='block bg-gray-50 dark:bg-zinc-900 px-4 py-3'>
+      <div className='block px-4 py-3 border-base-content/5 border-t bg-neutral'>
         <div className='flex justify-between'>
           <button className='btn btn-primary'>Anterior</button>
           <button className='btn btn-primary'>Siguiente</button>
