@@ -1,5 +1,6 @@
 import { Workout, categoryToString } from '@fiu-fit/common';
 import { mdiDumbbell } from '@mdi/js';
+import { workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { ControlHeader } from '@/components';
 import List from '@/components/List';
@@ -27,18 +28,7 @@ export default async function WorkoutsPage() {
         createHref='./workouts'
       />
       <List
-        headers={{
-          ID:            '_id',
-          Nombre:        'name',
-          Descripción:   'description',
-          Duración:      'duration',
-          Dificultad:    'difficulty',
-          Categoría:     'categoryString',
-          Ejercicios:    'exerciseNumber',
-          Atletas:       'athleteNumber',
-          'ID Autor':    'authorId',
-          'Última act.': 'updatedAt',
-        }}
+        headers={workoutListHeaders}
         values={workoutList}
         detailButtonHref='./workouts'
       />

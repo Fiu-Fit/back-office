@@ -11,8 +11,12 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins:     [],
+  plugins:     [require('daisyui')],
   corePlugins: {
     preflight: false,
+  },
+  daisyui: {
+    themes:    ['light', 'dark'],
+    darkTheme: 'dark',
   },
 };

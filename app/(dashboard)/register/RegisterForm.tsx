@@ -1,7 +1,7 @@
 'use client';
-import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
+import { Button, Form, TextInput } from '@/components';
 import { validateEmail, validateName, validatePassword } from '@/utils';
 
 const ADMIN_ROLE = 'Admin';
@@ -16,39 +16,39 @@ export default function RegisterForm() {
 
   const inputs = [
     {
-      name:      'firstName',
-      label:     'Nombre',
-      type:      'text',
-      halfWidth: true,
-      options:   validateName(true),
+      name:       'firstName',
+      label:      'Nombre',
+      type:       'text',
+      halfWidth:  true,
+      validation: validateName(true),
     },
     {
-      name:      'lastName',
-      label:     'Apellido',
-      type:      'text',
-      halfWidth: true,
-      options:   validateName(true),
+      name:       'lastName',
+      label:      'Apellido',
+      type:       'text',
+      halfWidth:  true,
+      validation: validateName(true),
     },
     {
-      name:      'email',
-      label:     'Email',
-      type:      'email',
-      halfWidth: false,
-      options:   validateEmail(true),
+      name:       'email',
+      label:      'Email',
+      type:       'email',
+      halfWidth:  false,
+      validation: validateEmail(true),
     },
     {
-      name:      'password',
-      label:     'Contraseña',
-      type:      'password',
-      halfWidth: false,
-      options:   validatePassword(true),
+      name:       'password',
+      label:      'Contraseña',
+      type:       'password',
+      halfWidth:  false,
+      validation: validatePassword(true),
     },
     {
-      name:      'passwordConfirmation',
-      label:     'Confirmar contraseña',
-      type:      'password',
-      halfWidth: false,
-      options:   validatePassword(true, watch('password')),
+      name:       'passwordConfirmation',
+      label:      'Confirmar contraseña',
+      type:       'password',
+      halfWidth:  false,
+      validation: validatePassword(true, watch('password')),
     },
   ];
 
@@ -59,40 +59,30 @@ export default function RegisterForm() {
     };
 
     try {
-      await axios.post(
-        '/api/auth/register',
-        registerData
-      );
+      await axios.post('/api/auth/register', registerData);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <form
+    <Form
       onSubmit={handleSubmit(data => onSubmit(data))}
-      method='post'
-      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto p-5 rounded bg-white dark:bg-zinc-900 shadow'
+      className='grid grid-cols-2 gap-4 w-11/12 max-w-lg my-auto'
     >
       {inputs.map(input => (
-        <TextField
+        <TextInput
+          name={input.name}
           key={input.name}
           label={input.label}
           type={input.type}
-          {...register(input.name, input.options)}
-          error={errors[input.name] ? true : false}
-          helperText={errors[input.name] ? errors[input.name]?.message as string : ' '}
-          className={input.halfWidth ? 'col-span-1' : 'col-span-2'}
+          register={register}
+          validation={input.validation}
+          errorMessage={errors[input.name]?.message as string}
+          containerClassName={input.halfWidth ? 'col-span-1' : 'col-span-2'}
         />
       ))}
-      <Button
-        type='submit'
-        size='large'
-        variant='contained'
-        className='col-span-2'
-      >
-        Registrarse
-      </Button>
-    </form>
+      <Button text='Registrar' type='submit' className='col-span-2' />
+    </Form>
   );
 }

@@ -1,11 +1,10 @@
 'use client';
-import { Button, CircularProgress, TextField } from '@mui/material';
 import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
+import { Button, ErrorModal, Form, TextInput } from '@/components';
 import { validateEmail } from '@/utils';
 
 export default function AuthForm() {
@@ -15,6 +14,8 @@ export default function AuthForm() {
     formState: { errors },
   } = useForm({ mode: 'onTouched' });
   const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState('');
+  const modalRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
   const onSubmit = async (formData: FieldValues) => {
@@ -22,60 +23,57 @@ export default function AuthForm() {
     try {
       const response = await axios.post('api/auth/login', formData);
       if (response.status === HttpStatusCode.Ok) router.push('/users');
+      else
+        throw new AxiosError(
+          undefined,
+          response.status as unknown as string,
+          response.config,
+          response.request,
+          response
+        );
     } catch (err) {
       const error = err as AxiosError;
-      Swal.fire({
-        icon:               'error',
-        title:              'Oops...',
-        html:               `Hubo un error.<pre>Error: ${error.response?.status} - ${error.response?.statusText}</pre>`,
-        background:         'rgb(24 24 27)',
-        color:              '#FFFFFF',
-        confirmButtonColor: '#3085d6',
-      });
+      setLoginError(
+        `${error.response?.status} - ${error.response?.statusText}`
+      );
+      modalRef.current?.click();
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(data => onSubmit(data))}
-      className='grid grid-cols-1 gap-4 w-11/12 max-w-md p-5 rounded bg-white dark:bg-zinc-900 shadow'
-    >
-      <TextField
-        label='Correo electrónico'
-        type='text'
-        {...register('email', {
-          ...validateEmail(true),
-        })}
-        error={errors.email ? true : false}
-        helperText={errors.email ? (errors.email.message as string) : ' '}
-      />
-      <TextField
-        label='Contraseña'
-        type='password'
-        {...register('password', {
-          required: 'Este campo es requerido',
-        })}
-        error={errors.password ? true : false}
-        helperText={errors.password ? (errors.password.message as string) : ' '}
-      />
-      <Button
-        type='submit'
-        size='large'
-        variant='contained'
-        disabled={isLoading}
+    <>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        className='grid grid-cols-1 gap-4 w-11/12 max-w-md'
       >
-        {isLoading ? (
-          <span className='flex justify-center items-center'>
-            <CircularProgress color='inherit' size='1.5rem' className='mr-2' /> Cargando...
-          </span>
-        ) : (
-          'Iniciar sesión'
-        )}
-      </Button>
-      <Button size='large' LinkComponent={Link} href='forgot-password'>
-        Recuperar contraseña
-      </Button>
-    </form>
+        <TextInput
+          name='email'
+          label='Correo electrónico'
+          type='email'
+          register={register}
+          errorMessage={errors.email?.message as string}
+          validation={validateEmail(true)}
+        />
+        <TextInput
+          name='password'
+          label='Contraseña'
+          type='password'
+          register={register}
+          errorMessage={errors.password?.message as string}
+          required
+        />
+        <Button text='Iniciar sesión' isLoading={isLoading} type='submit' />
+        <Link className='btn btn-secondary' href='/forgot-password'>
+          Recuperar contraseña
+        </Link>
+      </Form>
+
+      <ErrorModal
+        title='Oops... Ocurrio un problema'
+        error={loginError}
+        innerRef={modalRef}
+      />
+    </>
   );
 }
