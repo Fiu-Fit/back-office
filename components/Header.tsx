@@ -3,17 +3,18 @@ import { mdiDotsHorizontal, mdiMenu } from '@mdi/js';
 import Icon from '@mdi/react';
 import axios, { AxiosError, HttpStatusCode } from 'axios';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { Button, ErrorModal } from '.';
 
 export default function Header({ sidebarId }: { sidebarId: string }) {
   const [error, setError] = useState('');
   const modalRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
   const handleLogout = async () => {
     try {
       const response = await axios.get('api/auth/logout');
-      if (response.status === HttpStatusCode.Ok) redirect('/login');
+      if (response.status === HttpStatusCode.Ok) router.replace('/login');
       else
         throw new AxiosError(
           undefined,
@@ -24,7 +25,6 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
         );
     } catch (err) {
       if (!(err instanceof AxiosError)) return;
-
       setError(`${err.response?.status} - ${err.response?.statusText}`);
       modalRef.current?.click();
     }
