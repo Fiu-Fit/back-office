@@ -1,6 +1,7 @@
 'use client';
 import { User } from '@fiu-fit/common';
 import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Button, ErrorModal, Form, Modal, TextInput } from '@/components';
@@ -12,7 +13,7 @@ export default function RegisterForm() {
   const successModalRef = useRef<HTMLInputElement | null>(null);
   const errorModalRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState<string>('null');
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -78,6 +79,11 @@ export default function RegisterForm() {
     }
   };
 
+  const handleSuccess = () => {
+    successModalRef.current?.click();
+    router.push('/users');
+  };
+
   return (
     <>
       <Form
@@ -100,11 +106,7 @@ export default function RegisterForm() {
       </Form>
       <Modal id='register-modal' innerRef={successModalRef}>
         <h1 className='text-lg font-bold'>¡Registro exitoso!</h1>
-        <p className='mb-4'>
-          Se ha enviado un correo electrónico al usuario con las instrucciones
-          para completar el registro.
-        </p>
-        <Button text='Aceptar' onClick={() => successModalRef.current?.click()} />
+        <Button text='Aceptar' onClick={handleSuccess} />
       </Modal>
       <ErrorModal
         title='Oops... Ocurrio un problema'
