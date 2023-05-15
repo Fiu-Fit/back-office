@@ -27,8 +27,8 @@ export default async function exerciseDetail({
 
   return (
     <div className='w-full h-full'>
-      <DetailHeader title={exercise.name} onDelete={deleteExercise}  afterDeleteRoute='/exercises'/>
       <div className='p-12 w-full gap-8 '>
+      <DetailHeader title={exercise.name} onDelete={deleteExercise}  afterDeleteRoute='/exercises'/>
         <DetailCard
           title='Detalles del ejercicio'
           fields={{

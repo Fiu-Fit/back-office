@@ -6,10 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "common:install": "yarn add ssh://git@github.com:Fiu-Fit/common.git && yarn"
   },
   "dependencies": {
-    "@fiu-fit/common": "https://github.com/Fiu-Fit/common.git",
+    "@fiu-fit/common": "ssh://git@github.com:Fiu-Fit/common.git",
     "@fontsource/roboto": "^4.5.8",
     "@mdi/js": "^7.2.96",
     "@mdi/react": "^1.6.1",

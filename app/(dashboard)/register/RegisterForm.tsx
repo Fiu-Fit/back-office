@@ -1,4 +1,5 @@
 'use client';
+import { User } from '@fiu-fit/common';
 import axios from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Button, Form, TextInput } from '@/components';
@@ -53,9 +54,10 @@ export default function RegisterForm() {
   ];
 
   const onSubmit = async (formData: FieldValues) => {
-    const registerData = {
-      ...formData,
-      role: ADMIN_ROLE,
+    const registerData: User = {
+      ...formData as User,
+      role:       ADMIN_ROLE,
+      bodyWeight: 0,
     };
 
     try {
