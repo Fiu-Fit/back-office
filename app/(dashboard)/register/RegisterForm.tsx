@@ -57,7 +57,7 @@ export default function RegisterForm() {
     const registerData: User = {
       ...formData as User,
       role:       ADMIN_ROLE,
-      bodyWeight: 0,
+      bodyWeight: 1,
     };
 
     try {
