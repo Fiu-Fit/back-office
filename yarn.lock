@@ -60,9 +60,9 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.40.0.tgz#3ba73359e11f5a7bd3e407f70b3528abfae69cec"
   integrity sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==
 
-"@fiu-fit/common@ssh://git@github.com:Fiu-Fit/common.git":
+"@fiu-fit/common@https://github.com/Fiu-Fit/common.git":
   version "1.0.0"
-  resolved "ssh://git@github.com:Fiu-Fit/common.git#ac892c5f8361ee32f283b274033181a2f1b0f4c5"
+  resolved "https://github.com/Fiu-Fit/common.git#ac892c5f8361ee32f283b274033181a2f1b0f4c5"
   dependencies:
     winston "^3.8.2"
 
