@@ -70,6 +70,7 @@ export default function AuthForm() {
       </Form>
 
       <ErrorModal
+        id='login-error-modal'
         title='Oops... Ocurrio un problema'
         error={loginError}
         innerRef={modalRef}

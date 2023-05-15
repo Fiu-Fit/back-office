@@ -70,14 +70,16 @@ export default function RegisterForm() {
       await axios.post('/api/auth/register', registerData);
     } catch (err) {
       console.error(err);
-      if (!(err instanceof AxiosError)) {
+      if (err instanceof AxiosError) {
+        setError(`${err.response?.status} - ${err.response?.statusText}`);
+      } else {
         setError('Error desconocido');
-        return;
       }
-
-      setError(`${err.response?.status} - ${err.response?.statusText}`);
       errorModalRef.current?.click();
+      return;
     }
+
+    successModalRef.current?.click();
   };
 
   const handleSuccess = () => {
@@ -110,6 +112,7 @@ export default function RegisterForm() {
         <Button text='Aceptar' onClick={handleSuccess} />
       </Modal>
       <ErrorModal
+        id='register-error-modal'
         title='Oops... Ocurrio un problema'
         error={error}
         innerRef={errorModalRef}
