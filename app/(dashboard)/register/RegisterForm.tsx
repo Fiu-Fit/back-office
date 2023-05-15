@@ -76,6 +76,7 @@ export default function RegisterForm() {
       }
 
       setError(`${err.response?.status} - ${err.response?.statusText}`);
+      errorModalRef.current?.click();
     }
   };
 
