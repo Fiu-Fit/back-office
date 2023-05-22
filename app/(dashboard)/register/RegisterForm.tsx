@@ -13,6 +13,7 @@ export default function RegisterForm() {
   const successModalRef = useRef<HTMLInputElement | null>(null);
   const errorModalRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState<string>('null');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -60,15 +61,17 @@ export default function RegisterForm() {
   ];
 
   const onSubmit = async (formData: FieldValues) => {
+    setIsLoading(true);
     const registerData: User = {
       ...(formData as User),
-      role:       ADMIN_ROLE,
-      bodyWeight: 1,
+      role: ADMIN_ROLE,
     };
 
     try {
       await axios.post('/api/auth/register', registerData);
+      successModalRef.current?.click();
     } catch (err) {
+      setIsLoading(false);
       console.error(err);
       if (err instanceof AxiosError) {
         setError(`${err.response?.status} - ${err.response?.statusText}`);
@@ -76,10 +79,9 @@ export default function RegisterForm() {
         setError('Error desconocido');
       }
       errorModalRef.current?.click();
-      return;
     }
 
-    successModalRef.current?.click();
+    setIsLoading(false);
   };
 
   const handleSuccess = () => {
@@ -105,9 +107,18 @@ export default function RegisterForm() {
             containerClassName={input.halfWidth ? 'col-span-1' : 'col-span-2'}
           />
         ))}
-        <Button text='Registrar' type='submit' className='col-span-2' />
+        <Button
+          text='Registrar'
+          type='submit'
+          className='col-span-2'
+          isLoading={isLoading}
+        />
       </Form>
-      <Modal id='register-modal' innerRef={successModalRef} type='undismissable'>
+      <Modal
+        id='register-modal'
+        innerRef={successModalRef}
+        type='undismissable'
+      >
         <h1 className='text-lg font-bold mb-4'>¡Registro exitoso!</h1>
         <Button text='Aceptar' onClick={handleSuccess} />
       </Modal>
