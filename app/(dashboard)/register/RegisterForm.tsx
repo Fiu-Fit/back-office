@@ -107,7 +107,7 @@ export default function RegisterForm() {
         ))}
         <Button text='Registrar' type='submit' className='col-span-2' />
       </Form>
-      <Modal id='register-modal' innerRef={successModalRef}>
+      <Modal id='register-modal' innerRef={successModalRef} type='undismissable'>
         <h1 className='text-lg font-bold mb-4'>¡Registro exitoso!</h1>
         <Button text='Aceptar' onClick={handleSuccess} />
       </Modal>
