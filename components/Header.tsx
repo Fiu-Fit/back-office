@@ -67,6 +67,7 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
         </div>
       </div>
       <ErrorModal
+        id='header-error-modal'
         title='Oops... Ocurrio un problema'
         error={error}
         innerRef={modalRef}

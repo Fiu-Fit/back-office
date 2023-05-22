@@ -10,7 +10,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <Modal id='error-modal' alwaysShown>
+    <Modal id='error-modal' type='alwaysShown'>
       <h1 className='text-lg font-bold'>¡Algo salio mal!</h1>
       <div className='mb-4'>
         <pre>{error.message}</pre>

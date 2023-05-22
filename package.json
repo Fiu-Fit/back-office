@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "common:install": "yarn add https://github.com/Fiu-Fit/common.git && yarn"
   },
   "dependencies": {
     "@fiu-fit/common": "https://github.com/Fiu-Fit/common.git",
