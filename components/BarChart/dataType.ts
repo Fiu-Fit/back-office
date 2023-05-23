@@ -4,6 +4,5 @@ export interface BarDataType {
     label: string;
     data: number[];
     backgroundColor: string;
-    borderColor: string;
   }>;
 }

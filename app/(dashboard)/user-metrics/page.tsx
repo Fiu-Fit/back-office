@@ -1,82 +1,42 @@
-import colors from 'daisyui/src/colors/themes';
+import colors from 'tailwindcss/colors';
+import { barChartsData } from './barChartsData';
+import { BarChartData } from './interfaces';
 import api from '@/api/serverSideAxiosConfig';
 import { BarChart } from '@/components';
 
-const months = [
-  'Enero',
-  'Febrero',
-  'Marzo',
-  'Abril',
-  'Mayo',
-  'Junio ',
-  'Julio',
-  'Agosto',
-  'Septiembre',
-  'Octubre',
-  'Noviembre',
-  'Diciembre',
-];
+async function getBarData(barChartData: BarChartData[]) {
+  for (const chart of barChartData) {
+    for (const dataset of chart.datasets) {
+      const { data } = await api.get(dataset.url, {
+        params: dataset.params,
+      });
 
-interface ChartData {
-  url:    string;
-  title:  string;
-  labels: string[];
-  data:   number[];
-}
-
-const chartsData = [
-  {
-    url:      '/metrics/login',
-    title:    'Inicios de sesion',
-    labels:   months,
-    data:    [],
-  },
-  {
-    url:      '/metrics/register',
-    title:    'Registros',
-    labels:   months,
-    data:    [],
-  },
-  {
-    url:      '/metrics/password-reset',
-    title:    'Reestablecimientos de contraseña',
-    labels:   months,
-    data:    [],
-  },
-];
-
-async function getData(charts: ChartData[]) {
-  for (const chart of charts) {
-    const { data } = await api.get(chart.url);
-    chart.data = data;
+      dataset.data = data;
+    }
   }
 
-  return charts;
+  return barChartData;
 }
 
 export default async function UserMetricsPage() {
-  const data = await getData(chartsData);
+  const barData = await getBarData(barChartsData);
   return (
     <div className='m-12'>
       <h1 className='text-4xl mb-4'>Metrics</h1>
       <div className='grid grid-cols-2 gap-6'>
-        {data.map((chartData, index) => (
-            <BarChart
-              title={chartData.title}
-              key={index}
-              data={{
-                labels:   months,
-                datasets: [
-                  {
-                    label:           'Inicios de sesion',
-                    data:            chartData.data,
-                    backgroundColor: colors['[data-theme=dark]'].primary,
-                    borderColor:     'rgba(255, 99, 132, 0.2)',
-                  },
-                ],
-              }}
-            />
-          ))}
+        {barData.map((chartData, index) => (
+          <BarChart
+            key={index}
+            data={{
+              labels:   chartData.labels,
+              datasets: chartData.datasets.map(dataset => ({
+                label:           dataset.label,
+                data:            dataset.data,
+                backgroundColor: dataset.color || colors.blue[500],
+              })),
+            }}
+          />
+        ))}
       </div>
     </div>
   );
