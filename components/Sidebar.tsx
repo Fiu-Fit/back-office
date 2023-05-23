@@ -1,5 +1,5 @@
 'use client';
-import { mdiAccountGroup, mdiDumbbell } from '@mdi/js';
+import { mdiAccountGroup, mdiChartBar, mdiDumbbell } from '@mdi/js';
 import Icon from '@mdi/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,14 +12,19 @@ export const SidebarItems: Array<{
   link: string;
 }> = [
   {
-    displayName: 'Users',
+    displayName: 'Usuarios',
     iconPath:    mdiAccountGroup,
     link:        '/users',
   },
   {
-    displayName: 'Workouts',
+    displayName: 'Rutinas',
     iconPath:    mdiDumbbell,
     link:        '/workouts',
+  },
+  {
+    displayName: 'Metricas de usuarios',
+    iconPath:    mdiChartBar,
+    link:        '/user-metrics',
   },
 ];
 

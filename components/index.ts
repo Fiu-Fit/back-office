@@ -1,3 +1,4 @@
+export { default as BarChart } from './BarChart';
 export { default as ControlHeader } from './ControlHeader';
 export { default as DetailCard } from './DetailCard';
 export { default as DetailDeleteModal } from './DetailDeleteModal';
