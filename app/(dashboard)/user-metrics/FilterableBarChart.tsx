@@ -25,14 +25,14 @@ export default function FilterableBarChart({ data }: { data: BarChartData }) {
         const response = await axios.get('/api/metrics', {
           params: {
             year,
-            url: dataset.url,
+            url:    dataset.url,
+            ...dataset.params,
           },
         });
         dataset.data = response.data;
 
       }
       setIsLoading(false);
-
       setBarChartData(data);
     };
 

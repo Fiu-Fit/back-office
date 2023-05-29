@@ -6,11 +6,10 @@ export async function GET(request: NextRequest) {
   try {
     const params = request.nextUrl.searchParams;
     const url = params.get('url');
-    const year = params.get('year');
+    params.delete('url');
+    console.log(params);
     const res = await api.get(url as string, {
-      params: {
-        year,
-      },
+      params: params,
     });
     return NextResponse.json(res.data);
   } catch (err: unknown) {
