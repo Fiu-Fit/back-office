@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
     const params = request.nextUrl.searchParams;
     const url = params.get('url');
     params.delete('url');
-    console.log(params);
     const res = await api.get(url as string, {
       params: params,
     });
