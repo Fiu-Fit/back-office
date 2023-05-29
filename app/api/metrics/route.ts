@@ -10,10 +10,18 @@ export async function GET(request: NextRequest) {
     const res = await api.get(url as string, {
       params: params,
     });
-    return NextResponse.json(res.data);
-  } catch (err: unknown) {
-    const error = err as AxiosError;
 
+    return NextResponse.json(res.data, {
+      status: res.status,
+    });
+  } catch (err: unknown) {
+    if (!(err instanceof AxiosError)) {
+      return NextResponse.json(err, {
+        status: 500,
+      });
+    }
+
+    const error = err as AxiosError;
     return NextResponse.json(error.response?.data, {
       status: error.response?.status,
     });
