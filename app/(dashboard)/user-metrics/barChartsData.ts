@@ -20,7 +20,7 @@ export const barChartsData: BarChartData[] = [
   {
     datasets: [
       {
-        url:   '/metrics/login',
+        url:   'metrics/login',
         label: 'Inicios de sesion',
         color: colors.blue[500],
         data:  [],
@@ -31,7 +31,7 @@ export const barChartsData: BarChartData[] = [
   {
     datasets: [
       {
-        url:   '/metrics/register',
+        url:   'metrics/register',
         label: 'Registros',
         color: colors.blue[500],
         data:  [],
@@ -42,7 +42,7 @@ export const barChartsData: BarChartData[] = [
   {
     datasets: [
       {
-        url:    '/metrics/login',
+        url:    'metrics/login',
         label:  'Inicios de sesion sin identidad federada',
         params: {
           federatedIdentity: false,
@@ -51,7 +51,7 @@ export const barChartsData: BarChartData[] = [
         data:  [],
       },
       {
-        url:    '/metrics/login',
+        url:    'metrics/login',
         label:  'Inicios de sesion con identidad federada',
         params: {
           federatedIdentity: true,
@@ -65,7 +65,7 @@ export const barChartsData: BarChartData[] = [
   {
     datasets: [
       {
-        url:    '/metrics/register',
+        url:    'metrics/register',
         label:  'Registros sin identidad federada',
         params: {
           federatedIdentity: false,
@@ -74,7 +74,7 @@ export const barChartsData: BarChartData[] = [
         data:  [],
       },
       {
-        url:    '/metrics/register',
+        url:    'metrics/register',
         label:  'Registros con identidad federada',
         params: {
           federatedIdentity: true,
@@ -88,7 +88,7 @@ export const barChartsData: BarChartData[] = [
   {
     datasets: [
       {
-        url:   '/metrics/password-reset',
+        url:   'metrics/password-reset',
         label: 'Reestablecimientos de contraseña',
         color: colors.yellow[500],
         data:  [],
@@ -99,7 +99,7 @@ export const barChartsData: BarChartData[] = [
   {
     datasets: [
       {
-        url:    '/metrics/register',
+        url:    'metrics/register',
         label:  'Usuarios bloqueados',
         params: {
           blocked: true,

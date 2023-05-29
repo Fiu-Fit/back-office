@@ -24,10 +24,12 @@ export default function BarChart({
   data,
   className,
   title,
+  redraw,
 }: {
   data: BarDataType;
   className?: string;
-  title?: string
+  title?: string;
+  redraw?: boolean;
 }) {
   const options = {
     color:      'white',
@@ -62,7 +64,7 @@ export default function BarChart({
 
   return (
     <div className={`rounded-box bg-neutral p-5 ${className}`}>
-      <Bar options={options} data={data} />
+      <Bar options={options} data={data} redraw={redraw}/>
     </div>
   );
 }

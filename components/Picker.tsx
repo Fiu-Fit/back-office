@@ -6,12 +6,16 @@ export default function Picker({
 }: {
   options: string[];
   placeholder?: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (value: string) => void;
 }) {
+  const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onChange(event.target.value);
+  };
+
   return (
-    <select className='select w-full max-w-xs' onChange={onChange}>
+    <select className='select w-full max-w-xs' onChange={onChangeHandler} defaultValue={placeholder} >
       {placeholder && (
-        <option disabled selected>
+        <option disabled>
           {placeholder}
         </option>
       )}

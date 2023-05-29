@@ -6,9 +6,13 @@ export async function GET(request: NextRequest) {
   try {
     const params = request.nextUrl.searchParams;
     const url = params.get('url');
-    console.log(url);
-    const res = await api.get(url as string);
-    return res;
+    const year = params.get('year');
+    const res = await api.get(url as string, {
+      params: {
+        year,
+      },
+    });
+    return NextResponse.json(res.data);
   } catch (err: unknown) {
     const error = err as AxiosError;
 
