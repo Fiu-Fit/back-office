@@ -1,8 +1,10 @@
-export interface BarDataType {
+export interface BarData {
   labels: string[];
-  datasets: Array<{
-    label: string;
-    data: number[];
-    backgroundColor: string;
-  }>;
+  datasets: BarDataset[];
+}
+
+export interface BarDataset {
+  label: string;
+  data: number[];
+  backgroundColor: string;
 }

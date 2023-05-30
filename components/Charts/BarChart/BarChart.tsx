@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { BarDataType } from './dataType';
+import { BarData } from './dataType';
 
 ChartJS.register(
   CategoryScale,
@@ -26,7 +26,7 @@ export default function BarChart({
   title,
   redraw,
 }: {
-  data: BarDataType;
+  data: BarData;
   className?: string;
   title?: string;
   redraw?: boolean;

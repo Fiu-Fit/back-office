@@ -1,5 +1,5 @@
-import FilterableBarChart from './FilterableBarChart';
-import { barChartsData } from './barChartsData';
+import { FilterableBarChart, FilterableDoughnutChart } from './FilterableCharts';
+import { barChartsData, doughnutChartsData } from './chartData';
 
 export default function UserMetricsPage() {
   return (
@@ -8,6 +8,9 @@ export default function UserMetricsPage() {
       <div className='grid grid-cols-2 gap-6'>
         {barChartsData.map((barChartData, index) => (
           <FilterableBarChart key={index} data={barChartData} />
+        ))}
+        {doughnutChartsData.map((doughnutChartData, index) => (
+          <FilterableDoughnutChart key={index} data={doughnutChartData} />
         ))}
       </div>
     </div>

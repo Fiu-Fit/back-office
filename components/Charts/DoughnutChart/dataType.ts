@@ -1,9 +1,11 @@
-export interface DoughnutDataType {
+export interface DoughnutData {
   labels: string[];
-  datasets: Array<{
-    label: string;
-    data: number[];
-    backgroundColor: string[];
-    borderColor?: string[];
-  }>;
+  datasets: DoughnutDataset[];
+}
+
+export interface DoughnutDataset {
+  label: string;
+  data: number[];
+  backgroundColor: string[];
+  borderColor?: string[];
 }
