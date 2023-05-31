@@ -25,12 +25,12 @@ export default function FilterableDoughnutChart({
     <div className='rounded-box bg-neutral p-5 flex flex-col gap-4'>
       <div className='flex justify-between'>
         {chartData?.filters &&
-          chartData.filters.map(filter => (
+          chartData.filters.map(({ name, label, options }) => (
             <Picker
-              key={filter.name}
-              label={filter.label}
-              options={Object.keys(filter.options)}
-              onChange={value => setFilter(filter.name, filter.options[value])}
+              key={name}
+              label={label}
+              options={Object.keys(options)}
+              onChange={value => setFilter(name, options[value])}
             />
           ))}
       </div>
@@ -39,11 +39,11 @@ export default function FilterableDoughnutChart({
           <DoughnutChart
             data={{
               labels:   chartData.labels,
-              datasets: chartData.datasetInfo.map(dataset => ({
-                label: dataset.chartDataset.label,
-                data:  Object.values(dataset.chartDataset.data),
+              datasets: chartData.datasetInfo.map(({ chartDataset }) => ({
+                label: chartDataset.label,
+                data:  Object.values(chartDataset.data),
                 backgroundColor:
-                  dataset.chartDataset.backgroundColor || colors.blue[500],
+                  chartDataset.backgroundColor || colors.blue[500],
               })),
             }}
             className='h-96 flex justify-center bg-transparent p-0'

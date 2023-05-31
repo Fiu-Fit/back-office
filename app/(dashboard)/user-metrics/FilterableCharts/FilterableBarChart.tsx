@@ -1,4 +1,5 @@
 'use client';
+import rangeRight from 'lodash/rangeRight';
 import colors from 'tailwindcss/colors';
 import { FilterableChartData } from '../interfaces';
 import LoadingWrapper from './LoadingWrapper';
@@ -6,12 +7,10 @@ import { BarChart, BarDataset, Picker } from '@/components';
 import { useFilteredData } from '@/hooks';
 
 const FLOOR_YEAR = 2000;
-
 const currentYear = new Date().getFullYear();
-const options: string[] = [];
-for (let year = currentYear; year >= FLOOR_YEAR; year--) {
-  options.push(year as unknown as string);
-}
+const options: string[] = rangeRight(FLOOR_YEAR, currentYear + 1).map(
+  (year: number) => year.toString()
+);
 
 export default function FilterableBarChart({
   data,
@@ -19,7 +18,6 @@ export default function FilterableBarChart({
   data: FilterableChartData<BarDataset>;
 }) {
   const { chartData, isLoading, setFilter } = useFilteredData<BarDataset>(data);
-
   return (
     <div className='rounded-box bg-neutral p-5 flex flex-col gap-4'>
       <Picker
@@ -35,11 +33,11 @@ export default function FilterableBarChart({
             className='bg-transparent p-0'
             data={{
               labels:   chartData.labels,
-              datasets: chartData.datasetInfo.map(dataset => ({
-                label: dataset.chartDataset.label,
-                data:  dataset.chartDataset.data,
+              datasets: chartData.datasetInfo.map(({ chartDataset }) => ({
+                label: chartDataset.label,
+                data:  chartDataset.data,
                 backgroundColor:
-                  dataset.chartDataset.backgroundColor || colors.blue[500],
+                  chartDataset.backgroundColor || colors.blue[500],
               })),
             }}
             redraw
