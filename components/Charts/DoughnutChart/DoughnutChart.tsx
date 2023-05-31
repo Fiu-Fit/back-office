@@ -16,9 +16,10 @@ export default function DoughnutChart({
   title?: string;
   redraw?: boolean;
 }) {
-  for (const dataset of data.datasets) {
-    dataset.borderColor = dataset.borderColor || dataset.backgroundColor;
-  }
+  data.datasets.map(
+    dataset =>
+      (dataset.borderColor = dataset.borderColor || dataset.backgroundColor)
+  );
 
   return (
     <div className={`rounded-box bg-neutral p-5 ${className}`}>
