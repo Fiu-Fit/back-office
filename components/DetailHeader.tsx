@@ -30,7 +30,6 @@ export default function DetailHeader({
           <h1 className='text-2xl font-medium'>{title}</h1>
         </div>
         <div className='flex-none gap-2'>
-          <Button text='Editar' />
           <Button text='Eliminar' color='error' onClick={openModal} />
         </div>
       </div>

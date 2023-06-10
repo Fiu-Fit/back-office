@@ -1,8 +1,6 @@
 import { Workout, categoryToString } from '@fiu-fit/common';
-import { mdiDumbbell } from '@mdi/js';
 import { workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { ControlHeader } from '@/components';
 import List from '@/components/List';
 
 async function getWorkouts(): Promise<Workout[]> {
@@ -21,12 +19,7 @@ export default async function WorkoutsPage() {
 
   return (
     <div className='m-12'>
-      <ControlHeader
-        title='Rutinas'
-        buttonText='Crear rutina'
-        icon={mdiDumbbell}
-        createHref='./workouts'
-      />
+      <h1 className='text-4xl mb-4'>Rutinas</h1>
       <List
         headers={workoutListHeaders}
         values={workoutList}
