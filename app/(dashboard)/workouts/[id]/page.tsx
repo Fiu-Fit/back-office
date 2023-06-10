@@ -41,7 +41,7 @@ export default async function WorkoutDetail({
   async function deleteWorkout(): Promise<Workout> {
     'use server';
     const { data: deletedWorkout } = await api.delete<Workout>(
-      `/workouts/${workout._id}`
+      `/workouts/${id}`
     );
 
     return deletedWorkout;
