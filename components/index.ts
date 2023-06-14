@@ -12,3 +12,5 @@ export { default as Modal } from './Modal';
 export { default as Picker } from './Picker';
 export { default as Sidebar } from './Sidebar';
 export { default as TextInput } from './TextInput';
+export { default as ConfirmationModal } from './ConfirmationModal';
+export * from './Table';

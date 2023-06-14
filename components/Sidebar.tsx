@@ -1,5 +1,5 @@
 'use client';
-import { mdiAccountGroup, mdiChartBar, mdiDumbbell } from '@mdi/js';
+import { mdiAccountGroup, mdiChartBar, mdiDumbbell, mdiProgressWrench } from '@mdi/js';
 import Icon from '@mdi/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,6 +26,11 @@ export const SidebarItems: Array<{
     iconPath:    mdiChartBar,
     link:        '/user-metrics',
   },
+  {
+    displayName: 'Servicios',
+    iconPath:    mdiProgressWrench,
+    link:        '/services',
+  }
 ];
 
 export default function Sidebar({
