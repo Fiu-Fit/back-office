@@ -4,3 +4,4 @@ export { default as TableItem } from './TableItem';
 export { default as TableBadgeItem } from './TableBadgeItem';
 export { default as TableDetailButton } from './TableDetailButton';
 export type { BadgeVariant } from './BadgeVariant';
+export { BadgeVariantToClass } from './BadgeVariant';

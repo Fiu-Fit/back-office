@@ -25,7 +25,7 @@ export default function ServiceTable({ data }: { data: Service[] }) {
                 />
               ) : (
                 <TableItem
-                  value={service[attribute as keyof Service] as string}
+                  value={service[attribute] as string}
                   key={`${service.id}-${attribute}`}
                 />
               )

@@ -8,19 +8,26 @@ export default function DetailHeader({
   title,
   onDelete,
   afterDeleteRoute,
+  returnOnDelete,
 }: {
   title: string;
   onDelete: () => Promise<any>;
-  afterDeleteRoute: string;
+  afterDeleteRoute?: string;
+  returnOnDelete?: boolean;
 }) {
   const router = useRouter();
   const modalRef = useRef<HTMLInputElement | null>(null);
   const openModal = () => {
     if (!modalRef.current?.checked) modalRef.current?.click();
   };
-  const handleDelete = () => {
-    onDelete();
-    router.push(afterDeleteRoute);
+  const handleDelete = async () => {
+    await onDelete();
+    if (returnOnDelete) {
+      router.back();
+      router.refresh();
+    } else if (afterDeleteRoute) {
+      router.push(afterDeleteRoute);
+    }
   };
 
   return (
