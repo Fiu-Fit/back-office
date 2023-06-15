@@ -16,7 +16,7 @@ export default function ServiceTable({ data }: { data: Service[] }) {
       <tbody className='divide-y'>
         {data.map((service: Service) => (
           <tr key={service.id}>
-            {Object.values(serviceListHeaders).map((attribute: string) =>
+            {Object.values(serviceListHeaders).map((attribute: keyof Service) =>
               attribute === 'status' ? (
                 <TableBadgeItem
                   value={statusTranslation[service.status] || 'Desconocido'}

@@ -5,9 +5,7 @@ import api from '@/api/serverSideAxiosConfig';
 export default function CreateServicePage() {
   const createService = async (serviceData: NewServiceDTO) => {
     'use server';
-    const { data: newService } = await api.post('/service-registry', {
-      ...serviceData,
-    });
+    const { data: newService } = await api.post('/service-registry', serviceData);
 
     return newService;
   };

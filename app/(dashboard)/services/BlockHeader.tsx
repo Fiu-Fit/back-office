@@ -38,8 +38,6 @@ export default function BlockHeader({
     router.refresh();
   };
 
-  console.log('BlockHeader.tsx: title', title);
-
   return (
     <>
       <div className='navbar bg-base-100 w-full'>
