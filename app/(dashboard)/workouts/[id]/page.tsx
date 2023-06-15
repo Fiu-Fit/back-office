@@ -1,6 +1,7 @@
-import { Page, User, Workout, unitToString } from '@fiu-fit/common';
+import { Page, Rating, User, Workout, unitToString } from '@fiu-fit/common';
 import {
   exerciseListHeaders,
+  ratingListHeaders,
   userListHeaders,
   workoutCardFields,
 } from './displayedFields';
@@ -14,6 +15,7 @@ async function getWorkout(id: string): Promise<Workout> {
 
   workout.exercises.forEach((exercise: any) => {
     exercise.unitString = unitToString(exercise.unit);
+    exercise.name = exercise.exercise?.name || 'Desconocido';
   });
 
   return workout;
@@ -31,6 +33,18 @@ async function getUsers(ids: number[]): Promise<Page<User>> {
   }
 }
 
+async function getRatings(workoutId: string): Promise<Rating[]> {
+  try {
+    const { data: comments } = await api.get<Rating[]>(
+      `/ratings?filters={"workoutId": "${workoutId}"}`
+    );
+    return comments;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
 export default async function WorkoutDetail({
   params: { id },
 }: {
@@ -38,6 +52,7 @@ export default async function WorkoutDetail({
 }) {
   const workout = await getWorkout(id);
   const users = await getUsers(workout.athleteIds);
+  const ratings = await getRatings(workout._id);
 
   async function deleteWorkout(): Promise<Workout> {
     'use server';
@@ -76,6 +91,12 @@ export default async function WorkoutDetail({
           headers={userListHeaders}
           values={users.rows}
           detailButtonHref='/users'
+        />
+        <List
+          className='mt-8 max-h-[600px]'
+          headers={ratingListHeaders}
+          values={ratings}
+          detailButtonHref='/ratings'
         />
       </div>
     </div>

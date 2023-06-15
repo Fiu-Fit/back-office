@@ -1,5 +1,6 @@
 export const exerciseListHeaders = {
   ID:           'exerciseId',
+  Nombre:       'name',
   Sets:         'sets',
   Repeticiones: 'reps',
   Peso:         'weight',
@@ -13,4 +14,12 @@ export const userListHeaders = {
   Nombre:   'firstName',
   Apellido: 'lastName',
   Rol:      'role',
+};
+
+export const ratingListHeaders = {
+  ID:          '_id',
+  'ID Atleta': 'athleteId',
+  Rating:      'rating',
+  Comentario:  'comment',
+  Timestamp:   'ratedAt',
 };
