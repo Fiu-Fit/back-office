@@ -1,15 +1,18 @@
 'use client';
-import { User } from '@fiu-fit/common';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { inputs } from './formInputs';
+import { NewServiceDTO } from './interfaces';
 import { Button, ErrorModal, Form, Modal, TextInput } from '@/components';
-import { validateEmail, validateName, validatePassword } from '@/utils';
+import { Service } from '@/interfaces/service';
 
-const ADMIN_ROLE = 'Admin';
-
-export default function RegisterForm() {
+export default function NewServiceForm({
+  createService,
+}: {
+  createService: (service: NewServiceDTO) => Promise<Service>;
+}) {
   const successModalRef = useRef<HTMLInputElement | null>(null);
   const errorModalRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState<string>('null');
@@ -18,57 +21,14 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({ mode: 'onTouched' });
 
-  const inputs = [
-    {
-      name:       'firstName',
-      label:      'Nombre',
-      type:       'text',
-      halfWidth:  true,
-      validation: validateName(true),
-    },
-    {
-      name:       'lastName',
-      label:      'Apellido',
-      type:       'text',
-      halfWidth:  true,
-      validation: validateName(true),
-    },
-    {
-      name:       'email',
-      label:      'Email',
-      type:       'email',
-      halfWidth:  false,
-      validation: validateEmail(true),
-    },
-    {
-      name:       'password',
-      label:      'Contraseña',
-      type:       'password',
-      halfWidth:  false,
-      validation: validatePassword(true),
-    },
-    {
-      name:       'passwordConfirmation',
-      label:      'Confirmar contraseña',
-      type:       'password',
-      halfWidth:  false,
-      validation: validatePassword(true, watch('password')),
-    },
-  ];
-
   const onSubmit = async (formData: FieldValues) => {
     setIsLoading(true);
-    const registerData: User = {
-      ...(formData as User),
-      role: ADMIN_ROLE,
-    };
 
     try {
-      await axios.post('/api/auth/register', registerData);
+      await createService(formData as NewServiceDTO);
       successModalRef.current?.click();
     } catch (err) {
       setIsLoading(false);
@@ -86,8 +46,8 @@ export default function RegisterForm() {
 
   const handleSuccess = () => {
     successModalRef.current?.click();
-    router.replace('/users');
     router.refresh();
+    router.replace('/services');
   };
 
   return (

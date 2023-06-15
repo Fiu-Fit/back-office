@@ -6,6 +6,7 @@ export const colors = {
   success:   'btn-success',
   warning:   'btn-warning',
   error:     'btn-error',
+  neutral:   'btn-neutral',
 };
 
 export const variants = {

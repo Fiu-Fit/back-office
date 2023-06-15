@@ -1,73 +1,43 @@
-import Link from 'next/link';
-import { Button } from '.';
+import { Table, TableDetailButton, TableHead, TableItem } from './Table';
 
 export default function List({
   headers,
   className,
   values,
   detailButtonHref,
+  pagination = false
 }: {
   headers: { [key: string]: string };
   className?: string;
   values: any[];
   detailButtonHref?: string;
+  pagination?: boolean
 }) {
   return (
-    <div
-      className={`rounded-box overflow-hidden flex flex-col border-base-content/5 border ${className}`}
-    >
-      <div className='h-full flex-shrink overflow-y-scroll'>
-        <table className='w-full table table-zebra'>
-          <thead>
-            <tr className='sticky top-0 z-40'>
-              {Object.keys(headers).map(header => (
-                <th
-                  key={header}
-                  className='px-6 py-3 text-left text-xs uppercase tracking-wider'
-                >
-                  {header}
-                </th>
-              ))}
-              {detailButtonHref && (
-                <th className='px-10 py-3 text-right text-xs uppercase tracking-wider'>
-                  Acciones
-                </th>
-              )}
-            </tr>
-          </thead>
-          <tbody className='divide-y'>
-            {values.map(value => (
-              <tr key={value[headers['ID']]}>
-                {Object.values(headers).map(attribute => (
-                  <td
-                    key={`${headers['ID']}-${attribute}`}
-                    className='px-6 py-4'
-                  >
-                    {value[attribute]}
-                  </td>
-                ))}
-
-                {detailButtonHref && (
-                  <td className='px-6 py-4 flex justify-end'>
-                    <Link
-                      href={`${detailButtonHref}/${value[headers['ID']]}`}
-                      className='btn'
-                    >
-                      Detalles
-                    </Link>
-                  </td>
-                )}
-              </tr>
+    <Table className={className} pagination={pagination}>
+      <TableHead
+        detailButtonHref={!!detailButtonHref}
+        headers={Object.keys(headers)}
+      />
+      <tbody className='divide-y'>
+        {values.map(value => (
+          <tr key={value[headers['ID']]}>
+            {Object.values(headers).map(attribute => (
+              <TableItem
+                value={value[attribute]}
+                key={`${headers['ID']}-${attribute}`}
+              />
             ))}
-          </tbody>
-        </table>
-      </div>
-      <div className='block px-4 py-3 border-base-content/5 border-t bg-neutral'>
-        <div className='flex justify-between'>
-          <Button text='Anterior' />
-          <Button text='Siguiente' />
-        </div>
-      </div>
-    </div>
+
+            {detailButtonHref && (
+              <TableDetailButton
+                href={detailButtonHref}
+                id={value[headers['ID']]}
+              />
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 }
