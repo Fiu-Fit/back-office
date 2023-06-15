@@ -1,9 +1,8 @@
 import { Page, User } from '@fiu-fit/common';
 import { mdiAccountSupervisor } from '@mdi/js';
-import { userListHeaders } from './displayedFields';
+import UserTable from './UserTable';
 import api from '@/api/serverSideAxiosConfig';
 import ControlHeader from '@/components/ControlHeader';
-import List from '@/components/List';
 
 async function getUsers(): Promise<Page<User>> {
   const { data: page } = await api.get<Page<User>>('/users');
@@ -21,11 +20,7 @@ export default async function UsersPage() {
         icon={mdiAccountSupervisor}
         createHref='./register'
       />
-      <List
-        headers={userListHeaders}
-        values={page.rows}
-        detailButtonHref='/users'
-      />
+      <UserTable data={page.rows} />
     </div>
   );
 }

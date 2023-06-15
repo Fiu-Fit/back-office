@@ -7,5 +7,4 @@ export const workoutListHeaders = {
   Ejercicios:    'exerciseNumber',
   Atletas:       'athleteNumber',
   'ID Autor':    'authorId',
-  'Última act.': 'updatedAt',
 };

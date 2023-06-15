@@ -6,16 +6,17 @@ import List from '@/components/List';
 async function getWorkouts(): Promise<Workout[]> {
   const { data: workoutList } = await api.get<Workout[]>('/workouts');
 
-  return workoutList;
-}
-
-export default async function WorkoutsPage() {
-  const workoutList = await getWorkouts();
   workoutList.forEach((workout: any) => {
     workout.categoryString = categoryToString(workout.category);
     workout.exerciseNumber = workout.exercises.length;
     workout.athleteNumber = workout.athleteIds.length;
   });
+
+  return workoutList;
+}
+
+export default async function WorkoutsPage() {
+  const workoutList = await getWorkouts();
 
   return (
     <div className='m-12'>

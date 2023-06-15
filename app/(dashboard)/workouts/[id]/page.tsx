@@ -11,6 +11,11 @@ import List from '@/components/List';
 
 async function getWorkout(id: string): Promise<Workout> {
   const { data: workout } = await api.get<Workout>(`/workouts/${id}`);
+
+  workout.exercises.forEach((exercise: any) => {
+    exercise.unitString = unitToString(exercise.unit);
+  });
+
   return workout;
 }
 
@@ -32,10 +37,6 @@ export default async function WorkoutDetail({
   params: { id: string };
 }) {
   const workout = await getWorkout(id);
-  workout.exercises.forEach((exercise: any) => {
-    exercise.unitString = unitToString(exercise.unit);
-  });
-
   const users = await getUsers(workout.athleteIds);
 
   async function deleteWorkout(): Promise<Workout> {
