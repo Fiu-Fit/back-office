@@ -46,7 +46,8 @@ export default function NewServiceForm({
 
   const handleSuccess = () => {
     successModalRef.current?.click();
-    router.push('/services');
+    router.refresh();
+    router.replace('/services');
   };
 
   return (

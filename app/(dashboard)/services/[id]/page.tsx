@@ -41,9 +41,9 @@ export default async function ServiceDetail({
       <div className='p-12 w-full'>
         <BlockHeader
           title={service.name}
+          blocked={service.status === 'Blocked'}
           onBlock={blockService}
           onUnblock={unblockService}
-          afterDeleteRoute='/services'
           blockStatus={statusTranslation[service.status] || 'Desconocido'}
           blockVariant={variant[service.status] || 'warning'}
         />

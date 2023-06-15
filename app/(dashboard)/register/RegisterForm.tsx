@@ -86,7 +86,8 @@ export default function RegisterForm() {
 
   const handleSuccess = () => {
     successModalRef.current?.click();
-    router.push('/users');
+    router.replace('/users');
+    router.refresh();
   };
 
   return (
