@@ -13,4 +13,6 @@ export { default as Picker } from './Picker';
 export { default as Sidebar } from './Sidebar';
 export { default as TextInput } from './TextInput';
 export { default as ConfirmationModal } from './ConfirmationModal';
+export { default as BlockHeader } from './BlockHeader';
+export * from './Badge';
 export * from './Table';

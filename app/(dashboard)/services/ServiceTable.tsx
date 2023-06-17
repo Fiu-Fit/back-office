@@ -1,5 +1,5 @@
-import { statusTranslation, variant } from './blockStatus';
 import { serviceListHeaders } from './displayedFields';
+import { statusColor, statusTranslation } from './statusUtils';
 import {
   Table,
   TableBadgeItem,
@@ -19,8 +19,8 @@ export default function ServiceTable({ data }: { data: Service[] }) {
             {Object.values(serviceListHeaders).map((attribute: keyof Service) =>
               attribute === 'status' ? (
                 <TableBadgeItem
-                  value={statusTranslation[service.status] || 'Desconocido'}
-                  variant={variant[service.status] || 'warning'}
+                  value={statusTranslation(service.status)}
+                  color={statusColor(service.status)}
                   key={`${service.id}-${attribute}`}
                 />
               ) : (

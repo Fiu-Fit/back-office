@@ -1,4 +1,4 @@
-export const BadgeVariantToClass = {
+export const BadgeColorToClass = {
     primary:   'badge-primary',
     secondary: 'badge-secondary',
     accent:    'badge-accent',
@@ -8,4 +8,4 @@ export const BadgeVariantToClass = {
     info:      'badge-info',
 };
 
-export type BadgeVariant = keyof typeof BadgeVariantToClass;
+export type BadgeColor = keyof typeof BadgeColorToClass;
