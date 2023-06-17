@@ -9,7 +9,7 @@ export const blockTranslation = (blocked: boolean): string => {
 };
 
 export const federatedIdentityColor = (federatedIdentity: boolean): BadgeColor => {
-  return federatedIdentity ? 'secondary' : 'primary';
+  return federatedIdentity ? 'secondary' : 'info';
 };
 
 export const federatedIdentityTranslation = (federatedIdentity: boolean): string => {
