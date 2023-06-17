@@ -45,7 +45,7 @@ export default function BlockHeader({
           {blocked ? (
             <Button
               text='Desbloquear'
-              color='primary'
+              color='success'
               onClick={openUnblockModal}
             />
           ) : (
