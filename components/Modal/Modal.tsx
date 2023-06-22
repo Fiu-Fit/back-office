@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, RefObject } from 'react';
 import ModalContentWrapper from './ModalContentWrapper';
 import { ModalType } from './modalType';
 
@@ -10,7 +10,7 @@ export default function Modal({
 }: {
   children: ReactNode;
   id: string;
-  innerRef?: React.RefObject<HTMLInputElement>;
+  innerRef?: RefObject<HTMLInputElement>;
   alwaysShown?: boolean;
   type?: ModalType;
 }) {
