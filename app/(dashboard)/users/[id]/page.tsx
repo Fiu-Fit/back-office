@@ -1,9 +1,8 @@
 import { User, Workout, categoryToString } from '@fiu-fit/common';
+import { blockColor, blockTranslation } from '../statusUtils';
 import { userCardFields, workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { List } from '@/components';
-import DetailCard from '@/components/DetailCard';
-import DetailHeader from '@/components/DetailHeader';
+import { BlockHeader, DetailCard, List } from '@/components';
 
 async function getUser(id: number): Promise<User> {
   const { data: user } = await api.get<User>(`/users/${id}`);
@@ -33,21 +32,26 @@ export default async function UserDetail({
 }) {
   const user = await getUser(id);
   const favoriteWorkouts = await getWorkouts(user.favoriteWorkouts);
+  const blocked = user.blocked;
 
-  const deleteUser = async (): Promise<User> => {
+  const toggleBlockUser = async (): Promise<User> => {
     'use server';
-    const { data: deletedUser } = await api.delete<User>(`/users/${id}`);
+    const { data: blockedUser } = await api.put<User>(`/users/${id}`, {
+      blocked: !blocked,
+    });
 
-    return deletedUser;
+    return blockedUser;
   };
 
   return (
     <div className='w-full h-full'>
       <div className='p-12 w-full'>
-        <DetailHeader
+      <BlockHeader
           title={`${user.firstName} ${user.lastName}`}
-          onDelete={deleteUser}
-          afterDeleteRoute='/users'
+          blocked={user.blocked}
+          toggleBlock={toggleBlockUser}
+          blockStatus={blockTranslation(blocked)}
+          blockColor={blockColor(blocked)}
         />
         <div className='grid grid-cols-3 gap-4'>
           <List

@@ -1,9 +1,9 @@
-import BlockHeader from '../BlockHeader';
-import { statusTranslation, variant } from '../blockStatus';
+import { statusColor, statusTranslation } from '../statusUtils';
 import { serviceCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
+import { BlockHeader } from '@/components';
 import DetailCard from '@/components/DetailCard';
-import { Service } from '@/interfaces/service';
+import { Service, ServiceStatus } from '@/interfaces/service';
 
 async function getService(id: number): Promise<Service> {
   const { data: service } = await api.get<Service>(`/service-registry/${id}`);
@@ -17,20 +17,13 @@ export default async function ServiceDetail({
   params: { id: number };
 }) {
   const service = await getService(id);
+  const blocked = service.status === ServiceStatus.Blocked;
 
-  const blockService = async (): Promise<Service> => {
+  const toggleBlockService = async (): Promise<Service> => {
     'use server';
+    const status = blocked ? 'Available' : 'Blocked';
     const { data: blockedService } = await api.put<Service>(`/service-registry/${id}`, {
-      status: 'Blocked',
-    });
-
-    return blockedService;
-  };
-
-  const unblockService = async (): Promise<Service> => {
-    'use server';
-    const { data: blockedService } = await api.put<Service>(`/service-registry/${id}`, {
-      status: 'Available',
+      status
     });
 
     return blockedService;
@@ -41,11 +34,10 @@ export default async function ServiceDetail({
       <div className='p-12 w-full'>
         <BlockHeader
           title={service.name}
-          blocked={service.status === 'Blocked'}
-          onBlock={blockService}
-          onUnblock={unblockService}
-          blockStatus={statusTranslation[service.status] || 'Desconocido'}
-          blockVariant={variant[service.status] || 'warning'}
+          blocked={blocked}
+          toggleBlock={toggleBlockService}
+          blockStatus={statusTranslation(service.status)}
+          blockColor={statusColor(service.status)}
         />
         <DetailCard
           title='Detalle de usuario'

@@ -1,22 +1,20 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
-import { Button, ConfirmationModal } from '@/components';
+import { Badge, BadgeColor, Button, ConfirmationModal } from '@/components';
 
 export default function BlockHeader({
   title,
   blockStatus,
-  blockVariant,
+  blockColor,
   blocked,
-  onBlock,
-  onUnblock,
+  toggleBlock,
 }: {
   title: string;
   blockStatus: string;
-  blockVariant: string;
+  blockColor: BadgeColor;
   blocked: boolean;
-  onBlock: () => Promise<any>;
-  onUnblock: () => Promise<any>;
+  toggleBlock: () => Promise<any>;
 }) {
   const router = useRouter();
   const blockModalRef = useRef<HTMLInputElement | null>(null);
@@ -28,13 +26,8 @@ export default function BlockHeader({
     if (!unblockModalRef.current?.checked) unblockModalRef.current?.click();
   };
 
-  const handleBlock = async () => {
-    await onBlock();
-    router.refresh();
-  };
-
-  const handleUnblock = async () => {
-    await onUnblock();
+  const handleToggleBlock = async () => {
+    await toggleBlock();
     router.refresh();
   };
 
@@ -45,16 +38,14 @@ export default function BlockHeader({
           <h1 className='text-2xl font-medium'>
             <span>{title}</span>
             <span> - </span>
-            <span className={`badge badge-${blockVariant} align-middle`}>
-              {blockStatus}
-            </span>
+            <Badge text={blockStatus} color={blockColor} />
           </h1>
         </div>
         <div className='flex-none gap-2'>
           {blocked ? (
             <Button
               text='Desbloquear'
-              color='primary'
+              color='success'
               onClick={openUnblockModal}
             />
           ) : (
@@ -65,12 +56,12 @@ export default function BlockHeader({
       <ConfirmationModal
         text='¿Estas seguro que quieres desbloquear este servicio?'
         innerRef={unblockModalRef}
-        handleConfirm={handleUnblock}
+        handleConfirm={handleToggleBlock}
       />
       <ConfirmationModal
         text='¿Estas seguro que quieres bloquear este servicio?'
         innerRef={blockModalRef}
-        handleConfirm={handleBlock}
+        handleConfirm={handleToggleBlock}
       />
     </>
   );

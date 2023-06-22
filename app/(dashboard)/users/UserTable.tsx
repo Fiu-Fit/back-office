@@ -1,5 +1,6 @@
 import { User } from '@fiu-fit/common';
-import { userListHeaders } from './displayedFields';
+import * as displayedFields from './displayedFields';
+import { blockColor, blockTranslation, federatedIdentityColor, federatedIdentityTranslation } from './statusUtils';
 import {
   Table,
   TableBadgeItem,
@@ -11,11 +12,11 @@ import {
 export default function UserTable({ data }: { data: User[] }) {
   return (
     <Table>
-      <TableHead headers={Object.keys(userListHeaders)} detailButtonHref />
+      <TableHead headers={Object.keys(displayedFields.userListHeaders)} detailButtonHref />
       <tbody className='divide-y'>
         {data.map((user: User) => (
           <tr key={user.id}>
-            {Object.values(userListHeaders).map((attribute: keyof User) =>
+            {Object.values(displayedFields.userListHeaders).map((attribute: keyof User) =>
               attribute !== 'blocked' && attribute !== 'federatedIdentity' ? (
                 <TableItem
                   value={user[attribute] as string}
@@ -24,13 +25,13 @@ export default function UserTable({ data }: { data: User[] }) {
               ) : undefined
             )}
             <TableBadgeItem
-              value={user.blocked ? 'Bloqueado' : 'Desbloqueado'}
-              variant={user.blocked ? 'error' : 'success'}
+              value={blockTranslation(user.blocked)}
+              color={blockColor(user.blocked)}
               key={`${user.id}-blocked`}
             />
             <TableBadgeItem
-              value={user.federatedIdentity ? 'Federado' : 'No federado'}
-              variant={user.federatedIdentity ? 'secondary' : 'primary'}
+              value={federatedIdentityTranslation(user.federatedIdentity)}
+              color={federatedIdentityColor(user.federatedIdentity)}
               key={`${user.id}-federatedIdentity`}
             />
             <TableDetailButton
