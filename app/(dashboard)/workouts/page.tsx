@@ -1,10 +1,10 @@
-import { Workout, categoryToString } from '@fiu-fit/common';
-import { workoutListHeaders } from './displayedFields';
+import { categoryToString } from '@fiu-fit/common';
+import WorkoutTable from './WorkoutTable';
+import { WorkoutDisplay } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import List from '@/components/List';
 
-async function getWorkouts(): Promise<Workout[]> {
-  const { data: workoutList } = await api.get<Workout[]>('/workouts');
+async function getWorkouts(): Promise<WorkoutDisplay[]> {
+  const { data: workoutList } = await api.get<WorkoutDisplay[]>('/workouts');
 
   workoutList.forEach((workout: any) => {
     workout.categoryString = categoryToString(workout.category);
@@ -21,11 +21,7 @@ export default async function WorkoutsPage() {
   return (
     <div className='m-12'>
       <h1 className='text-4xl mb-4'>Rutinas</h1>
-      <List
-        headers={workoutListHeaders}
-        values={workoutList}
-        detailButtonHref='./workouts'
-      />
+      <WorkoutTable data={workoutList} />
     </div>
   );
 }

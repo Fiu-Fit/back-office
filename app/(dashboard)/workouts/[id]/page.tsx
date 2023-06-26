@@ -1,4 +1,5 @@
 import { Page, Rating, User, Workout, unitToString } from '@fiu-fit/common';
+import { blockColor, blockTranslation } from '../statusUtils';
 import {
   exerciseListHeaders,
   ratingListHeaders,
@@ -6,8 +7,8 @@ import {
   workoutCardFields,
 } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
+import { BlockHeader } from '@/components';
 import DetailCard from '@/components/DetailCard';
-import DetailHeader from '@/components/DetailHeader';
 import List from '@/components/List';
 
 async function getWorkout(id: string): Promise<Workout> {
@@ -53,23 +54,26 @@ export default async function WorkoutDetail({
   const workout = await getWorkout(id);
   const users = await getUsers(workout.athleteIds);
   const ratings = await getRatings(workout._id);
+  const blocked = workout.isBlocked;
 
-  async function deleteWorkout(): Promise<Workout> {
+  const toggleBlockWorkout = async (): Promise<Workout> => {
     'use server';
-    const { data: deletedWorkout } = await api.delete<Workout>(
-      `/workouts/${id}`
-    );
+    const { data: modifiedWorkout } = await api.put<Workout>(`/workouts/${id}`, {
+      isBlocked: !blocked,
+    });
 
-    return deletedWorkout;
-  }
+    return modifiedWorkout;
+  };
 
   return (
     <div className='w-full'>
       <div className='p-12 w-full gap-8'>
-        <DetailHeader
+        <BlockHeader
           title={workout.name}
-          onDelete={deleteWorkout}
-          afterDeleteRoute='/workouts'
+          blocked={workout.isBlocked}
+          blockColor={blockColor(workout.isBlocked)}
+          blockStatus={blockTranslation(workout.isBlocked)}
+          toggleBlock={toggleBlockWorkout}
         />
         <div className='flex relative'>
           <div className='w-2/3'>
