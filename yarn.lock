@@ -62,7 +62,7 @@
 
 "@fiu-fit/common@https://github.com/Fiu-Fit/common.git":
   version "1.0.0"
-  resolved "https://github.com/Fiu-Fit/common.git#8b3005cdddaa801f5558747db70eb47c68f97227"
+  resolved "https://github.com/Fiu-Fit/common.git#e07dc2778c89b00c5a88485df680353efd67c856"
   dependencies:
     winston "^3.8.2"
 
