@@ -18,8 +18,8 @@ export const statusTranslation = (status: RequestStatus): string => {
     [key: string]: string;
   } = {
     [RequestStatus.Pending]:  'Pendiente',
-    [RequestStatus.Approved]: 'Aprobado',
-    [RequestStatus.Declined]: 'Rechazado',
+    [RequestStatus.Approved]: 'Aprobada',
+    [RequestStatus.Declined]: 'Rechazada',
   };
 
   return translation[status];
