@@ -1,9 +1,9 @@
 import { Page, Rating, User, Workout, unitToString } from '@fiu-fit/common';
+import UserTable from '../../users/UserTable';
 import { blockColor, blockTranslation } from '../statusUtils';
 import {
   exerciseListHeaders,
   ratingListHeaders,
-  userListHeaders,
   workoutCardFields,
 } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
@@ -75,7 +75,7 @@ export default async function WorkoutDetail({
           blockStatus={blockTranslation(workout.isBlocked)}
           toggleBlock={toggleBlockWorkout}
         />
-        <div className='flex relative'>
+        <div className='flex relative mb-8'>
           <div className='w-2/3'>
             <List
               className='w-2/3 absolute h-full'
@@ -90,12 +90,7 @@ export default async function WorkoutDetail({
             className='w-1/3 ml-24'
           />
         </div>
-        <List
-          className='mt-8 max-h-[600px]'
-          headers={userListHeaders}
-          values={users.rows}
-          detailButtonHref='/users'
-        />
+        <UserTable data={users.rows} />
         <List
           className='mt-8 max-h-[600px]'
           headers={ratingListHeaders}

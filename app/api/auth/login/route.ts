@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       secure:   true,
       sameSite: 'strict',
       path:     '/',
+      expires:  new Date(Date.now() + 1000 * 60 * 55),
     });
 
     return res;

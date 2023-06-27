@@ -1,5 +1,5 @@
 export * from './Charts';
-export { default as Button } from './Button';
+export * from './Button';
 export { default as ControlHeader } from './ControlHeader';
 export { default as DetailCard } from './DetailCard';
 export { default as DetailDeleteModal } from './DetailDeleteModal';

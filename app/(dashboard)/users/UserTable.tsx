@@ -1,6 +1,6 @@
 import { User } from '@fiu-fit/common';
 import * as displayedFields from './displayedFields';
-import { blockColor, blockTranslation, federatedIdentityColor, federatedIdentityTranslation } from './statusUtils';
+import { blockColor, blockTranslation, federatedIdentityColor, federatedIdentityTranslation, roleColor, roleTranslation } from './statusUtils';
 import {
   Table,
   TableBadgeItem,
@@ -8,6 +8,11 @@ import {
   TableHead,
   TableItem,
 } from '@/components/Table';
+import { Role } from '@/interfaces';
+
+const isBadgeAttribute = (attribute: keyof User) => {
+  return attribute === 'blocked' || attribute === 'federatedIdentity' || attribute === 'role';
+};
 
 export default function UserTable({ data }: { data: User[] }) {
   return (
@@ -17,13 +22,18 @@ export default function UserTable({ data }: { data: User[] }) {
         {data.map((user: User) => (
           <tr key={user.id}>
             {Object.values(displayedFields.userListHeaders).map((attribute: keyof User) =>
-              attribute !== 'blocked' && attribute !== 'federatedIdentity' ? (
+              !isBadgeAttribute(attribute) ? (
                 <TableItem
                   value={user[attribute] as string}
                   key={`${user.id}-${attribute}`}
                 />
               ) : undefined
             )}
+            <TableBadgeItem
+              value={roleTranslation(user.role as Role)}
+              color={roleColor(user.role as Role)}
+              key={`${user.id}-role`}
+            />
             <TableBadgeItem
               value={blockTranslation(user.blocked)}
               color={blockColor(user.blocked)}
