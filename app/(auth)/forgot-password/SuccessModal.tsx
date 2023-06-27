@@ -10,11 +10,10 @@ export default function ReturnModal({ innerRef }: { innerRef: RefObject<HTMLInpu
       innerRef={innerRef}
     >
       <h1 className='text-3xl mb-5 font-medium'>
-        La contraseña fue reestablecida con exito
+        La solicitud de cambio de contraseña fue enviada con exito
       </h1>
       <p className='mb-8'>
-        Haga click en el boton inferior para regresar a la pagina de inicio de
-        sesion
+        Revise su correo electronico para continuar con el proceso.
       </p>
       <Link href='/login' className='btn btn-primary'>
         Regresar a inicio de sesion

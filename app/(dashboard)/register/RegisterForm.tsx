@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Button, ErrorModal, Form, Modal, TextInput } from '@/components';
+import { Role } from '@/interfaces';
 import { validateEmail, validateName, validatePassword } from '@/utils';
-
-const ADMIN_ROLE = 'Admin';
 
 export default function RegisterForm() {
   const successModalRef = useRef<HTMLInputElement | null>(null);
@@ -64,7 +63,7 @@ export default function RegisterForm() {
     setIsLoading(true);
     const registerData: User = {
       ...(formData as User),
-      role: ADMIN_ROLE,
+      role: Role.Admin,
     };
 
     try {

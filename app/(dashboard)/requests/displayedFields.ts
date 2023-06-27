@@ -1,10 +1,10 @@
-import { Verification } from '@fiu-fit/common';
+import { VerificationDisplay } from './interfaces';
 
 export const requestListHeaders: {
-  [key: string]: keyof Verification;
+  [key: string]: keyof VerificationDisplay;
 } = {
   ID:           'id',
   'ID Usuario': 'userId',
-  Recibido:     'receivedAt',
+  Recibido:     'receivedAtString',
   Estado:       'status',
 };

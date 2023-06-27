@@ -2,7 +2,7 @@ import { mdiPlusCircleOutline } from '@mdi/js';
 import ServiceTable from './ServiceTable';
 import api from '@/api/serverSideAxiosConfig';
 import ControlHeader from '@/components/ControlHeader';
-import { Service } from '@/interfaces/service';
+import { Service } from '@/interfaces';
 
 async function getServices(): Promise<Service[]> {
   const { data } = await api.get<Service[]>('/service-registry');

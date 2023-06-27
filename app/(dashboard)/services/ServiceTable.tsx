@@ -7,7 +7,7 @@ import {
   TableHead,
   TableItem,
 } from '@/components/Table';
-import { Service } from '@/interfaces/service';
+import { Service } from '@/interfaces';
 
 export default function ServiceTable({ data }: { data: Service[] }) {
   return (
