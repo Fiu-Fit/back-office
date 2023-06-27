@@ -1,5 +1,5 @@
-import { Verification } from '@fiu-fit/common';
 import { requestListHeaders } from './displayedFields';
+import { VerificationDisplay } from './interfaces';
 import { statusColor, statusTranslation } from './statusUtils';
 import {
   Table,
@@ -9,15 +9,15 @@ import {
   TableItem,
 } from '@/components/Table';
 
-export default function RequestTable({ data }: { data: Verification[] }) {
+export default function RequestTable({ data }: { data: VerificationDisplay[] }) {
   return (
     <Table>
       <TableHead headers={Object.keys(requestListHeaders)} detailButtonHref />
       <tbody className='divide-y'>
-        {data.map((verificationRequest: Verification) => (
+        {data.map((verificationRequest: VerificationDisplay) => (
           <tr key={verificationRequest.id}>
             {Object.values(requestListHeaders).map(
-              (attribute: keyof Verification) =>
+              (attribute: keyof VerificationDisplay) =>
                 attribute !== 'status' ? (
                   <TableItem
                     value={verificationRequest[attribute] as string}
