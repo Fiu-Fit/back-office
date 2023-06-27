@@ -1,5 +1,5 @@
 'use client';
-import { mdiAccountGroup, mdiChartBar, mdiDumbbell, mdiProgressWrench } from '@mdi/js';
+import { mdiAccountGroup, mdiChartBar, mdiCheckDecagram, mdiDumbbell, mdiProgressWrench } from '@mdi/js';
 import Icon from '@mdi/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -30,6 +30,11 @@ export const SidebarItems: Array<{
     displayName: 'Servicios',
     iconPath:    mdiProgressWrench,
     link:        '/services',
+  },
+  {
+    displayName: 'Solicitudes de verificación',
+    iconPath:    mdiCheckDecagram,
+    link:        '/requests',
   }
 ];
 

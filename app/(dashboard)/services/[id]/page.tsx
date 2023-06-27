@@ -3,7 +3,7 @@ import { serviceCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { BlockHeader } from '@/components';
 import DetailCard from '@/components/DetailCard';
-import { Service, ServiceStatus } from '@/interfaces/service';
+import { Service, ServiceStatus } from '@/interfaces';
 
 async function getService(id: number): Promise<Service> {
   const { data: service } = await api.get<Service>(`/service-registry/${id}`);

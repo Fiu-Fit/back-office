@@ -3,6 +3,7 @@ import { blockColor, blockTranslation } from '../statusUtils';
 import { userCardFields, workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { BlockHeader, DetailCard, List } from '@/components';
+import { Role } from '@/interfaces';
 
 async function getUser(id: number): Promise<User> {
   const { data: user } = await api.get<User>(`/users/${id}`);
@@ -10,10 +11,24 @@ async function getUser(id: number): Promise<User> {
   return user;
 }
 
-async function getWorkouts(ids: string[]): Promise<Workout[]> {
-  if (ids.length === 0) return [];
+async function getFavoriteWorkouts(ids: string[]): Promise<Workout[]> {
+  if (!ids || ids.length === 0) return [];
   const { data: workoutList } = await api.get<Workout[]>(
     `/workouts?filters={"_id": ["${ids.join('","')}"]}`
+  );
+
+  workoutList.forEach((workout: any) => {
+    workout.categoryString = categoryToString(workout.category);
+    workout.exerciseNumber = workout.exercises.length;
+    workout.athleteNumber = workout.athleteIds.length;
+  });
+
+  return workoutList;
+}
+
+async function getCreatedWorkouts(id: number): Promise<Workout[]> {
+  const { data: workoutList } = await api.get<Workout[]>(
+    `/workouts?filters={"authorId": "${id}"}`
   );
 
   workoutList.forEach((workout: any) => {
@@ -31,7 +46,8 @@ export default async function UserDetail({
   params: { id: number };
 }) {
   const user = await getUser(id);
-  const favoriteWorkouts = await getWorkouts(user.favoriteWorkouts);
+  const favoriteWorkouts = await getFavoriteWorkouts(user.favoriteWorkouts);
+  const createdWorkouts = await getCreatedWorkouts(user.id);
   const blocked = user.blocked;
 
   const toggleBlockUser = async (): Promise<User> => {
@@ -46,7 +62,7 @@ export default async function UserDetail({
   return (
     <div className='w-full h-full'>
       <div className='p-12 w-full'>
-      <BlockHeader
+        <BlockHeader
           title={`${user.firstName} ${user.lastName}`}
           blocked={user.blocked}
           toggleBlock={toggleBlockUser}
@@ -66,6 +82,17 @@ export default async function UserDetail({
             fields={userCardFields(user)}
           />
         </div>
+        {user.role === Role.Trainer && (
+          <div>
+            <h1 className='text-2xl mt-8 mb-2'>Rutinas creadas</h1>
+            <List
+              className='col-span-2'
+              headers={workoutListHeaders}
+              values={createdWorkouts}
+              detailButtonHref='/workouts'
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { inputs } from './formInputs';
 import { NewServiceDTO } from './interfaces';
 import { Button, ErrorModal, Form, Modal, TextInput } from '@/components';
-import { Service } from '@/interfaces/service';
+import { Service } from '@/interfaces';
 
 export default function NewServiceForm({
   createService,

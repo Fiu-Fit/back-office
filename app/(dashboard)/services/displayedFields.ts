@@ -1,4 +1,4 @@
-import { Service } from '@/interfaces/service';
+import { Service } from '@/interfaces';
 
 export const serviceListHeaders: {
   [key: string]: keyof Service;
