@@ -14,7 +14,7 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
   const handleLogout = async () => {
     try {
       const response = await axios.get('api/auth/logout');
-      if (response.status === HttpStatusCode.Ok) router.replace('/login');
+      if (response.status === HttpStatusCode.Ok) router.replace('/');
       else
         throw new AxiosError(
           undefined,
