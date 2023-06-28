@@ -54,7 +54,6 @@ export default async function UserDetail({
   params: { id: number };
 }) {
   const user = await getUser(id);
-  console.log(user);
   const favoriteWorkouts = await getFavoriteWorkouts(user.id);
   const createdWorkouts = await getCreatedWorkouts(user.id);
   const blocked = user.blocked;
