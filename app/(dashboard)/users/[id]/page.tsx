@@ -1,19 +1,15 @@
 import { User, Workout, categoryToString } from '@fiu-fit/common';
-import Link from 'next/link';
 import { UserDisplay } from '../interfaces';
 import {
   blockColor,
   blockTranslation,
-  verificationColor,
-  verificationTranslation,
 } from '../statusUtils';
+import VerificationInfoRow from './VerificationInfoRow';
 import { userCardFields, workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import {
-  Badge,
   BlockHeader,
   DetailCard,
-  DetailCardRow,
   List,
 } from '@/components';
 import { Role } from '@/interfaces';
@@ -94,29 +90,7 @@ export default async function UserDetail({
             title='Detalle de usuario'
             fields={userCardFields(user)}
           >
-            {user.role === Role.Trainer && user.verification ? (
-              <DetailCardRow
-                header='Verificado'
-                value={
-                  <Link href={`/requests/${user.verification.id}`}>
-                    <Badge
-                      color={verificationColor(user.verification)}
-                      text={verificationTranslation(user.verification)}
-                    />
-                  </Link>
-                }
-              />
-            ) : (
-              <DetailCardRow
-                header='Verificado'
-                value={
-                  <Badge
-                    color={verificationColor(user.verification)}
-                    text={verificationTranslation(user.verification)}
-                  />
-                }
-              />
-            )}
+            <VerificationInfoRow user={user}/>
           </DetailCard>
         </div>
         {user.role === Role.Trainer && (
