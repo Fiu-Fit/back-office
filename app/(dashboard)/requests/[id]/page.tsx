@@ -5,7 +5,7 @@ import { verificationCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { Badge, DetailCard, VideoPlayer } from '@/components';
 import DecisionHeader from '@/components/DecisionHeader';
-import { RequestStatus } from '@/interfaces/RequestStatus';
+import { RequestStatus } from '@/interfaces';
 
 async function getVerificationRequest(id: number): Promise<Verification> {
   const { data: verificationRequest } = await api.get<Verification>(
