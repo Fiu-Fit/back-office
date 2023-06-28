@@ -11,7 +11,7 @@ import { Service } from '@/interfaces';
 
 export default function ServiceTable({ data }: { data: Service[] }) {
   return (
-    <Table>
+    <Table className='max-h-[600px]'>
       <TableHead headers={Object.keys(serviceListHeaders)} detailButtonHref />
       <tbody className='divide-y'>
         {data.map((service: Service) => (

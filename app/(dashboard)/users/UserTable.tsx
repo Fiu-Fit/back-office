@@ -16,7 +16,7 @@ const isBadgeAttribute = (attribute: keyof UserDisplay) => {
 
 export default function UserTable({ data }: { data: UserDisplay[] }) {
   return (
-    <Table>
+    <Table className='max-h-[600px]'>
       <TableHead headers={Object.keys(displayedFields.userListHeaders)} detailButtonHref />
       <tbody className='divide-y'>
         {data.map((user: UserDisplay) => (

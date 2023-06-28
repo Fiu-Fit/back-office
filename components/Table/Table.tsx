@@ -14,7 +14,7 @@ export default function Table({
     <div
       className={`rounded-box overflow-hidden flex flex-col border-base-content/5 border ${className}`}
     >
-      <div className='h-full flex-shrink overflow-y-scroll'>
+      <div className='h-full flex-shrink overflow-y-auto'>
         <table className='w-full table table-zebra'>{children}</table>
       </div>
       {pagination && (
