@@ -12,6 +12,7 @@ export default function TableHead({
           <th
             key={header}
             className='px-6 py-3 text-left text-xs uppercase tracking-wider'
+            style={{ position: 'static' }}
           >
             {header}
           </th>

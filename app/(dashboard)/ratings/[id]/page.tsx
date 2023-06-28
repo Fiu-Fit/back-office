@@ -1,8 +1,7 @@
 import { Rating } from '@fiu-fit/common';
 import { ratingCardFields } from './displayedFields.ts';
 import api from '@/api/serverSideAxiosConfig';
-import DetailCard from '@/components/DetailCard';
-import DetailHeader from '@/components/DetailHeader';
+import { DetailCard, DetailHeader } from '@/components';
 
 async function getRating(id: string): Promise<Rating> {
   const { data: rating } = await api.get<Rating>(`/ratings/${id}`);
@@ -19,9 +18,7 @@ export default async function WorkoutDetail({
 
   async function deleteRating(): Promise<Rating> {
     'use server';
-    const { data: deletedRating } = await api.delete<Rating>(
-      `/ratings/${id}`
-    );
+    const { data: deletedRating } = await api.delete<Rating>(`/ratings/${id}`);
 
     return deletedRating;
   }
@@ -35,9 +32,9 @@ export default async function WorkoutDetail({
           returnOnDelete
         />
         <DetailCard
-            title='Detalles de la rutina'
-            fields={ratingCardFields(rating)}
-          />
+          title='Detalles de la rutina'
+          fields={ratingCardFields(rating)}
+        />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { statusColor, statusTranslation } from '../statusUtils';
 import { serviceCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { BlockHeader } from '@/components';
-import DetailCard from '@/components/DetailCard';
+import DetailCard from '@/components/DetailCard/DetailCard';
 import { Service, ServiceStatus } from '@/interfaces';
 
 async function getService(id: number): Promise<Service> {

@@ -22,11 +22,6 @@ export const SidebarItems: Array<{
     link:        '/workouts',
   },
   {
-    displayName: 'Metricas de usuarios',
-    iconPath:    mdiChartBar,
-    link:        '/user-metrics',
-  },
-  {
     displayName: 'Servicios',
     iconPath:    mdiProgressWrench,
     link:        '/services',
@@ -35,7 +30,12 @@ export const SidebarItems: Array<{
     displayName: 'Solicitudes de verificación',
     iconPath:    mdiCheckDecagram,
     link:        '/requests',
-  }
+  },
+  {
+    displayName: 'Metricas de usuarios',
+    iconPath:    mdiChartBar,
+    link:        '/user-metrics',
+  },
 ];
 
 export default function Sidebar({

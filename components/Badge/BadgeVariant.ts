@@ -6,6 +6,7 @@ export const BadgeColorToClass = {
     error:     'badge-error',
     warning:   'badge-warning',
     info:      'badge-info',
+    neutral:   'badge-neutral',
 };
 
 export type BadgeColor = keyof typeof BadgeColorToClass;

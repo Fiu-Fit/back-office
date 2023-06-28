@@ -1,7 +1,7 @@
-import { User } from '@fiu-fit/common';
+import { UserDisplay } from './interfaces';
 
 export const userListHeaders: {
-  [key: string]: keyof User;
+  [key: string]: keyof UserDisplay;
 } = {
   ID:                   'id',
   Nombre:               'firstName',
@@ -10,4 +10,5 @@ export const userListHeaders: {
   Rol:                  'role',
   Bloqueado:            'blocked',
   'Identidad Federada': 'federatedIdentity',
+  Verificado:           'verification',
 };

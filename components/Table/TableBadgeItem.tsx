@@ -4,7 +4,7 @@ export default function TableBadgeItem({
   value,
   color,
 }: {
-  value: string;
+  value?: string;
   color: BadgeColor;
 }) {
   return (

@@ -1,13 +1,11 @@
 import { Verification } from '@fiu-fit/common';
-import Image from 'next/image';
 import Link from 'next/link';
-import { RequestStatus } from '../interfaces/RequestStatus';
 import { statusColor, statusTranslation } from '../statusUtils';
 import { verificationCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { Badge } from '@/components';
+import { Badge, DetailCard, VideoPlayer } from '@/components';
 import DecisionHeader from '@/components/DecisionHeader';
-import DetailCard from '@/components/DetailCard';
+import { RequestStatus } from '@/interfaces/RequestStatus';
 
 async function getVerificationRequest(id: number): Promise<Verification> {
   const { data: verificationRequest } = await api.get<Verification>(
@@ -59,21 +57,25 @@ export default async function RequestDetail({
         >
           <Badge color={statusColor(status)} text={statusTranslation(status)} />
         </DecisionHeader>
-        <div className='flex relative gap-8 max-h-[80vh]'>
-          <Link href={verificationRequest.resourceId} className='w-2/3'>
-            <Image
-              src={verificationRequest.resourceId}
-              alt='verification'
-              className='object-cover w-full h-full'
-              height={100}
-              width={100}
-            />
-          </Link>
+        <div className='grid grid-cols-3 gap-4'>
+          <VideoPlayer
+            src={verificationRequest.resourceId}
+            type='video/mp4'
+            className='col-span-2 w-full inline-block rounded max-h-[600px] bg-base-300'
+          />
           <DetailCard
-            className='w-1/3'
             title='Detalle de usuario'
             fields={verificationCardFields(verificationRequest)}
-          />
+          >
+            <div className='py-5 text-sm leading-5 flex justify-between'>
+              <Link
+                href={`/users/${verificationRequest.userId}`}
+                className='btn btn-secondary w-full'
+              >
+                Ver usuario
+              </Link>
+            </div>
+          </DetailCard>
         </div>
       </div>
     </div>

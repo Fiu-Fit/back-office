@@ -15,6 +15,7 @@ export default function NewServiceForm({
 }) {
   const successModalRef = useRef<HTMLInputElement | null>(null);
   const errorModalRef = useRef<HTMLInputElement | null>(null);
+  const [apiKey, setApiKey] = useState<string>('');
   const [error, setError] = useState<string>('null');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -28,7 +29,8 @@ export default function NewServiceForm({
     setIsLoading(true);
 
     try {
-      await createService(formData as NewServiceDTO);
+      const newService = await createService(formData as NewServiceDTO);
+      setApiKey(newService.apiKey);
       successModalRef.current?.click();
     } catch (err) {
       setIsLoading(false);
@@ -69,7 +71,7 @@ export default function NewServiceForm({
           />
         ))}
         <Button
-          text='Registrar'
+          text='Agregar servicio'
           type='submit'
           className='col-span-2'
           isLoading={isLoading}
@@ -80,7 +82,12 @@ export default function NewServiceForm({
         innerRef={successModalRef}
         type='undismissable'
       >
-        <h1 className='text-lg font-bold mb-4'>¡Registro exitoso!</h1>
+        <h1 className='text-lg font-bold mb-4'>
+          ¡Servicio agregado con exito!
+        </h1>
+        <p className='mb-4'>
+          La API key del nuevo servicio es <code className='bg-base-300 rounded-sm p-1 text-info'>{apiKey}</code>
+        </p>
         <Button text='Aceptar' onClick={handleSuccess} />
       </Modal>
       <ErrorModal

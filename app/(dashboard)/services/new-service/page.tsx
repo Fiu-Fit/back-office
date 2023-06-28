@@ -12,7 +12,7 @@ export default function CreateServicePage() {
 
   return (
     <main className='min-w-full p-12'>
-      <h1 className='text-4xl mb-4'>Crear servicio</h1>
+      <h1 className='text-4xl mb-4'>Agregar nuevo servicio</h1>
       <div className='flex justify-center items-center'>
         <NewServiceForm createService={createService} />
       </div>

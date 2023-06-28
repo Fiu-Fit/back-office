@@ -1,7 +1,6 @@
 export * from './Charts';
 export * from './Button';
 export { default as ControlHeader } from './ControlHeader';
-export { default as DetailCard } from './DetailCard';
 export { default as DetailDeleteModal } from './DetailDeleteModal';
 export { default as DetailHeader } from './DetailHeader';
 export { default as ErrorModal } from './ErrorModal';
@@ -14,5 +13,7 @@ export { default as Sidebar } from './Sidebar';
 export { default as TextInput } from './TextInput';
 export { default as ConfirmationModal } from './ConfirmationModal';
 export { default as BlockHeader } from './BlockHeader';
+export { default as VideoPlayer } from './VideoPlayer';
 export * from './Badge';
 export * from './Table';
+export * from './DetailCard';

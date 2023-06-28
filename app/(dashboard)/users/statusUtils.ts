@@ -1,5 +1,6 @@
+import { Verification } from '@fiu-fit/common';
 import { BadgeColor } from '@/components';
-import { Role } from '@/interfaces';
+import { RequestStatus, Role } from '@/interfaces';
 
 export const blockColor = (blocked: boolean): BadgeColor => {
   return blocked ? 'error' : 'success';
@@ -43,4 +44,28 @@ export const roleTranslation = (role: Role): string => {
   };
 
   return translation[role] || 'Desconocido';
+};
+
+export const verificationColor = (verification?: Verification): BadgeColor => {
+  const colors: {
+    [key in RequestStatus]: BadgeColor;
+  } = {
+    Pending:  'warning',
+    Declined: 'error',
+    Approved: 'success',
+  };
+
+  return verification ? colors[verification.status] : 'neutral';
+};
+
+export const verificationTranslation = (verification?: Verification): string => {
+  const colors: {
+    [key in RequestStatus]: string;
+  } = {
+    Pending:  'Pendiente',
+    Declined: 'Rechazado',
+    Approved: 'Verificado',
+  };
+
+  return verification ? colors[verification.status] : 'No verificado';
 };

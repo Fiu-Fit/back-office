@@ -24,7 +24,7 @@ export default function List({
           <tr key={value[headers['ID']]}>
             {Object.values(headers).map(attribute => (
               <TableItem
-                value={value[attribute]}
+                value={value[attribute] || '-'}
                 key={`${headers['ID']}-${attribute}`}
               />
             ))}

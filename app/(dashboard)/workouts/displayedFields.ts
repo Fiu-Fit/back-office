@@ -15,7 +15,6 @@ export const workoutListHeaders: {
   Dificultad:    'difficulty',
   Categoría:     'categoryString',
   Ejercicios:    'exerciseNumber',
-  Atletas:       'athleteNumber',
   'ID Autor':    'authorId',
   Bloqueado:     'isBlocked',
 };
