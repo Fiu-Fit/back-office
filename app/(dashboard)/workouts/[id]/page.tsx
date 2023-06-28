@@ -1,6 +1,7 @@
-import { Page, Rating, User, Workout, unitToString } from '@fiu-fit/common';
+import { Page, Rating, Workout, unitToString } from '@fiu-fit/common';
 import Link from 'next/link';
 import UserTable from '../../users/UserTable';
+import { UserDisplay } from '../../users/interfaces';
 import { blockColor, blockTranslation } from '../statusUtils';
 import {
   exerciseListHeaders,
@@ -23,9 +24,9 @@ async function getWorkout(id: string): Promise<Workout> {
   return workout;
 }
 
-async function getUsers(workoutId: string): Promise<Page<User>> {
+async function getUsers(workoutId: string): Promise<Page<UserDisplay>> {
   try {
-    const { data: users } = await api.get<Page<User>>(
+    const { data: users } = await api.get<Page<UserDisplay>>(
       `/users/favorited/${workoutId}`
     );
     return users;
