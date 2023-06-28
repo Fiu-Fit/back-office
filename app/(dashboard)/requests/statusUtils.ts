@@ -1,5 +1,5 @@
-import { RequestStatus } from './interfaces/RequestStatus';
 import { BadgeColor } from '@/components';
+import { RequestStatus } from '@/interfaces/RequestStatus';
 
 export const statusColor = (status: RequestStatus): BadgeColor => {
   const colors: {

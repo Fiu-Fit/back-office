@@ -1,7 +1,6 @@
 export * from './Charts';
 export * from './Button';
 export { default as ControlHeader } from './ControlHeader';
-export { default as DetailCard } from './DetailCard';
 export { default as DetailDeleteModal } from './DetailDeleteModal';
 export { default as DetailHeader } from './DetailHeader';
 export { default as ErrorModal } from './ErrorModal';
@@ -16,3 +15,4 @@ export { default as ConfirmationModal } from './ConfirmationModal';
 export { default as BlockHeader } from './BlockHeader';
 export * from './Badge';
 export * from './Table';
+export * from './DetailCard';

@@ -1,12 +1,12 @@
 import { Verification } from '@fiu-fit/common';
 import Link from 'next/link';
-import { RequestStatus } from '../interfaces/RequestStatus';
 import { statusColor, statusTranslation } from '../statusUtils';
 import { verificationCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { Badge } from '@/components';
 import DecisionHeader from '@/components/DecisionHeader';
-import DetailCard from '@/components/DetailCard';
+import DetailCard from '@/components/DetailCard/DetailCard';
+import { RequestStatus } from '@/interfaces/RequestStatus';
 
 async function getVerificationRequest(id: number): Promise<Verification> {
   const { data: verificationRequest } = await api.get<Verification>(

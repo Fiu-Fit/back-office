@@ -1,12 +1,25 @@
 import { User, Workout, categoryToString } from '@fiu-fit/common';
-import { blockColor, blockTranslation } from '../statusUtils';
+import Link from 'next/link';
+import { UserDisplay } from '../interfaces';
+import {
+  blockColor,
+  blockTranslation,
+  verificationColor,
+  verificationTranslation,
+} from '../statusUtils';
 import { userCardFields, workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { BlockHeader, DetailCard, List } from '@/components';
+import {
+  Badge,
+  BlockHeader,
+  DetailCard,
+  DetailCardRow,
+  List,
+} from '@/components';
 import { Role } from '@/interfaces';
 
-async function getUser(id: number): Promise<User> {
-  const { data: user } = await api.get<User>(`/users/${id}`);
+async function getUser(id: number): Promise<UserDisplay> {
+  const { data: user } = await api.get<UserDisplay>(`/users/${id}`);
 
   return user;
 }
@@ -80,7 +93,31 @@ export default async function UserDetail({
             className='col-span-1'
             title='Detalle de usuario'
             fields={userCardFields(user)}
-          />
+          >
+            {user.role === Role.Trainer && user.verification ? (
+              <DetailCardRow
+                header='Verificado'
+                value={
+                  <Link href={`/requests/${user.verification.id}`}>
+                    <Badge
+                      color={verificationColor(user.verification)}
+                      text={verificationTranslation(user.verification)}
+                    />
+                  </Link>
+                }
+              />
+            ) : (
+              <DetailCardRow
+                header='Verificado'
+                value={
+                  <Badge
+                    color={verificationColor(user.verification)}
+                    text={verificationTranslation(user.verification)}
+                  />
+                }
+              />
+            )}
+          </DetailCard>
         </div>
         {user.role === Role.Trainer && (
           <div>

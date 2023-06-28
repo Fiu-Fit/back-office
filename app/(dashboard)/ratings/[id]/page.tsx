@@ -1,7 +1,7 @@
 import { Rating } from '@fiu-fit/common';
 import { ratingCardFields } from './displayedFields.ts';
 import api from '@/api/serverSideAxiosConfig';
-import DetailCard from '@/components/DetailCard';
+import DetailCard from '@/components/DetailCard/DetailCard.jsx';
 import DetailHeader from '@/components/DetailHeader';
 
 async function getRating(id: string): Promise<Rating> {

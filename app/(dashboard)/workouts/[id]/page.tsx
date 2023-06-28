@@ -9,7 +9,7 @@ import {
 } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { BlockHeader } from '@/components';
-import DetailCard from '@/components/DetailCard';
+import DetailCard from '@/components/DetailCard/DetailCard';
 import List from '@/components/List';
 
 async function getWorkout(id: string): Promise<Workout> {

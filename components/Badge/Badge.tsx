@@ -4,7 +4,7 @@ export default function Badge({
   text,
   color,
 }: {
-  text: string;
+  text?: string;
   color: BadgeColor;
 }) {
   const colorClass = BadgeColorToClass[color];
