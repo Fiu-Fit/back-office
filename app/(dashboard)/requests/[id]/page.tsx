@@ -3,9 +3,8 @@ import Link from 'next/link';
 import { statusColor, statusTranslation } from '../statusUtils';
 import { verificationCardFields } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { Badge } from '@/components';
+import { Badge, DetailCard, VideoPlayer } from '@/components';
 import DecisionHeader from '@/components/DecisionHeader';
-import DetailCard from '@/components/DetailCard/DetailCard';
 import { RequestStatus } from '@/interfaces/RequestStatus';
 
 async function getVerificationRequest(id: number): Promise<Verification> {
@@ -58,27 +57,26 @@ export default async function RequestDetail({
         >
           <Badge color={statusColor(status)} text={statusTranslation(status)} />
         </DecisionHeader>
-        <DetailCard
-          className='w-1/3 mb-4'
-          title='Detalle de usuario'
-          fields={verificationCardFields(verificationRequest)}
-        >
-        <div className='py-5 text-sm leading-5 flex justify-between'>
-          <a
-            className='btn btn-primary'
-            href={verificationRequest.resourceId}
-            target='_blank'
+        <div className='grid grid-cols-3 gap-4'>
+          <VideoPlayer
+            src={verificationRequest.resourceId}
+            type='video/mp4'
+            className='col-span-2 w-full inline-block rounded max-h-[600px] bg-base-300'
+          />
+          <DetailCard
+            title='Detalle de usuario'
+            fields={verificationCardFields(verificationRequest)}
           >
-            Abrir recurso
-          </a>
-          <Link
-            href={`/users/${verificationRequest.userId}`}
-            className='btn btn-secondary'
-          >
-            Ver usuario
-          </Link>
+            <div className='py-5 text-sm leading-5 flex justify-between'>
+              <Link
+                href={`/users/${verificationRequest.userId}`}
+                className='btn btn-secondary w-full'
+              >
+                Ver usuario
+              </Link>
+            </div>
+          </DetailCard>
         </div>
-        </DetailCard>
       </div>
     </div>
   );
