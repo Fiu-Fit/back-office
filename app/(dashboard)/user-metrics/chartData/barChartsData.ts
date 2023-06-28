@@ -30,6 +30,7 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
       },
     ],
     labels: months,
+    title:  'Inicios de sesion',
   },
   {
     datasetInfo: [
@@ -43,6 +44,7 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
       },
     ],
     labels: months,
+    title:  'Registros',
   },
   {
     datasetInfo: [
@@ -70,6 +72,7 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
       },
     ],
     labels: months,
+    title:  'Inicios de sesion separados por identidad federada',
   },
   {
     datasetInfo: [
@@ -97,6 +100,7 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
       },
     ],
     labels: months,
+    title:  'Registros separados por identidad federada',
   },
   {
     datasetInfo: [
@@ -110,6 +114,7 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
       },
     ],
     labels: months,
+    title:  'Reestablecimientos de contraseña',
   },
   {
     datasetInfo: [
@@ -126,5 +131,6 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
       },
     ],
     labels: months,
+    title:  'Usuarios bloqueados',
   },
 ];

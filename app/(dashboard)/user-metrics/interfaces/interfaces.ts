@@ -17,6 +17,7 @@ interface FilterInfo {
 
 export interface FilterableChartData<T> {
   datasetInfo: Array<FilterableDataset<T>>;
+  title?: string;
   labels: string[];
   filters?: FilterInfo[];
 }

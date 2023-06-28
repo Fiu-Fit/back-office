@@ -22,7 +22,8 @@ export default function FilterableDoughnutChart({
     useFilteredData<DoughnutDatasetCountFields>(data);
 
   return (
-    <div className='rounded-box bg-neutral p-5 flex flex-col gap-4'>
+    <div className='rounded-box bg-base-300 p-5 flex flex-col gap-4'>
+      <h1 className='text-2xl font-bold text-start'>{data.title}</h1>
       <div className='flex justify-between'>
         {chartData?.filters &&
           chartData.filters.map(({ name, label, options }) => (
@@ -46,7 +47,7 @@ export default function FilterableDoughnutChart({
                   chartDataset.backgroundColor || colors.blue[500],
               })),
             }}
-            className='h-96 flex justify-center bg-transparent p-0'
+            className='h-96 flex flex-col items-center justify-center bg-transparent p-0'
           />
         )}
       </LoadingWrapper>

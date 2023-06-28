@@ -3,6 +3,7 @@ import { DoughnutDataset } from '@/components';
 
 export const doughnutChartsData: Array<FilterableChartData<DoughnutDataset>> = [
   {
+    title:   'Usuarios separados por rol',
     labels:  ['Atletas', 'Entrenadores', 'Administradores'],
     filters: [
       {
@@ -36,6 +37,7 @@ export const doughnutChartsData: Array<FilterableChartData<DoughnutDataset>> = [
     ],
   },
   {
+    title:   'Entrenadores separados por verificación',
     labels:      ['Entrenadores no verificados', 'Entrenadores verificados'],
     filters: [
       {

@@ -23,25 +23,18 @@ ChartJS.register(
 export default function BarChart({
   data,
   className,
-  title,
   redraw,
+  color,
 }: {
   data: BarData;
   className?: string;
-  title?: string;
   redraw?: boolean;
+  color?: string;
 }) {
   const options = {
-    color:      'white',
+    color:      color,
     responsive: true,
-    plugins:    {
-      title: {
-        display: !!title,
-        text:    title,
-      },
-    },
-
-    scales: {
+    scales:     {
       x: {
         display: true,
         title:   {

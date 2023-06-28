@@ -19,7 +19,8 @@ export default function FilterableBarChart({
 }) {
   const { chartData, isLoading, setFilter } = useFilteredData<BarDataset>(data);
   return (
-    <div className='rounded-box bg-neutral p-5 flex flex-col gap-4'>
+    <div className='rounded-box bg-base-300 p-5 flex flex-col gap-4'>
+      <h1 className='text-2xl font-bold text-start'>{data.title}</h1>
       <Picker
         placeholder='Elegí un año'
         options={options}
@@ -38,6 +39,7 @@ export default function FilterableBarChart({
                 data:  chartDataset.data,
                 backgroundColor:
                   chartDataset.backgroundColor || colors.blue[500],
+                borderRadius: 5,
               })),
             }}
             redraw
