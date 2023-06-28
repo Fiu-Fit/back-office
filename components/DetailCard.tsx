@@ -1,11 +1,15 @@
+import { ReactNode } from 'react';
+
 export default function DetailCard({
   title,
   fields,
   className,
+  children,
 }: {
   title: string;
   fields: { [key: string]: any };
   className?: string;
+  children?: ReactNode;
 }) {
   return (
     <div className={`bg-neutral text-neutral-content card overflow-hidden rounded-md ${className}`}>
@@ -18,6 +22,7 @@ export default function DetailCard({
               <dd className='col-span-2'>{value}</dd>
             </div>
           ))}
+          {children}
         </dl>
       </div>
     </div>

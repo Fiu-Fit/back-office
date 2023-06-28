@@ -1,5 +1,4 @@
 import { Verification } from '@fiu-fit/common';
-import Image from 'next/image';
 import Link from 'next/link';
 import { RequestStatus } from '../interfaces/RequestStatus';
 import { statusColor, statusTranslation } from '../statusUtils';
@@ -59,22 +58,27 @@ export default async function RequestDetail({
         >
           <Badge color={statusColor(status)} text={statusTranslation(status)} />
         </DecisionHeader>
-        <div className='flex relative gap-8 max-h-[80vh]'>
-          <Link href={verificationRequest.resourceId} className='w-2/3'>
-            <Image
-              src={verificationRequest.resourceId}
-              alt='verification'
-              className='object-cover w-full h-full'
-              height={100}
-              width={100}
-            />
+        <DetailCard
+          className='w-1/3 mb-4'
+          title='Detalle de usuario'
+          fields={verificationCardFields(verificationRequest)}
+        >
+        <div className='py-5 text-sm leading-5 flex justify-between'>
+          <a
+            className='btn btn-primary'
+            href={verificationRequest.resourceId}
+            target='_blank'
+          >
+            Abrir recurso
+          </a>
+          <Link
+            href={`/users/${verificationRequest.userId}`}
+            className='btn btn-secondary'
+          >
+            Ver usuario
           </Link>
-          <DetailCard
-            className='w-1/3'
-            title='Detalle de usuario'
-            fields={verificationCardFields(verificationRequest)}
-          />
         </div>
+        </DetailCard>
       </div>
     </div>
   );

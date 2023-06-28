@@ -16,7 +16,7 @@ export default async function UsersPage() {
     <div className='m-12'>
       <ControlHeader
         title='Usuarios'
-        buttonText='Registrar usuario'
+        buttonText='Registrar administrador'
         icon={mdiAccountSupervisor}
         createHref='./register'
       />

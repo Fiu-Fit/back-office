@@ -1,4 +1,5 @@
 import { Page, Rating, User, Workout, unitToString } from '@fiu-fit/common';
+import Link from 'next/link';
 import UserTable from '../../users/UserTable';
 import { blockColor, blockTranslation } from '../statusUtils';
 import {
@@ -22,10 +23,10 @@ async function getWorkout(id: string): Promise<Workout> {
   return workout;
 }
 
-async function getUsers(ids: number[]): Promise<Page<User>> {
+async function getUsers(workoutId: string): Promise<Page<User>> {
   try {
     const { data: users } = await api.get<Page<User>>(
-      `/users?ids=${ids.join(',')}`
+      `/users/favorited/${workoutId}`
     );
     return users;
   } catch (err) {
@@ -52,15 +53,18 @@ export default async function WorkoutDetail({
   params: { id: string };
 }) {
   const workout = await getWorkout(id);
-  const users = await getUsers(workout.athleteIds);
+  const users = await getUsers(workout._id);
   const ratings = await getRatings(workout._id);
   const blocked = workout.isBlocked;
 
   const toggleBlockWorkout = async (): Promise<Workout> => {
     'use server';
-    const { data: modifiedWorkout } = await api.put<Workout>(`/workouts/${id}`, {
-      isBlocked: !blocked,
-    });
+    const { data: modifiedWorkout } = await api.put<Workout>(
+      `/workouts/${id}`,
+      {
+        isBlocked: !blocked,
+      }
+    );
 
     return modifiedWorkout;
   };
@@ -88,7 +92,16 @@ export default async function WorkoutDetail({
             title='Detalles de la rutina'
             fields={workoutCardFields(workout)}
             className='w-1/3 ml-24'
-          />
+          >
+            <div className='px-6 py-5 text-sm leading-5'>
+              <Link
+                href={`/users/${workout.authorId}`}
+                className='btn btn-primary w-full'
+              >
+                Ver autor
+              </Link>
+            </div>
+          </DetailCard>
         </div>
         <UserTable data={users.rows} />
         <List

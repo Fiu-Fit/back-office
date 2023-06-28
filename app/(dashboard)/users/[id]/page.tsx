@@ -11,10 +11,9 @@ async function getUser(id: number): Promise<User> {
   return user;
 }
 
-async function getFavoriteWorkouts(ids: string[]): Promise<Workout[]> {
-  if (!ids || ids.length === 0) return [];
+async function getFavoriteWorkouts(id: number): Promise<Workout[]> {
   const { data: workoutList } = await api.get<Workout[]>(
-    `/workouts?filters={"_id": ["${ids.join('","')}"]}`
+    `/users/${id}/favoriteWorkouts`
   );
 
   workoutList.forEach((workout: any) => {
@@ -46,7 +45,8 @@ export default async function UserDetail({
   params: { id: number };
 }) {
   const user = await getUser(id);
-  const favoriteWorkouts = await getFavoriteWorkouts(user.favoriteWorkouts);
+  console.log(user);
+  const favoriteWorkouts = await getFavoriteWorkouts(user.id);
   const createdWorkouts = await getCreatedWorkouts(user.id);
   const blocked = user.blocked;
 
