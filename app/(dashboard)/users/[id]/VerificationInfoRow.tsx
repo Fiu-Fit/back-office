@@ -2,14 +2,13 @@ import Link from 'next/link';
 import { UserDisplay } from '../interfaces';
 import { verificationColor, verificationTranslation } from '../statusUtils';
 import { Badge, DetailCardRow } from '@/components';
-import { Role } from '@/interfaces';
 
 export default function VerificationInfoRow({
     user
 }: {
     user: UserDisplay;
 }) {
-  return user.role === Role.Trainer && user.verification ? (
+  return user.verification ? (
     <DetailCardRow
       header='Verificado'
       value={

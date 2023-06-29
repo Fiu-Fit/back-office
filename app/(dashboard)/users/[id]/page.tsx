@@ -1,17 +1,10 @@
 import { User, Workout, categoryToString } from '@fiu-fit/common';
 import { UserDisplay } from '../interfaces';
-import {
-  blockColor,
-  blockTranslation,
-} from '../statusUtils';
+import { blockColor, blockTranslation } from '../statusUtils';
 import VerificationInfoRow from './VerificationInfoRow';
 import { userCardFields, workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import {
-  BlockHeader,
-  DetailCard,
-  List,
-} from '@/components';
+import { BlockHeader, DetailCard, List } from '@/components';
 import { Role } from '@/interfaces';
 
 async function getUser(id: number): Promise<UserDisplay> {
@@ -89,7 +82,7 @@ export default async function UserDetail({
             title='Detalle de usuario'
             fields={userCardFields(user)}
           >
-            <VerificationInfoRow user={user}/>
+            <VerificationInfoRow user={user} />
           </DetailCard>
         </div>
         {user.role === Role.Trainer && (
