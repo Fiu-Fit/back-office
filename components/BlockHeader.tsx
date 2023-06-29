@@ -9,12 +9,16 @@ export default function BlockHeader({
   blockColor,
   blocked,
   toggleBlock,
+  blockMessage,
+  unblockMessage,
 }: {
   title: string;
   blockStatus: string;
   blockColor: BadgeColor;
   blocked: boolean;
   toggleBlock: () => Promise<any>;
+  blockMessage: string;
+  unblockMessage: string;
 }) {
   const router = useRouter();
   const blockModalRef = useRef<HTMLInputElement | null>(null);
@@ -54,14 +58,16 @@ export default function BlockHeader({
         </div>
       </div>
       <ConfirmationModal
-        text='¿Estas seguro que quieres desbloquear este servicio?'
+        text={unblockMessage}
         innerRef={unblockModalRef}
         handleConfirm={handleToggleBlock}
+        id='block-header-unblock-modal'
       />
       <ConfirmationModal
-        text='¿Estas seguro que quieres bloquear este servicio?'
+        text={blockMessage}
         innerRef={blockModalRef}
         handleConfirm={handleToggleBlock}
+        id='block-header-block-modal'
       />
     </>
   );

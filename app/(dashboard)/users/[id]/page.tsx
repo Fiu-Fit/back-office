@@ -74,6 +74,8 @@ export default async function UserDetail({
           toggleBlock={toggleBlockUser}
           blockStatus={blockTranslation(blocked)}
           blockColor={blockColor(blocked)}
+          blockMessage='¿Estas seguro que quieres bloquear este usuario?'
+          unblockMessage='¿Estas seguro que quieres desbloquear este usuario?'
         />
         <div className='grid grid-cols-3 gap-4'>
           <List

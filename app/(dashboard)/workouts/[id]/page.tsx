@@ -79,6 +79,8 @@ export default async function WorkoutDetail({
           blockColor={blockColor(workout.isBlocked)}
           blockStatus={blockTranslation(workout.isBlocked)}
           toggleBlock={toggleBlockWorkout}
+          blockMessage='¿Estas seguro que quieres bloquear este plan de entrenamiento?'
+          unblockMessage='¿Estas seguro que quieres desbloquear este plan de entrenamiento?'
         />
         <div className='flex relative mb-8'>
           <div className='w-2/3'>
