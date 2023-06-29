@@ -43,7 +43,7 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
         </div>
         <div className='flex-1'>
           <Link className='btn btn-ghost normal-case text-xl' href='users'>
-            Fiu-Fit
+            FiuFit
           </Link>
         </div>
         <div className='flex-none'>

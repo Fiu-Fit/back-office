@@ -1,4 +1,4 @@
-# Fiu-Fit Back-Office
+# FiuFit Back-Office
 
 ## Requisitos
 * [Node.js version LTS 18.16.1](https://nodejs.org/en/download) 

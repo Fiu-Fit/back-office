@@ -1,8 +1,8 @@
-# Manual de usuario del Back Office de Fiu-Fit
+# Manual de usuario del Back Office de FiuFit
 
 ## Introducción
 
-Bienvenido al Manual de Usuario del Back Office de Fiu-Fit. Este manual proporciona información detallada sobre cómo utilizar las diferentes características y funcionalidades del Back Office.
+Bienvenido al Manual de Usuario del Back Office de FiuFit. Este manual proporciona información detallada sobre cómo utilizar las diferentes características y funcionalidades del Back Office.
 
 ## Requisitos previos
 
