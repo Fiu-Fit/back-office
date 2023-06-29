@@ -7,7 +7,7 @@ import { userCardFields, workoutListHeaders } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
 import { BlockHeader, DetailCard, List } from '@/components';
 import { Role } from '@/interfaces';
-import profilePicture from '@/public/profile-picture.png';
+import defaultProfilePicture from '@/public/profile-picture.png';
 
 async function getUser(id: number): Promise<UserDisplay> {
   const { data: user } = await api.get<UserDisplay>(`/users/${id}`);
@@ -52,6 +52,9 @@ export default async function UserDetail({
   const favoriteWorkouts = await getFavoriteWorkouts(user.id);
   const createdWorkouts = await getCreatedWorkouts(user.id);
   const blocked = user.blocked;
+  const userProfilePicture = user.profilePicture?.startsWith('http')
+    ? user.profilePicture
+    : undefined;
 
   const toggleBlockUser = async (): Promise<User> => {
     'use server';
@@ -87,7 +90,7 @@ export default async function UserDetail({
             {user.verification && <VerificationInfoRow user={user} />}
             <div className='w-full flex justify-center'>
               <Image
-                src={user.profilePicture || profilePicture}
+                src={userProfilePicture || defaultProfilePicture}
                 width={100}
                 height={100}
                 className='w-1/2 aspect-square mt-4 rounded'
