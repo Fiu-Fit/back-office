@@ -9,7 +9,7 @@ import {
   workoutCardFields,
 } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { BlockHeader } from '@/components';
+import { BlockHeader, Carousel } from '@/components';
 import DetailCard from '@/components/DetailCard/DetailCard';
 import List from '@/components/List';
 
@@ -111,6 +111,7 @@ export default async function WorkoutDetail({
           values={ratings}
           detailButtonHref='/ratings'
         />
+        <Carousel className='h-[600px] bg-base-300 rounded-box mt-8' multimedia={workout.multimedia} />
       </div>
     </div>
   );

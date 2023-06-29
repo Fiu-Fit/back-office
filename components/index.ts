@@ -17,3 +17,4 @@ export { default as VideoPlayer } from './VideoPlayer';
 export * from './Badge';
 export * from './Table';
 export * from './DetailCard';
+export * from './Carousel';
