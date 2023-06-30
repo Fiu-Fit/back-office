@@ -63,6 +63,7 @@ export default function DecisionHeader({
           innerRef={declineModalRef}
           handleConfirm={handleDecline}
           confirmationColor='error'
+          id='decision-header-decline-modal'
         />
       )}
       {onAccept && (
@@ -71,6 +72,7 @@ export default function DecisionHeader({
           innerRef={acceptModalRef}
           handleConfirm={handleAccept}
           confirmationColor='success'
+          id='decision-header-accept-modal'
         />
       )}
     </>
