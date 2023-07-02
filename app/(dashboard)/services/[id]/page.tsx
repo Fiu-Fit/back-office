@@ -38,6 +38,8 @@ export default async function ServiceDetail({
           toggleBlock={toggleBlockService}
           blockStatus={statusTranslation(service.status)}
           blockColor={statusColor(service.status)}
+          blockMessage='¿Estas seguro que quieres bloquear este servicio?'
+          unblockMessage='¿Estas seguro que quieres desbloquear este servicio?'
         />
         <DetailCard
           title='Detalle de usuario'

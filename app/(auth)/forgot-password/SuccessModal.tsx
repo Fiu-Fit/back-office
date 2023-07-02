@@ -15,7 +15,7 @@ export default function ReturnModal({ innerRef }: { innerRef: RefObject<HTMLInpu
       <p className='mb-8'>
         Revise su correo electronico para continuar con el proceso.
       </p>
-      <Link href='/login' className='btn btn-primary'>
+      <Link href='/' className='btn btn-primary'>
         Regresar a inicio de sesion
       </Link>
     </Modal>

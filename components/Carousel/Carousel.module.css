@@ -1,0 +1,15 @@
+.embla {
+  @apply overflow-hidden;
+}
+
+.embla__container {
+  @apply flex max-h-full;
+}
+
+.embla__slide {
+  @apply flex-[0_0_100%] min-w-0 max-h-full;
+}
+
+.embla__slide img {
+  @apply h-full w-full object-contain;
+}

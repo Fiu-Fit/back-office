@@ -9,7 +9,7 @@ import {
   workoutCardFields,
 } from './displayedFields';
 import api from '@/api/serverSideAxiosConfig';
-import { BlockHeader } from '@/components';
+import { BlockHeader, Carousel } from '@/components';
 import DetailCard from '@/components/DetailCard/DetailCard';
 import List from '@/components/List';
 
@@ -79,6 +79,8 @@ export default async function WorkoutDetail({
           blockColor={blockColor(workout.isBlocked)}
           blockStatus={blockTranslation(workout.isBlocked)}
           toggleBlock={toggleBlockWorkout}
+          blockMessage='¿Estas seguro que quieres bloquear este plan de entrenamiento?'
+          unblockMessage='¿Estas seguro que quieres desbloquear este plan de entrenamiento?'
         />
         <div className='flex relative mb-8'>
           <div className='w-2/3'>
@@ -111,6 +113,7 @@ export default async function WorkoutDetail({
           values={ratings}
           detailButtonHref='/ratings'
         />
+        <Carousel className='h-[600px] bg-base-300 rounded-box mt-8' multimedia={workout.multimedia} />
       </div>
     </div>
   );
