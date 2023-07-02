@@ -15,7 +15,7 @@ Antes de comenzar a utilizar el Back Office, asegúrese de cumplir los siguiente
 Para acceder al Back Office, siga estos pasos:
 
 1. Abra su navegador web.
-2. Ingrese al sitio web del [Back Office](https://back-office-mu.vercel.app/login).
+2. Ingrese al sitio web del [Back Office](https://back-office-mu.vercel.app).
 3. Inicie sesión con su cuenta de usuario y contraseña.
 
 ## Funcionalidades principales
