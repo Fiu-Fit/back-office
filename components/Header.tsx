@@ -13,7 +13,7 @@ export default function Header({ sidebarId }: { sidebarId: string }) {
   const router = useRouter();
   const handleLogout = async () => {
     try {
-      const response = await axios.get('api/auth/logout');
+      const response = await axios.get('/api/auth/logout');
       if (response.status === HttpStatusCode.Ok) router.replace('/');
       else
         throw new AxiosError(
