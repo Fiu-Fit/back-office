@@ -59,7 +59,8 @@ export default async function UserDetail({
   const toggleBlockUser = async (): Promise<User> => {
     'use server';
     const { data: blockedUser } = await api.put<User>(`/users/${id}`, {
-      blocked: !blocked,
+      blocked:     !blocked,
+      blockedAt: blocked ? null : new Date(),
     });
 
     return blockedUser;
