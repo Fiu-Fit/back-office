@@ -119,10 +119,7 @@ export const barChartsData: Array<FilterableChartData<BarDataset>> = [
   {
     datasetInfo: [
       {
-        url:    'metrics/register',
-        params: {
-          blocked: true,
-        },
+        url:          'metrics/blocked',
         chartDataset: {
           label:           'Usuarios bloqueados',
           backgroundColor: colors.red[500],
