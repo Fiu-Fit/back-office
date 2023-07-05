@@ -16,6 +16,5 @@ export const workoutListHeaders = {
   ID:            '_id',
   Nombre:        'name',
   Categoría:     'categoryString',
-  Atletas:       'athleteNumber',
   'ID Autor':    'authorId',
 };
